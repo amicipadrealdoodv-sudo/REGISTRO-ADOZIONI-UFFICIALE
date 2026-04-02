@@ -1,0 +1,1120 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Morijo Educational Programme — Registro Adottati 2026</title>
+    <style>
+        /* ── RESET & BASE ───────────────────────────── */
+        *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+        :root {
+            --navy:   #1a2744;
+            --navy2:  #243660;
+            --gold:   #b8962e;
+            --gold2:  #d4af37;
+            --cream:  #f9f6ef;
+            --paper:  #ffffff;
+            --border: #ccc9be;
+            --muted:  #6b6b6b;
+            --text:   #1c1c1c;
+            --green:  #1a5c38;
+            --red:    #8b0000;
+            --orange: #7a4200;
+        }
+        body {
+            font-family: "Georgia", "Times New Roman", serif;
+            background: var(--cream);
+            color: var(--text);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        /* ── LOGIN SCREEN ───────────────────────────── */
+        #loginScreen {
+            position: fixed; inset: 0;
+            background: var(--navy);
+            display: flex; align-items: center; justify-content: center;
+            z-index: 9999;
+        }
+        .login-box {
+            background: var(--paper);
+            border: 3px double var(--gold);
+            padding: 3rem 3.5rem;
+            width: 420px;
+            text-align: center;
+            box-shadow: 0 8px 40px rgba(0,0,0,0.5);
+        }
+        .login-crest {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+        .login-title {
+            font-size: 1.15rem;
+            font-weight: bold;
+            color: var(--navy);
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            margin-bottom: 0.25rem;
+        }
+        .login-subtitle {
+            font-size: 0.85rem;
+            color: var(--muted);
+            margin-bottom: 2rem;
+            font-style: italic;
+        }
+        .login-box label {
+            display: block;
+            text-align: left;
+            font-size: 0.8rem;
+            font-weight: bold;
+            color: var(--navy);
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            margin-bottom: 0.35rem;
+        }
+        .login-box input[type=password], .login-box input[type=text] {
+            width: 100%;
+            padding: 0.65rem 0.9rem;
+            border: 1px solid var(--border);
+            font-family: inherit;
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+            background: var(--cream);
+            color: var(--text);
+        }
+        .login-box input:focus { outline: 2px solid var(--gold); }
+        .btn-login {
+            width: 100%;
+            padding: 0.75rem;
+            background: var(--navy);
+            color: var(--gold2);
+            border: none;
+            font-family: inherit;
+            font-size: 0.9rem;
+            font-weight: bold;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .btn-login:hover { background: var(--navy2); }
+        .login-error {
+            color: var(--red);
+            font-size: 0.8rem;
+            margin-top: 0.75rem;
+            display: none;
+        }
+
+        /* ── MAIN LAYOUT ────────────────────────────── */
+        #appScreen { display: none; min-height: 100vh; }
+
+        /* ── HEADER ─────────────────────────────────── */
+        .site-header {
+            background: var(--navy);
+            color: #fff;
+            border-bottom: 3px solid var(--gold);
+        }
+        .header-top {
+            max-width: 1500px;
+            margin: 0 auto;
+            padding: 1.25rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+        .header-brand {
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+        }
+        .header-crest { font-size: 2.5rem; }
+        .header-brand-text {}
+        .header-org {
+            font-size: 0.7rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--gold2);
+            opacity: 0.85;
+        }
+        .header-title {
+            font-size: 1.4rem;
+            font-weight: bold;
+            letter-spacing: 0.04em;
+        }
+        .header-year {
+            font-size: 0.75rem;
+            color: rgba(255,255,255,0.6);
+            font-style: italic;
+        }
+        .header-meta {
+            text-align: right;
+            font-size: 0.78rem;
+            color: rgba(255,255,255,0.7);
+        }
+        .header-meta strong { color: var(--gold2); }
+        .btn-logout {
+            margin-top: 0.4rem;
+            padding: 0.3rem 0.8rem;
+            background: transparent;
+            border: 1px solid var(--gold);
+            color: var(--gold2);
+            font-family: inherit;
+            font-size: 0.75rem;
+            cursor: pointer;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+        }
+        .btn-logout:hover { background: rgba(212,175,55,0.15); }
+
+        /* ── NAV ─────────────────────────────────────── */
+        .site-nav {
+            max-width: 1500px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            gap: 0;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        .nav-btn {
+            padding: 0.65rem 1.4rem;
+            background: transparent;
+            border: none;
+            border-bottom: 3px solid transparent;
+            color: rgba(255,255,255,0.7);
+            font-family: inherit;
+            font-size: 0.85rem;
+            letter-spacing: 0.05em;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .nav-btn:hover { color: #fff; border-bottom-color: var(--gold); }
+        .nav-btn.active { color: var(--gold2); border-bottom-color: var(--gold2); font-weight: bold; }
+
+        /* ── MAIN CONTENT ───────────────────────────── */
+        .main-content {
+            max-width: 1500px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .section { display: none; }
+        .section.active { display: block; animation: fadein 0.25s ease; }
+        @keyframes fadein { from { opacity:0; transform:translateY(6px); } to { opacity:1; transform:translateY(0); } }
+
+        /* ── PAGE HEADING ────────────────────────────── */
+        .page-heading {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid var(--navy);
+        }
+        .page-heading h1 {
+            font-size: 1.5rem;
+            color: var(--navy);
+            letter-spacing: 0.03em;
+        }
+        .page-heading .subtitle {
+            font-size: 0.8rem;
+            color: var(--muted);
+            font-style: italic;
+        }
+
+        /* ── STAT CARDS ──────────────────────────────── */
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        .stat-card {
+            background: var(--paper);
+            border: 1px solid var(--border);
+            border-top: 3px solid var(--navy);
+            padding: 1rem 1.25rem;
+        }
+        .stat-card.gold  { border-top-color: var(--gold); }
+        .stat-card.green { border-top-color: var(--green); }
+        .stat-card.red   { border-top-color: var(--red); }
+        .stat-label {
+            font-size: 0.7rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+        .stat-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--navy);
+            line-height: 1.1;
+        }
+        .stat-sub { font-size: 0.75rem; color: var(--muted); }
+
+        /* ── TOOLBAR ─────────────────────────────────── */
+        .toolbar {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+            padding: 0.75rem 1rem;
+            background: var(--paper);
+            border: 1px solid var(--border);
+        }
+        .toolbar input[type=search], .toolbar select {
+            padding: 0.4rem 0.7rem;
+            border: 1px solid var(--border);
+            font-family: inherit;
+            font-size: 0.85rem;
+            background: var(--cream);
+            color: var(--text);
+        }
+        .toolbar input[type=search] { width: 240px; }
+        .toolbar select { min-width: 150px; }
+        .toolbar input:focus, .toolbar select:focus { outline: 2px solid var(--gold); }
+        .toolbar .spacer { flex: 1; }
+        .btn {
+            padding: 0.4rem 1rem;
+            border: 1px solid var(--navy);
+            background: var(--navy);
+            color: #fff;
+            font-family: inherit;
+            font-size: 0.8rem;
+            letter-spacing: 0.05em;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .btn:hover { background: var(--navy2); }
+        .btn.outline { background: transparent; color: var(--navy); }
+        .btn.outline:hover { background: var(--navy); color: #fff; }
+        .btn.gold { background: var(--gold); border-color: var(--gold); color: var(--navy); font-weight: bold; }
+        .btn.gold:hover { background: var(--gold2); }
+        .btn.danger { background: var(--red); border-color: var(--red); }
+        .count-badge {
+            font-size: 0.75rem;
+            color: var(--muted);
+            font-style: italic;
+        }
+
+        /* ── TABLE ───────────────────────────────────── */
+        .table-wrap {
+            background: var(--paper);
+            border: 1px solid var(--border);
+            overflow: auto;
+        }
+        table { width: 100%; border-collapse: collapse; }
+        thead th {
+            background: var(--navy);
+            color: #fff;
+            padding: 0.65rem 0.9rem;
+            text-align: left;
+            font-size: 0.75rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            white-space: nowrap;
+            cursor: pointer;
+            user-select: none;
+        }
+        thead th:hover { background: var(--navy2); }
+        thead th.sort-asc::after  { content: " ↑"; opacity: 0.7; }
+        thead th.sort-desc::after { content: " ↓"; opacity: 0.7; }
+        tbody tr { border-bottom: 1px solid #eee; }
+        tbody tr:hover { background: #f0ede6; }
+        tbody td {
+            padding: 0.55rem 0.9rem;
+            font-size: 0.85rem;
+            vertical-align: middle;
+        }
+        .td-id { font-family: "Courier New", monospace; font-size: 0.75rem; color: var(--muted); }
+        .td-name { font-weight: bold; }
+        .td-surname { color: var(--navy); }
+        .td-sponsor { font-style: italic; color: var(--navy2); font-size: 0.8rem; }
+        .badge {
+            display: inline-block;
+            padding: 0.15rem 0.5rem;
+            font-size: 0.7rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            font-weight: bold;
+            border: 1px solid;
+        }
+        .badge-adottato   { background: #e8f5e9; color: var(--green); border-color: var(--green); }
+        .badge-completato { background: #e3f2fd; color: #1565c0; border-color: #1565c0; }
+        .badge-inattivo   { background: #fce4ec; color: var(--red); border-color: var(--red); }
+        .badge-adottabile { background: #fff8e1; color: var(--orange); border-color: var(--orange); }
+        .gender-m { color: #1565c0; font-weight: bold; }
+        .gender-f { color: #880e4f; font-weight: bold; }
+        .btn-edit {
+            padding: 0.25rem 0.6rem;
+            background: transparent;
+            border: 1px solid var(--navy);
+            color: var(--navy);
+            font-family: inherit;
+            font-size: 0.75rem;
+            cursor: pointer;
+        }
+        .btn-edit:hover { background: var(--navy); color: #fff; }
+
+        /* ── FORM SECTION ────────────────────────────── */
+        .form-header-bar {
+            background: var(--navy);
+            color: #fff;
+            padding: 0.75rem 1.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+        }
+        .form-header-bar .fid {
+            font-family: "Courier New", monospace;
+            font-size: 0.9rem;
+            color: var(--gold2);
+        }
+        .form-status-badge {
+            padding: 0.3rem 1rem;
+            font-size: 0.8rem;
+            font-weight: bold;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            border: 1px solid;
+        }
+        .form-body {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 1.5rem;
+        }
+        @media (max-width: 900px) { .form-body { grid-template-columns: 1fr; } }
+        .form-card {
+            background: var(--paper);
+            border: 1px solid var(--border);
+        }
+        .form-card-head {
+            background: #f0ede6;
+            border-bottom: 2px solid var(--navy);
+            padding: 0.6rem 1rem;
+            font-size: 0.75rem;
+            font-weight: bold;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--navy);
+        }
+        .form-card-body { padding: 1.25rem; }
+        .photo-box {
+            width: 100%;
+            aspect-ratio: 3/4;
+            border: 2px dashed var(--border);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            background: var(--cream);
+            position: relative;
+            overflow: hidden;
+            transition: border-color 0.2s;
+        }
+        .photo-box:hover { border-color: var(--gold); }
+        .photo-box.has-img { border-style: solid; border-color: var(--navy); }
+        .photo-box img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+        .photo-ph { text-align: center; color: var(--muted); font-size: 0.8rem; }
+        .photo-ph span { font-size: 2.5rem; display: block; margin-bottom: 0.5rem; }
+        .photo-actions { margin-top: 0.75rem; display: flex; gap: 0.5rem; }
+        .adoption-box {
+            margin-top: 1rem;
+            padding: 0.75rem;
+            border: 1px solid var(--border);
+            background: var(--cream);
+        }
+        .adoption-toggle-row {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 0.85rem;
+        }
+        .toggle-switch {
+            position: relative;
+            width: 48px;
+            height: 26px;
+            flex-shrink: 0;
+        }
+        .toggle-switch input { opacity: 0; width: 0; height: 0; }
+        .toggle-slider {
+            position: absolute;
+            inset: 0;
+            background: #ccc;
+            border-radius: 26px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .toggle-slider:before {
+            content: "";
+            position: absolute;
+            width: 20px; height: 20px;
+            left: 3px; top: 3px;
+            background: white;
+            border-radius: 50%;
+            transition: 0.3s;
+        }
+        input:checked + .toggle-slider { background: var(--green); }
+        input:checked + .toggle-slider:before { transform: translateX(22px); }
+        .sponsor-input-wrap { margin-top: 0.75rem; display: none; }
+        .sponsor-input-wrap.visible { display: block; }
+        .frow {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
+        }
+        .fgroup { display: flex; flex-direction: column; }
+        .fgroup.full { grid-column: 1 / -1; }
+        .fgroup label {
+            font-size: 0.72rem;
+            font-weight: bold;
+            color: var(--navy);
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            margin-bottom: 0.2rem;
+        }
+        .fgroup label .req { color: var(--red); }
+        .fgroup input, .fgroup select, .fgroup textarea {
+            padding: 0.45rem 0.65rem;
+            border: 1px solid var(--border);
+            font-family: inherit;
+            font-size: 0.9rem;
+            background: var(--cream);
+            color: var(--text);
+        }
+        .fgroup input:focus, .fgroup select:focus, .fgroup textarea:focus { outline: 2px solid var(--gold); }
+        .form-section-title {
+            font-size: 0.75rem;
+            font-weight: bold;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--navy);
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 0.35rem;
+            margin: 1.25rem 0 0.75rem;
+        }
+        .form-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 1.25rem;
+            background: #f0ede6;
+            border-top: 2px solid var(--navy);
+            margin-top: 1.5rem;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+        .form-actions-left { display: flex; gap: 0.5rem; }
+        .form-actions-right { display: flex; gap: 0.5rem; }
+
+        /* ── FOOTER ──────────────────────────────────── */
+        .site-footer {
+            margin-top: 3rem;
+            border-top: 2px solid var(--navy);
+            background: var(--navy);
+            color: rgba(255,255,255,0.5);
+            padding: 1rem 2rem;
+            text-align: center;
+            font-size: 0.75rem;
+            letter-spacing: 0.04em;
+        }
+        .site-footer strong { color: var(--gold2); }
+
+        /* ── PRINT ───────────────────────────────────── */
+        @media print {
+            #loginScreen { display: none !important; }
+            .site-header, .toolbar, .form-actions, .site-footer { display: none !important; }
+            body { background: white; }
+            .table-wrap { border: none; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════
+     LOGIN SCREEN
+════════════════════════════════════════════════════ -->
+<div id="loginScreen">
+    <div class="login-box">
+        <div class="login-crest">🦒</div>
+        <div class="login-title">Morijo Educational Programme</div>
+        <div class="login-subtitle">Registro Anagrafico Adottati — Anno 2026</div>
+        <label for="loginUser">Nome utente</label>
+        <input type="text" id="loginUser" placeholder="utente" autocomplete="username">
+        <label for="loginPass">Password di accesso</label>
+        <input type="password" id="loginPass" placeholder="••••••••" autocomplete="current-password">
+        <button class="btn-login" onclick="doLogin()">Accedi al Registro</button>
+        <div class="login-error" id="loginError">⚠ Credenziali non valide. Riprovare.</div>
+    </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     MAIN APPLICATION
+════════════════════════════════════════════════════ -->
+<div id="appScreen">
+
+    <header class="site-header">
+        <div class="header-top">
+            <div class="header-brand">
+                <div class="header-crest">🦒</div>
+                <div class="header-brand-text">
+                    <div class="header-org">Programma di Adozione a Distanza — Samburu, Kenya</div>
+                    <div class="header-title">Morijo Educational Programme</div>
+                    <div class="header-year">Registro Ufficiale degli Adottati — Anno Scolastico 2026</div>
+                </div>
+            </div>
+            <div class="header-meta">
+                <div>Documento di uso interno riservato</div>
+                <div><strong id="hdrCount">229</strong> studenti registrati</div>
+                <div>Aggiornamento: Gennaio 2026</div>
+                <button class="btn-logout" onclick="doLogout()">⎋ Esci</button>
+            </div>
+        </div>
+        <nav class="site-nav">
+            <button class="nav-btn active" onclick="showSection('registry')">Registro Studenti</button>
+            <button class="nav-btn" onclick="showSection('studentForm')">Scheda Anagrafica</button>
+        </nav>
+    </header>
+
+    <main class="main-content">
+
+        <!-- ─── REGISTRY SECTION ─────────────────── -->
+        <section id="registry" class="section active">
+            <div class="page-heading">
+                <div>
+                    <h1>Registro degli Adottati 2026</h1>
+                    <div class="subtitle">Elenco completo degli studenti iscritti al programma di adozione a distanza</div>
+                </div>
+            </div>
+
+            <div class="stat-grid">
+                <div class="stat-card">
+                    <div class="stat-label">Totale Studenti</div>
+                    <div class="stat-value" id="sTot">229</div>
+                    <div class="stat-sub">iscritti al programma</div>
+                </div>
+                <div class="stat-card green">
+                    <div class="stat-label">Adottati</div>
+                    <div class="stat-value" id="sAdo">186</div>
+                    <div class="stat-sub">con adottante attivo</div>
+                </div>
+                <div class="stat-card gold">
+                    <div class="stat-label">Completato</div>
+                    <div class="stat-value" id="sCom">33</div>
+                    <div class="stat-sub">percorso terminato</div>
+                </div>
+                <div class="stat-card red">
+                    <div class="stat-label">Inattivi</div>
+                    <div class="stat-value" id="sIna">10</div>
+                    <div class="stat-sub">fuori dal programma</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Maschi</div>
+                    <div class="stat-value" id="sMas">132</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Femmine</div>
+                    <div class="stat-value" id="sFem">97</div>
+                </div>
+            </div>
+
+            <div class="toolbar">
+                <input type="search" id="srchInput" placeholder="Cerca per nome, cognome, scuola, adottante…" oninput="filterTable()">
+                <select id="filterStatus" onchange="filterTable()">
+                    <option value="">— Tutti gli stati —</option>
+                    <option value="ADOTTATO">Adottato</option>
+                    <option value="COMPLETATO">Completato</option>
+                    <option value="INATTIVO">Inattivo</option>
+                    <option value="ADOTTABILE">Adottabile</option>
+                </select>
+                <select id="filterGender" onchange="filterTable()">
+                    <option value="">— Tutti i generi —</option>
+                    <option value="M">Maschio</option>
+                    <option value="F">Femmina</option>
+                </select>
+                <span class="count-badge" id="filterCount"></span>
+                <div class="spacer"></div>
+                <button class="btn gold" onclick="openNewStudent()">+ Nuovo Studente</button>
+                <button class="btn outline" onclick="exportCSV()">⬇ Esporta CSV</button>
+            </div>
+
+            <div class="table-wrap">
+                <table id="mainTable">
+                    <thead>
+                        <tr>
+                            <th onclick="sortBy('id')" class="sort-asc">Codice</th>
+                            <th onclick="sortBy('surname')">Cognome</th>
+                            <th onclick="sortBy('firstName')">Nome</th>
+                            <th onclick="sortBy('gender')">Sesso</th>
+                            <th onclick="sortBy('prevSchool')">Scuola 2025</th>
+                            <th onclick="sortBy('prevClass')">Cl. 2025</th>
+                            <th onclick="sortBy('newSchool')">Scuola 2026</th>
+                            <th onclick="sortBy('newClass')">Cl. 2026</th>
+                            <th onclick="sortBy('status')">Stato</th>
+                            <th onclick="sortBy('sponsor')">Adottante / Sponsor</th>
+                            <th>Azioni</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tBody"></tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- ─── STUDENT FORM SECTION ─────────────── -->
+        <section id="studentForm" class="section">
+            <div class="page-heading">
+                <div>
+                    <h1>Scheda Anagrafica Studente</h1>
+                    <div class="subtitle">Inserimento e modifica dati individuali</div>
+                </div>
+            </div>
+
+            <div class="form-header-bar">
+                <div>
+                    <span style="font-size:0.75rem;opacity:0.7;letter-spacing:0.1em;text-transform:uppercase;">Codice identificativo</span>
+                    <div class="fid" id="dispId">—</div>
+                </div>
+                <div class="form-status-badge" id="fStatusBadge" style="background:#e8f5e9;color:#1a5c38;border-color:#1a5c38;">
+                    ● ADOTTATO
+                </div>
+            </div>
+
+            <form id="studentFormEl" onsubmit="saveStudent(event)">
+            <div class="form-body">
+
+                <!-- LEFT: photo + adoption -->
+                <div>
+                    <div class="form-card">
+                        <div class="form-card-head">Fotografia</div>
+                        <div class="form-card-body">
+                            <div class="photo-box" id="photoBox" onclick="document.getElementById('photoInput').click()">
+                                <img id="photoPreview" src="" style="display:none;">
+                                <div class="photo-ph" id="photoPh">
+                                    <span>📷</span>
+                                    Clicca per caricare<br>la fotografia
+                                </div>
+                            </div>
+                            <input type="file" id="photoInput" accept="image/*" style="display:none" onchange="handlePhoto(event)">
+                            <div class="photo-actions">
+                                <button type="button" class="btn outline" style="flex:1" onclick="document.getElementById('photoInput').click()">Carica</button>
+                                <button type="button" class="btn" style="flex:1" onclick="removePhoto()">Rimuovi</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-card" style="margin-top:1rem;">
+                        <div class="form-card-head">Stato Adozione</div>
+                        <div class="form-card-body">
+                            <div class="adoption-box">
+                                <div class="adoption-toggle-row">
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" id="adoptToggle" onchange="toggleAdoption()">
+                                        <span class="toggle-slider"></span>
+                                    </label>
+                                    <span id="adoptLabel"><strong>Non adottato</strong></span>
+                                </div>
+                                <div class="sponsor-input-wrap" id="sponsorWrap">
+                                    <div class="fgroup" style="margin-top:0.5rem;">
+                                        <label>Adottante / Sponsor</label>
+                                        <input type="text" id="sponsorName" placeholder="Nome adottante o organizzazione…">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- RIGHT: data fields -->
+                <div class="form-card">
+                    <div class="form-card-head">Dati Anagrafici e Scolastici</div>
+                    <div class="form-card-body">
+
+                        <div class="form-section-title">Anagrafica</div>
+                        <div class="frow">
+                            <div class="fgroup">
+                                <label>Cognome <span class="req">*</span></label>
+                                <input type="text" id="fSurname" required>
+                            </div>
+                            <div class="fgroup">
+                                <label>Nome <span class="req">*</span></label>
+                                <input type="text" id="fFirstName" required>
+                            </div>
+                            <div class="fgroup">
+                                <label>Sesso</label>
+                                <select id="fGender">
+                                    <option value="M">Maschio</option>
+                                    <option value="F">Femmina</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="frow">
+                            <div class="fgroup">
+                                <label>Data di Nascita</label>
+                                <input type="date" id="fDob">
+                            </div>
+                            <div class="fgroup">
+                                <label>Luogo di Nascita</label>
+                                <input type="text" id="fPob">
+                            </div>
+                            <div class="fgroup">
+                                <label>Villaggio</label>
+                                <input type="text" id="fVillage">
+                            </div>
+                        </div>
+
+                        <div class="form-section-title">Anno Scolastico 2025 (Precedente)</div>
+                        <div class="frow">
+                            <div class="fgroup" style="grid-column:span 2;">
+                                <label>Scuola</label>
+                                <input type="text" id="fPrevSchool">
+                            </div>
+                            <div class="fgroup">
+                                <label>Classe</label>
+                                <input type="text" id="fPrevClass">
+                            </div>
+                        </div>
+
+                        <div class="form-section-title">Anno Scolastico 2026 (Corrente)</div>
+                        <div class="frow">
+                            <div class="fgroup" style="grid-column:span 2;">
+                                <label>Scuola <span class="req">*</span></label>
+                                <input type="text" id="fNewSchool" required>
+                            </div>
+                            <div class="fgroup">
+                                <label>Classe <span class="req">*</span></label>
+                                <input type="text" id="fNewClass" required>
+                            </div>
+                        </div>
+
+                        <div class="form-section-title">Dati Familiari</div>
+                        <div class="frow">
+                            <div class="fgroup">
+                                <label>Nome Padre</label>
+                                <input type="text" id="fFather">
+                            </div>
+                            <div class="fgroup">
+                                <label>Nome Madre</label>
+                                <input type="text" id="fMother">
+                            </div>
+                            <div class="fgroup">
+                                <label>Stato Familiare</label>
+                                <select id="fFamStatus">
+                                    <option value="">—</option>
+                                    <option>Entrambi i genitori</option>
+                                    <option>Genitore singolo</option>
+                                    <option>Orfano</option>
+                                    <option>Tutore</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-section-title">Note</div>
+                        <div class="frow">
+                            <div class="fgroup full">
+                                <label>Osservazioni / Storia dello studente</label>
+                                <textarea id="fNotes" rows="3" style="resize:vertical;"></textarea>
+                            </div>
+                        </div>
+
+                    </div><!-- /form-card-body -->
+                </div><!-- /form-card -->
+
+            </div><!-- /form-body -->
+
+            <div class="form-actions">
+                <div class="form-actions-left">
+                    <button type="button" class="btn outline" onclick="showSection('registry')">← Torna al Registro</button>
+                    <button type="button" class="btn outline" onclick="window.print()">🖨 Stampa</button>
+                </div>
+                <div class="form-actions-right">
+                    <button type="button" class="btn danger" onclick="deleteStudent()">Elimina</button>
+                    <button type="submit" class="btn gold">Salva Scheda</button>
+                </div>
+            </div>
+            </form>
+        </section>
+
+    </main>
+
+    <footer class="site-footer">
+        <strong>Morijo Educational Programme</strong> — Samburu County, Kenya &nbsp;|&nbsp;
+        Documento riservato ad uso interno. Tutti i dati sono trattati in conformità alle normative sulla privacy.
+        &nbsp;|&nbsp; Anno 2026
+    </footer>
+
+</div><!-- /appScreen -->
+
+<script>
+// ── AUTH ──────────────────────────────────────────────────────────────
+const USERS = { "morijo": "morijo2026", "admin": "admin123" };
+
+function doLogin() {
+    const u = document.getElementById('loginUser').value.trim().toLowerCase();
+    const p = document.getElementById('loginPass').value;
+    if (USERS[u] && USERS[u] === p) {
+        document.getElementById('loginScreen').style.display = 'none';
+        document.getElementById('appScreen').style.display = 'block';
+        initApp();
+    } else {
+        document.getElementById('loginError').style.display = 'block';
+    }
+}
+document.getElementById('loginPass').addEventListener('keydown', e => { if(e.key==='Enter') doLogin(); });
+document.getElementById('loginUser').addEventListener('keydown', e => { if(e.key==='Enter') doLogin(); });
+
+function doLogout() {
+    document.getElementById('appScreen').style.display = 'none';
+    document.getElementById('loginScreen').style.display = 'flex';
+    document.getElementById('loginPass').value = '';
+    document.getElementById('loginError').style.display = 'none';
+}
+
+// ── DATA ──────────────────────────────────────────────────────────────
+const MASTER_DATA = [{"id": "MOR2026001", "surname": "LENASEIYAN", "firstName": "ESTHER NAISULA", "gender": "F", "prevSchool": "NKIRENYI", "prevClass": "GRADE 9", "newSchool": "A.I.C MOI GIRLS SENIOR SCHOOL", "newClass": "GRADE 10", "sponsor": "GAZZOLI D.SSA MARIA", "status": "ADOTTATO"}, {"id": "MOR2026002", "surname": "LESEEWA", "firstName": "SAMELI", "gender": "F", "prevSchool": "MORIJO", "prevClass": "GRADE 9", "newSchool": "A.I.C MOI GIRLS SENIOR SCHOOL", "newClass": "GRADE 10", "sponsor": "GHEDIN DANIELA", "status": "ADOTTATO"}, {"id": "MOR2026003", "surname": "LOLKIRIK", "firstName": "LIMBAS", "gender": "M", "prevSchool": "MORIJO", "prevClass": "GRADE 4", "newSchool": "ANGATA PRIMARY SCHOOL", "newClass": "GRADE 5", "sponsor": "BASSANELLO ANGELO E FAM.", "status": "ADOTTATO"}, {"id": "MOR2026004", "surname": "LEKARIKEI", "firstName": "ELIZABETH", "gender": "F", "prevSchool": "NKIRENYI", "prevClass": "GRADE 6", "newSchool": "ANGATA PRIMARY SCHOOL", "newClass": "GRADE 7", "sponsor": "RIGON GIOVANNI E ZAROS ROSANNA", "status": "ADOTTATO"}, {"id": "MOR2026005", "surname": "LENASEYIAN", "firstName": "METIKOL", "gender": "F", "prevSchool": "MARALAL/ST. MARYS", "prevClass": "GRADE 7", "newSchool": "ANGATA PRIMARY SCHOOL", "newClass": "GRADE 8", "sponsor": "BUCCIARELLI SAURO-BERNINI BARBARA", "status": "ADOTTATO"}, {"id": "MOR2026006", "surname": "LEKUPE", "firstName": "LTAJEWA", "gender": "M", "prevSchool": "NKIRENYI", "prevClass": "GRADE 7", "newSchool": "ANGATA PRIMARY SCHOOL", "newClass": "GRADE 8", "sponsor": "BERTOLI ROSANNA", "status": "ADOTTATO"}, {"id": "MOR2026007", "surname": "LELEJUK", "firstName": "LMATANO", "gender": "M", "prevSchool": "NKIRENYI", "prevClass": "GRADE 7", "newSchool": "ANGATA PRIMARY SCHOOL", "newClass": "GRADE 8", "sponsor": "VETTORI LUCIA", "status": "ADOTTATO"}, {"id": "MOR2026008", "surname": "LELEJUK", "firstName": "NKATEYIE", "gender": "F", "prevSchool": "NKIRENY", "prevClass": "GRADE 7", "newSchool": "ANGATA PRIMARY SCHOOL", "newClass": "GRADE 8", "sponsor": "ACCIAIOLI M. GABRIELLA-BORELLA MICHELE-ALESS.", "status": "ADOTTATO"}, {"id": "MOR2026009", "surname": "LEKUPE", "firstName": "MATHAYO", "gender": "M", "prevSchool": "NKIRENYI", "prevClass": "GRADE 8", "newSchool": "ANGATA PRIMARY SCHOOL", "newClass": "GRADE 9", "sponsor": "MERLINO MARCO", "status": "ADOTTATO"}, {"id": "MOR2026010", "surname": "LESUYAI", "firstName": "SALEMI", "gender": "M", "prevSchool": "NAIROBI/CHANIA BOYS", "prevClass": "FORM 3", "newSchool": "CHANIA BOYS HIGH SCHOOL.", "newClass": "FORM 4", "sponsor": "CECOTTO MASSIMILIANO E MICHELA", "status": "ADOTTATO"}, {"id": "MOR2026011", "surname": "ERIS", "firstName": "RAWLING", "gender": "M", "prevSchool": "MARTI", "prevClass": "GRADE 4", "newSchool": "CONSOLATA CBC", "newClass": "GRADE 5", "sponsor": "RIGON GIOVANNI E ZAROS ROSANNA", "status": "ADOTTATO"}, {"id": "MOR2026012", "surname": "ERUPE", "firstName": "INGOLAN LUCKY", "gender": "M", "prevSchool": "MARTI", "prevClass": "GRADE 7", "newSchool": "CONSOLATA CBC", "newClass": "GRADE 8", "sponsor": "DE MARCHIS PREITE TERESA", "status": "ADOTTATO"}, {"id": "MOR2026013", "surname": "LEPARTANAPA", "firstName": "KOIGE", "gender": "M", "prevSchool": "NKIRENYI", "prevClass": "GRADE 9", "newSchool": "GIDEON ELITE BOYS SENIOR SCHOOL", "newClass": "GRADE 10", "sponsor": "CAZZARO RENATO - TORTORA ANNALISA", "status": "ADOTTATO"}, {"id": "MOR2026014", "surname": "LENTUMUNAI", "firstName": "BIKO ROBA", "gender": "M", "prevSchool": "MARALAL/SEMINARY", "prevClass": "FORM 2", "newSchool": "GOOD MINOR SHEPHERD SEMINARY", "newClass": "FORM 3", "sponsor": "PALAZZO PARODI ANDREA", "status": "ADOTTATO"}, {"id": "MOR2026015", "surname": "LENTUMUNAI", "firstName": "SAEWUA", "gender": "M", "prevSchool": "MARALAL/SEMINARY", "prevClass": "FORM 2", "newSchool": "GOOD MINOR SHEPHERD SEMINARY", "newClass": "FORM 3", "sponsor": "RAMBELLI STEFANO - BAIONI ENZA", "status": "ADOTTATO"}, {"id": "MOR2026016", "surname": "LESHIMPIRO", "firstName": "OBAMA", "gender": "M", "prevSchool": "MARALAL/SEMINARY", "prevClass": "FORM 2", "newSchool": "GOOD MINOR SHEPHERD SEMINARY", "newClass": "FORM 3", "sponsor": "COLANGELO ANTONIO", "status": "ADOTTATO"}, {"id": "MOR2026017", "surname": "LETOWON", "firstName": "EMMANUEL MARK", "gender": "M", "prevSchool": "MARALAL/SEMINARY", "prevClass": "FORM 2", "newSchool": "GOOD MINOR SHEPHERD SEMINARY", "newClass": "FORM 3", "sponsor": "BARBIERI ENRICO", "status": "ADOTTATO"}, {"id": "MOR2026018", "surname": "LEKASUYIAN", "firstName": "MONICA MANDELA", "gender": "F", "prevSchool": "MARALAL/IRENE SCHOOL", "prevClass": "FORM 2", "newSchool": "KISIMA GIRLS HIGH SCHOOL", "newClass": "FORM 3", "sponsor": "SCARTABELLI TATIANA", "status": "ADOTTATO"}, {"id": "MOR2026019", "surname": "LEMUNEN", "firstName": "FAITH", "gender": "F", "prevSchool": "MARALAL/IRENE SCHOOL", "prevClass": "FORM 2", "newSchool": "KISIMA GIRLS HIGH SCHOOL", "newClass": "FORM 3", "sponsor": "CUGNO LAURA-ISABELLO ELISA", "status": "ADOTTATO"}, {"id": "MOR2026020", "surname": "LEKERISAE", "firstName": "VALARIE", "gender": "F", "prevSchool": "MARALAL /ST. MARY'S", "prevClass": "GRADE 9", "newSchool": "IRENE SCHOOL", "newClass": "GRADE 10", "sponsor": "CALZOLARI  GALLI FEDERICA", "status": "ADOTTATO"}, {"id": "MOR2026021", "surname": "LENADONGER", "firstName": "ROSE NAISULWA", "gender": "F", "prevSchool": "MARALAL/IRENE SCHOOL", "prevClass": "FORM 2", "newSchool": "IRENE SCHOOL", "newClass": "FORM 3", "sponsor": "BETTIN LUCIO", "status": "ADOTTATO"}, {"id": "MOR2026022", "surname": "LEKESIKE", "firstName": "ANNALIZA", "gender": "F", "prevSchool": "MARALAL/MOI GIRLS SEC. SCH", "prevClass": "FORM 4", "newSchool": "MARALAL COMPUTER COLLEGE", "newClass": "YEAR 1", "sponsor": "CROSATO BRUNA-INES-CARRER GINO", "status": "ADOTTATO"}, {"id": "MOR2026023", "surname": "LELESIIT", "firstName": "SANAIPEI CATERINA", "gender": "F", "prevSchool": "MARALAL/IRENE SCHOOL", "prevClass": "FORM 4", "newSchool": "MARALAL COMPUTER COLLEGE", "newClass": "YEAR 1", "sponsor": "VETTORI GIANCARLO-SOFIA-GIACOMO-VALENTINA", "status": "ADOTTATO"}, {"id": "MOR2026024", "surname": "LESUYAI", "firstName": "GLORIA", "gender": "F", "prevSchool": "MARALAL/IRENE SCHOOL", "prevClass": "FORM 4", "newSchool": "MARALAL TEACHERS COLLEGE", "newClass": "YEAR 1", "sponsor": "PICCOLI GRAZIELLA", "status": "ADOTTATO"}, {"id": "MOR2026025", "surname": "LEKUPE", "firstName": "JOSEPH SARIAN", "gender": "M", "prevSchool": "MARALAL/MWANGAZA DAY SECONDARY", "prevClass": "FORM 3", "newSchool": "MWANGAZA MIXED DAY SCHOOL", "newClass": "FORM 4", "sponsor": "MORESCHI PAOLO", "status": "ADOTTATO"}, {"id": "MOR2026026", "surname": "ECHWA", "firstName": "FELIX", "gender": "M", "prevSchool": "MARALAL/MWANGAZA DAY SECONDARY", "prevClass": "FORM 4", "newSchool": "MWANGAZA MIXED DAY SCHOOL", "newClass": "FORM 4", "sponsor": "FORLIN GIORGIO", "status": "ADOTTATO"}, {"id": "MOR2026027", "surname": "LETOWON", "firstName": "LOIDIKI", "gender": "M", "prevSchool": "KENYA MEDICAL TRAINING", "prevClass": "YEAR 2", "newSchool": "KENYA MEDICAL TRAINING CENTRE", "newClass": "YEAR 3", "sponsor": "CORO BOSCO DEL RESPIRO", "status": "ADOTTATO"}, {"id": "MOR2026028", "surname": "LEKARANGWA", "firstName": "LONGIDAE", "gender": "M", "prevSchool": "MORIJO", "prevClass": "GRADE 9", "newSchool": "KIRISIA BOYS SENIOR SCHOOL", "newClass": "GRADE 10", "sponsor": "MAZZON STEFANO - DOZZO FRANCESCA", "status": "ADOTTATO"}, {"id": "MOR2026029", "surname": "LEMUNEN", "firstName": "RASIANA", "gender": "F", "prevSchool": "NKIRENYI", "prevClass": "GRADE 9", "newSchool": "KIRISIA BOYS SENIOR SCHOOL", "newClass": "GRADE 10", "sponsor": "SECCHI ELENA  - SCOTTO ENRICO", "status": "ADOTTATO"}, {"id": "MOR2026030", "surname": "LEKISIMA", "firstName": "LKUTAAS", "gender": "M", "prevSchool": "MARALAL/KIRISIA BOYS SEC. SCH.", "prevClass": "FORM 3", "newSchool": "KIRISIA BOYS SECONDARY SCHOOL", "newClass": "FORM 4", "sponsor": "SIDERURGICA FIORENTINA", "status": "ADOTTATO"}, {"id": "MOR2026031", "surname": "LESUYAI", "firstName": "ANTHONY LPARAKUO", "gender": "M", "prevSchool": "MARALAL/KIRISIA BOYS SEC. SCH.", "prevClass": "FORM 3", "newSchool": "KIRISIA BOYS SECONDARY SCHOOL", "newClass": "FORM 4", "sponsor": "AMIPA", "status": "ADOTTATO"}, {"id": "MOR2026032", "surname": "LEKIMAIN", "firstName": "SAUNA", "gender": "F", "prevSchool": "PORO", "prevClass": "GRADE 7", "newSchool": "LORROK PRIMARY SCHOOL", "newClass": "GRADE 8", "sponsor": "TRONCOSSI EMANUELA", "status": "ADOTTATO"}, {"id": "MOR2026033", "surname": "LETOWON", "firstName": "ILERET", "gender": "M", "prevSchool": "NKORIKA", "prevClass": "FORM 2", "newSchool": "LORROK MIXED DAY SECONDARY SCHOOL", "newClass": "FORM 3", "sponsor": "BIGANO ELIANA - RASSIGA DR. GIAMPIERO", "status": "ADOTTATO"}, {"id": "MOR2026034", "surname": "LOLMUNYEI", "firstName": "LARAPU", "gender": "M", "prevSchool": "SOIT - PUS", "prevClass": "FORM 2", "newSchool": "LORROK MIXED DAY SECONDARY SCHOOL", "newClass": "FORM 3", "sponsor": "FAM. BALDO - PASTRELLO ROMANO E LAURA", "status": "ADOTTATO"}, {"id": "MOR2026035", "surname": "LESUYAI", "firstName": "SAULI", "gender": "M", "prevSchool": "PORRO", "prevClass": "FORM 2", "newSchool": "LORROK MIXED DAY SECONDARY SCHOOL", "newClass": "FORM 3", "sponsor": "BREDA GIAMPIETRO e LIVIA", "status": "ADOTTATO"}, {"id": "MOR2026036", "surname": "LETOLUAI", "firstName": "LORETU", "gender": "M", "prevSchool": "MORIJO", "prevClass": "GRADE 9", "newSchool": "MARY MOTHER OF GRACE BOYS SENIOR", "newClass": "GRADE 10", "sponsor": "VISENTIN MARIA MARICA-DEL BO STEFANO", "status": "ADOTTATO"}, {"id": "MOR2026037", "surname": "HESSEN", "firstName": "SALMA", "gender": "F", "prevSchool": "MARTI", "prevClass": "GRADE 4", "newSchool": "MARTI PRIMARY SCHOOL", "newClass": "GRADE 5", "sponsor": "PIZZOLON ANNA ROSA", "status": "ADOTTATO"}, {"id": "MOR2026038", "surname": "NACHIETTA", "firstName": "MARTHA", "gender": "F", "prevSchool": "MARTI", "prevClass": "GRADE 4", "newSchool": "MARTI PRIMARY SCHOOL", "newClass": "GRADE 5", "sponsor": "BELLIENI ALESSIA", "status": "ADOTTATO"}, {"id": "MOR2026039", "surname": "NKONE", "firstName": "AUYEI", "gender": "F", "prevSchool": "MARTI", "prevClass": "GRADE 4", "newSchool": "MARTI PRIMARY SCHOOL", "newClass": "GRADE 5", "sponsor": "MASCHIETTO ELENA", "status": "ADOTTATO"}, {"id": "MOR2026040", "surname": "ABORIANGIMOE", "firstName": "MIKO", "gender": "M", "prevSchool": "MARTI", "prevClass": "GRADE 5", "newSchool": "MARTI PRIMARY SCHOOL", "newClass": "GRADE 6", "sponsor": "DE POLLO ANNA BARBARINO GIANNI", "status": "ADOTTATO"}, {"id": "MOR2026041", "surname": "NGOLONG", "firstName": "HARON", "gender": "M", "prevSchool": "MARTI", "prevClass": "GRADE 5", "newSchool": "MARTI PRIMARY SCHOOL", "newClass": "GRADE 6", "sponsor": "BERTACCINI GRAZIELLA-MONGARDI SANTE", "status": "ADOTTATO"}, {"id": "MOR2026042", "surname": "AKIRU", "firstName": "JUMA", "gender": "M", "prevSchool": "MARTI", "prevClass": "GRADE 6", "newSchool": "MARTI PRIMARY SCHOOL", "newClass": "GRADE 7", "sponsor": "CAMPISI VINCENZO -NOTO ANTONELLA", "status": "ADOTTATO"}, {"id": "MOR2026043", "surname": "ECHUKA", "firstName": "DEBORAH", "gender": "F", "prevSchool": "MARTI", "prevClass": "GRADE 6", "newSchool": "MARTI PRIMARY SCHOOL", "newClass": "GRADE 7", "sponsor": "VENDRAMIN LOREDANA", "status": "ADOTTATO"}, {"id": "MOR2026044", "surname": "MALET", "firstName": "CARMELLA", "gender": "F", "prevSchool": "MARTI", "prevClass": "GRADE 6", "newSchool": "MARTI PRIMARY SCHOOL", "newClass": "GRADE 7", "sponsor": "CAPELLI GABRIELLA", "status": "ADOTTATO"}, {"id": "MOR2026045", "surname": "NABENYO", "firstName": "WINNY", "gender": "F", "prevSchool": "MARTI", "prevClass": "GRADE 7", "newSchool": "MARTI PRIMARY SCHOOL", "newClass": "GRADE 8", "sponsor": "ASS. NAZ. VIGILI DEL FUOCO", "status": "ADOTTATO"}, {"id": "MOR2026046", "surname": "TREVER", "firstName": "NCHACHA", "gender": "M", "prevSchool": "MARTI", "prevClass": "GRADE 7", "newSchool": "MARTI PRIMARY SCHOOL", "newClass": "GRADE 8", "sponsor": "CAMBA ADRIANA LUISA GIUDITTA", "status": "ADOTTATO"}, {"id": "MOR2026047", "surname": "ELOTO", "firstName": "PAMELA", "gender": "F", "prevSchool": "MARTI", "prevClass": "GRADE 9", "newSchool": "MARTI MIXED SENIOR SCHOOL", "newClass": "GRADE 10", "sponsor": "ALBERTINI ANNALISA", "status": "ADOTTATO"}, {"id": "MOR2026048", "surname": "LOKURE", "firstName": "GIAN", "gender": "M", "prevSchool": "MARTI MIXED DAY SECONDARY", "prevClass": "FORM 2", "newSchool": "MARTI MIXED DAY SECONDARY SCHOOL", "newClass": "FORM 3", "sponsor": "BARRECA FABIO - NICOLAO CHIARA", "status": "ADOTTATO"}, {"id": "MOR2026049", "surname": "EKAI", "firstName": "CHRISTOPHER", "gender": "M", "prevSchool": "MARTI MIXED DAY SECONDARY", "prevClass": "FORM 4", "newSchool": "MARTI MIXED DAY SECONDARY SCHOOL", "newClass": "FORM 4", "sponsor": "MUFFATO GIOVANNA - BOTTER PIETRO", "status": "ADOTTATO"}, {"id": "MOR2026050", "surname": "EKOKOT", "firstName": "GIDEON", "gender": "M", "prevSchool": "MARTI MIXED DAY SECONDARY", "prevClass": "FORM 3", "newSchool": "MARTI MIXED DAY SECONDARY SCHOOL", "newClass": "FORM 4", "sponsor": "BABINI AURELIA", "status": "ADOTTATO"}, {"id": "MOR2026051", "surname": "LEKUMATO", "firstName": "LPURAIS", "gender": "M", "prevSchool": "MORIJO", "prevClass": "LCHEKUTI", "newSchool": "MORIJO LCHEKUTI SCHOOL", "newClass": "LCHEKUTI", "sponsor": "GRESPAN LUIGINA", "status": "ADOTTATO"}, {"id": "MOR2026052", "surname": "LENTIIPO", "firstName": "NKIJUNI", "gender": "F", "prevSchool": "MORIJO", "prevClass": "LCHEKUTI", "newSchool": "MORIJO LCHEKUTI SCHOOL", "newClass": "LCHEKUTI", "sponsor": "COND. \"BOCCA MIA TASI\" C/O SALVALAIO  ANDREA", "status": "ADOTTATO"}, {"id": "MOR2026053", "surname": "LESHIMPIRO", "firstName": "NTHAI", "gender": "M", "prevSchool": "MORIJO", "prevClass": "LCHEKUTI", "newSchool": "MORIJO LCHEKUTI SCHOOL", "newClass": "LCHEKUTI", "sponsor": "SARTORI ENRICO", "status": "ADOTTATO"}, {"id": "MOR2026054", "surname": "LESIYAMPE", "firstName": "FELISTER", "gender": "F", "prevSchool": "MORIJO", "prevClass": "LCHEKUTI", "newSchool": "MORIJO LCHEKUTI SCHOOL", "newClass": "LCHEKUTI", "sponsor": "GALLI VINCENZO", "status": "ADOTTATO"}, {"id": "MOR2026055", "surname": "LETOLUAI", "firstName": "KARAYIO", "gender": "M", "prevSchool": "MORIJO", "prevClass": "LCHEKUTI", "newSchool": "MORIJO LCHEKUTI SCHOOL", "newClass": "LCHEKUTI", "sponsor": "FOLLADOR LUCIA", "status": "ADOTTATO"}, {"id": "MOR2026056", "surname": "LOINGERUA", "firstName": "ISAAC", "gender": "M", "prevSchool": "MORIJO", "prevClass": "LCHEKUTI", "newSchool": "MORIJO LCHEKUTI SCHOOL", "newClass": "LCHEKUTI", "sponsor": "DE LAZZARI OSCAR-FAVRUZZO SONIA", "status": "ADOTTATO"}, {"id": "MOR2026057", "surname": "LENASEYIAN", "firstName": "EZEKI", "gender": "M", "prevSchool": "MORIJO", "prevClass": "LCHEKUTI", "newSchool": "MORIJO PRIMARY SCHOOL", "newClass": "NURSERY", "sponsor": "SNIDERO GIURIATI ELSA", "status": "ADOTTATO"}, {"id": "MOR2026058", "surname": "LENTIIPO", "firstName": "JANET", "gender": "F", "prevSchool": "MORIJO", "prevClass": "LCHEKUTI", "newSchool": "MORIJO PRIMARY SCHOOL", "newClass": "GRADE 1", "sponsor": "GAZZOLI D.SSA MARIA", "status": "ADOTTATO"}, {"id": "MOR2026059", "surname": "LOITAMANY", "firstName": "VIAN BABAA", "gender": "M", "prevSchool": "MORIJO", "prevClass": "NURSERY", "newSchool": "MORIJO PRIMARY SCHOOL", "newClass": "GRADE 1", "sponsor": "MARSURA  ELEONORA", "status": "ADOTTATO"}, {"id": "MOR2026060", "surname": "LESAMAJA", "firstName": "NAIMALUA", "gender": "F", "prevSchool": "MORIJO", "prevClass": "LCHEKUTI", "newSchool": "MORIJO PRIMARY SCHOOL", "newClass": "GRADE 2", "sponsor": "TREVISIOL ANGELO", "status": "ADOTTATO"}, {"id": "MOR2026061", "surname": "LOLPETAI", "firstName": "NAITOTI", "gender": "F", "prevSchool": "MORIJO", "prevClass": "LCHEKUTI", "newSchool": "MORIJO PRIMARY SCHOOL", "newClass": "GRADE 2", "sponsor": "BONETTI ANTONIO - BEA COMPAGNIA", "status": "ADOTTATO"}, {"id": "MOR2026062", "surname": "LEMERDETE", "firstName": "LOBULU", "gender": "M", "prevSchool": "MORIJO", "prevClass": "GRADE 2", "newSchool": "MORIJO PRIMARY SCHOOL", "newClass": "GRADE 3", "sponsor": "GOBBO LAURA - ZANON DR. GIUSEPPE", "status": "ADOTTATO"}, {"id": "MOR2026063", "surname": "LESHUKUYIA", "firstName": "LKUUSHUK", "gender": "M", "prevSchool": "MORIJO", "prevClass": "LCHEKUTI", "newSchool": "MORIJO PRIMARY SCHOOL", "newClass": "GRADE 3", "sponsor": "SARTORI ENRICO", "status": "ADOTTATO"}, {"id": "MOR2026064", "surname": "LEMONGI", "firstName": "FRANKLINE LAMPADA", "gender": "M", "prevSchool": "MORIJO", "prevClass": "GRADE 3", "newSchool": "MORIJO PRIMARY SCHOOL", "newClass": "GRADE 4", "sponsor": "MASSACESI LUCA E ANNALISA", "status": "ADOTTATO"}, {"id": "MOR2026065", "surname": "LENAIGERO", "firstName": "SANORI", "gender": "M", "prevSchool": "MORIJO", "prevClass": "GRADE 4", "newSchool": "MORIJO PRIMARY SCHOOL", "newClass": "GRADE 5", "sponsor": "DORIGHET RAIMONDO", "status": "ADOTTATO"}, {"id": "MOR2026066", "surname": "LENTUMUNAI", "firstName": "VIRONA", "gender": "F", "prevSchool": "MORIJO", "prevClass": "GRADE 4", "newSchool": "MORIJO PRIMARY SCHOOL", "newClass": "GRADE 5", "sponsor": "FAM. D'URZO CASTIGLIONE SAVERIA", "status": "ADOTTATO"}, {"id": "MOR2026067", "surname": "LESHIMPIRO", "firstName": "SUPATI", "gender": "F", "prevSchool": "MORIJO", "prevClass": "GRADE 4", "newSchool": "MORIJO PRIMARY SCHOOL", "newClass": "GRADE 5", "sponsor": "CONTE GIUSEPPE- BOLZON GABRIELLA", "status": "ADOTTATO"}, {"id": "MOR2026068", "surname": "LESHIMPIRO", "firstName": "VICTORIA", "gender": "F", "prevSchool": "MORIJO", "prevClass": "GRADE 4", "newSchool": "MORIJO PRIMARY SCHOOL", "newClass": "GRADE 5", "sponsor": "GRESPAN GRAZIANO", "status": "ADOTTATO"}, {"id": "MOR2026069", "surname": "LEWAO", "firstName": "FOSTINA", "gender": "F", "prevSchool": "MORIJO", "prevClass": "GRADE 4", "newSchool": "MORIJO PRIMARY SCHOOL", "newClass": "GRADE 5", "sponsor": "GRIMANDI MARCELLO", "status": "ADOTTATO"}, {"id": "MOR2026070", "surname": "LEKUMATO", "firstName": "LEMAYAN", "gender": "M", "prevSchool": "MORIJO", "prevClass": "GRADE 5", "newSchool": "MORIJO PRIMARY SCHOOL", "newClass": "GRADE 6", "sponsor": "FASOLIS GIOVANNI", "status": "ADOTTATO"}, {"id": "MOR2026071", "surname": "LEMPIRIS", "firstName": "ELVIS", "gender": "M", "prevSchool": "MORIJO", "prevClass": "GRADE 5", "newSchool": "MORIJO PRIMARY SCHOOL", "newClass": "GRADE 6", "sponsor": "LINZI ROBERTO", "status": "ADOTTATO"}, {"id": "MOR2026072", "surname": "LENKIDI", "firstName": "FELIZIA NDISIWA", "gender": "F", "prevSchool": "MORIJO", "prevClass": "GRADE 5", "newSchool": "MORIJO PRIMARY SCHOOL", "newClass": "GRADE 6", "sponsor": "SORCI GINO + ZAVATTA PAOLA", "status": "ADOTTATO"}, {"id": "MOR2026073", "surname": "LESAANA", "firstName": "NTINGIDUA", "gender": "F", "prevSchool": "MORIJO", "prevClass": "GRADE 5", "newSchool": "MORIJO PRIMARY SCHOOL", "newClass": "GRADE 6", "sponsor": "MANCINI IDA", "status": "ADOTTATO"}, {"id": "MOR2026074", "surname": "LESOIPA", "firstName": "LOMIRU", "gender": "M", "prevSchool": "MORIJO", "prevClass": "GRADE 5", "newSchool": "MORIJO PRIMARY SCHOOL", "newClass": "GRADE 6", "sponsor": "PAGNINI CARLA", "status": "ADOTTATO"}, {"id": "MOR2026075", "surname": "LETOWON", "firstName": "NAITOTI", "gender": "F", "prevSchool": "MORIJO", "prevClass": "GRADE 5", "newSchool": "MORIJO PRIMARY SCHOOL", "newClass": "GRADE 6", "sponsor": "NOSTINI NARA", "status": "ADOTTATO"}, {"id": "MOR2026076", "surname": "LOTUAI", "firstName": "LMESARAE", "gender": "M", "prevSchool": "MORIJO", "prevClass": "GRADE 5", "newSchool": "MORIJO PRIMARY SCHOOL", "newClass": "GRADE 6", "sponsor": "SARTOR MAURIZIO - CIAN MARGHERITA", "status": "ADOTTATO"}, {"id": "MOR2026077", "surname": "LEKERISAE", "firstName": "DORCAS VIENA", "gender": "F", "prevSchool": "MORIJO", "prevClass": "GRADE 6", "newSchool": "MORIJO PRIMARY SCHOOL", "newClass": "GRADE 7", "sponsor": "MAZZOCATO VINCENZO-FUSER ANNAROSA", "status": "ADOTTATO"}, {"id": "MOR2026078", "surname": "LEKERISAE", "firstName": "NAYIEYIO", "gender": "F", "prevSchool": "MORIJO", "prevClass": "GRADE 6", "newSchool": "MORIJO PRIMARY SCHOOL", "newClass": "GRADE 7", "sponsor": "DE LAZZARI PAOLA", "status": "ADOTTATO"}, {"id": "MOR2026079", "surname": "LEKESIKE", "firstName": "NAEWA NKUOO", "gender": "F", "prevSchool": "MORIJO", "prevClass": "GRADE 6", "newSchool": "MORIJO PRIMARY SCHOOL", "newClass": "GRADE 7", "sponsor": "GOLFETTO BARBARA", "status": "ADOTTATO"}, {"id": "MOR2026080", "surname": "LELESIIT", "firstName": "SADUNGU", "gender": "M", "prevSchool": "MORIJO", "prevClass": "GRADE 6", "newSchool": "MORIJO PRIMARY SCHOOL", "newClass": "GRADE 7", "sponsor": "POVEGLIANO MARZIA", "status": "ADOTTATO"}, {"id": "MOR2026081", "surname": "LELUAI", "firstName": "LMESARAE", "gender": "M", "prevSchool": "MORIJO", "prevClass": "GRADE 6", "newSchool": "MORIJO PRIMARY SCHOOL", "newClass": "GRADE 7", "sponsor": "TORTORA FLAVIO", "status": "ADOTTATO"}, {"id": "MOR2026082", "surname": "LEMONGI", "firstName": "RAPUNYE", "gender": "M", "prevSchool": "MORIJO", "prevClass": "GRADE 6", "newSchool": "MORIJO PRIMARY SCHOOL", "newClass": "GRADE 7", "sponsor": "BONACCORSI CONCETTA", "status": "ADOTTATO"}, {"id": "MOR2026083", "surname": "LENAPEER", "firstName": "NARUMPE", "gender": "M", "prevSchool": "MORIJO", "prevClass": "GRADE 6", "newSchool": "MORIJO PRIMARY SCHOOL", "newClass": "GRADE 7", "sponsor": "DI CAGNO ANNA", "status": "ADOTTATO"}, {"id": "MOR2026084", "surname": "LOLKITEKUI", "firstName": "MBULAKI", "gender": "F", "prevSchool": "MORIJO", "prevClass": "GRADE 6", "newSchool": "MORIJO PRIMARY SCHOOL", "newClass": "GRADE 7", "sponsor": "TRE ERRE INGEGNERIA SRL", "status": "ADOTTATO"}, {"id": "MOR2026085", "surname": "LEKOLUA", "firstName": "DADDY", "gender": "M", "prevSchool": "MORIJO", "prevClass": "GRADE 7", "newSchool": "MORIJO PRIMARY SCHOOL", "newClass": "GRADE 8", "sponsor": "ANGELI SERGIO", "status": "ADOTTATO"}, {"id": "MOR2026086", "surname": "LENAIGERO", "firstName": "NAIDIMUA", "gender": "F", "prevSchool": "MORIJO", "prevClass": "GRADE 7", "newSchool": "MORIJO PRIMARY SCHOOL", "newClass": "GRADE 8", "sponsor": "MUFFATO GIOVANNA - BOTTER PIETRO", "status": "ADOTTATO"}, {"id": "MOR2026087", "surname": "LENASEYIAN", "firstName": "NTOINI", "gender": "F", "prevSchool": "MORIJO", "prevClass": "GRADE 7", "newSchool": "MORIJO PRIMARY SCHOOL", "newClass": "GRADE 8", "sponsor": "GOBBO LAURA - ZANON DR. GIUSEPPE", "status": "ADOTTATO"}, {"id": "MOR2026088", "surname": "LENTUMUNAI", "firstName": "MUM PAMELA", "gender": "F", "prevSchool": "MORIJO", "prevClass": "GRADE 7", "newSchool": "MORIJO PRIMARY SCHOOL", "newClass": "GRADE 8", "sponsor": "FOND. ANNA M. FEDER", "status": "ADOTTATO"}, {"id": "MOR2026089", "surname": "LENTUMUNAI", "firstName": "NTOBIKO", "gender": "F", "prevSchool": "MORIJO", "prevClass": "GRADE 7", "newSchool": "MORIJO PRIMARY SCHOOL", "newClass": "GRADE 8", "sponsor": "BERTOLIN FERRUCCIO", "status": "ADOTTATO"}, {"id": "MOR2026090", "surname": "LESHIMPIRO", "firstName": "YVONE", "gender": "F", "prevSchool": "MORIJO", "prevClass": "GRADE 7", "newSchool": "MORIJO PRIMARY SCHOOL", "newClass": "GRADE 8", "sponsor": "VENDRAME LUIGI - GALLINARO PAOLA", "status": "ADOTTATO"}, {"id": "MOR2026091", "surname": "LOLKIRIK", "firstName": "RONO", "gender": "M", "prevSchool": "MORIJO", "prevClass": "GRADE 7", "newSchool": "MORIJO PRIMARY SCHOOL", "newClass": "GRADE 8", "sponsor": "MAZZA ROBERTO", "status": "ADOTTATO"}, {"id": "MOR2026092", "surname": "LEKENIT", "firstName": "LBARBAR JOSPHAT", "gender": "M", "prevSchool": "MORIJO", "prevClass": "GRADE 8", "newSchool": "MORIJO PRIMARY SCHOOL", "newClass": "GRADE 9", "sponsor": "LANCISI PAOLA E ANNA", "status": "ADOTTATO"}, {"id": "MOR2026093", "surname": "LEKUPE", "firstName": "LOSIEKU", "gender": "M", "prevSchool": "MORIJO", "prevClass": "GRADE 8", "newSchool": "MORIJO PRIMARY SCHOOL", "newClass": "GRADE 9", "sponsor": "FACCIN GIANNI-VOLPATO LINO", "status": "ADOTTATO"}, {"id": "MOR2026094", "surname": "LELERUK", "firstName": "JEREMY", "gender": "M", "prevSchool": "MORIJO", "prevClass": "GRADE 8", "newSchool": "MORIJO PRIMARY SCHOOL", "newClass": "GRADE 9", "sponsor": "SANGIORGI MARIA", "status": "ADOTTATO"}, {"id": "MOR2026095", "surname": "LEKERISAE", "firstName": "PASCAL", "gender": "M", "prevSchool": "MORIJO", "prevClass": "GRADE 8", "newSchool": "MORIJO PRIMARY SCHOOL", "newClass": "GRADE 9", "sponsor": "PECCIANTI FRANCESCO E ADRIANA", "status": "ADOTTATO"}, {"id": "MOR2026096", "surname": "LEKESIKE", "firstName": "BRIAN", "gender": "M", "prevSchool": "MORIJO", "prevClass": "GRADE 8", "newSchool": "MORIJO PRIMARY SCHOOL", "newClass": "GRADE 9", "sponsor": "BANDINI NARA - GR.BIBLICO CASTIGLIONCELLO", "status": "ADOTTATO"}, {"id": "MOR2026097", "surname": "LENANGURAM", "firstName": "SOINAP", "gender": "F", "prevSchool": "MORIJO", "prevClass": "GRADE 8", "newSchool": "MORIJO PRIMARY SCHOOL", "newClass": "GRADE 9", "sponsor": "DEOTTI FRANCO - SPADETTO M. ANTONIETTA", "status": "ADOTTATO"}, {"id": "MOR2026098", "surname": "LESHIMPIRO", "firstName": "LMALIMALI", "gender": "M", "prevSchool": "MORIJO", "prevClass": "GRADE 8", "newSchool": "MORIJO PRIMARY SCHOOL", "newClass": "GRADE 9", "sponsor": "CAPELLI GABRIELLA", "status": "ADOTTATO"}, {"id": "MOR2026099", "surname": "LESIRITE", "firstName": "ANAAN", "gender": "M", "prevSchool": "MORIJO", "prevClass": "GRADE 8", "newSchool": "MORIJO PRIMARY SCHOOL", "newClass": "GRADE 9", "sponsor": "BONETTI ANTONIO - BEA COMPAGNIA", "status": "ADOTTATO"}, {"id": "MOR2026100", "surname": "LESIRITE", "firstName": "SAIRIAMU", "gender": "M", "prevSchool": "MORIJO", "prevClass": "GRADE 8", "newSchool": "MORIJO PRIMARY SCHOOL", "newClass": "GRADE 9", "sponsor": "GRUPPO FAMIGLIA DEL VANGELO DI BETTONA", "status": "ADOTTATO"}, {"id": "MOR2026101", "surname": "LESHIMPIRO", "firstName": "NAMUTIAT DEBORA", "gender": "F", "prevSchool": "MORIJO", "prevClass": "GRADE 8", "newSchool": "MORIJO PRIMARY SCHOOL", "newClass": "GRADE 9", "sponsor": "MARCHI FRANCO", "status": "ADOTTATO"}, {"id": "MOR2026102", "surname": "LEKUMATO", "firstName": "RESIM", "gender": "M", "prevSchool": "MORIJO", "prevClass": "GRADE 9", "newSchool": "MORIJO MIXED SENIOR SCHOOL", "newClass": "GRADE 10", "sponsor": "ALBONETTI ANDREA", "status": "ADOTTATO"}, {"id": "MOR2026103", "surname": "LEKUPUNY", "firstName": "LTIRINYWA", "gender": "M", "prevSchool": "MORIJO", "prevClass": "GRADE 8", "newSchool": "MORIJO MIXED SENIOR SCHOOL", "newClass": "GRADE 10", "sponsor": "TRAMONTI GIANCARLO-FOSCHINI VALERIA", "status": "ADOTTATO"}, {"id": "MOR2026104", "surname": "LENAADO", "firstName": "LILLIAN", "gender": "F", "prevSchool": "MORIJO", "prevClass": "GRADE 9", "newSchool": "MORIJO MIXED SENIOR SCHOOL", "newClass": "GRADE 10", "sponsor": "BISCARO LUIGINO - LEONARDUZZI SANDRA", "status": "ADOTTATO"}, {"id": "MOR2026105", "surname": "LENAIGERO", "firstName": "EDWARD", "gender": "M", "prevSchool": "MORIJO", "prevClass": "GRADE 9", "newSchool": "MORIJO MIXED SENIOR SCHOOL", "newClass": "GRADE 10", "sponsor": "AURA ENERGY SRL  di VISCONTI DAGNA MIRELLA", "status": "ADOTTATO"}, {"id": "MOR2026106", "surname": "LENAIGERO", "firstName": "LOITIPTIP", "gender": "M", "prevSchool": "MORIJO", "prevClass": "GRADE 9", "newSchool": "MORIJO MIXED SENIOR SCHOOL", "newClass": "GRADE 10", "sponsor": "NORBIATO MARIA LUISA", "status": "ADOTTATO"}, {"id": "MOR2026107", "surname": "LENOOMPERIA", "firstName": "RONALDO", "gender": "M", "prevSchool": "MORIJO", "prevClass": "GRADE 9", "newSchool": "MORIJO MIXED SENIOR SCHOOL", "newClass": "GRADE 10", "sponsor": "BISCARO LUIGINO - BENETTON MARIA LUCIA", "status": "ADOTTATO"}, {"id": "MOR2026108", "surname": "LEPARTANAPA", "firstName": "SAMELIN", "gender": "F", "prevSchool": "MORIJO", "prevClass": "GRADE 9", "newSchool": "MORIJO MIXED SENIOR SCHOOL", "newClass": "GRADE 10", "sponsor": "NORBIATO MARIA LUISA", "status": "ADOTTATO"}, {"id": "MOR2026109", "surname": "LETUKEI", "firstName": "SAYUNI", "gender": "F", "prevSchool": "MORIJO", "prevClass": "GRADE 9", "newSchool": "MORIJO MIXED SENIOR SCHOOL", "newClass": "GRADE 10", "sponsor": "MERLINO MARCO-PIOVESAN NICOLETTA", "status": "ADOTTATO"}, {"id": "MOR2026110", "surname": "LOLMODOONI", "firstName": "NTEMUNI", "gender": "F", "prevSchool": "MORIJO", "prevClass": "GRADE 9", "newSchool": "MORIJO MIXED SENIOR SCHOOL", "newClass": "GRADE 10", "sponsor": "LANZANI GABRIELLA - CARLA -GENOVEFFA", "status": "ADOTTATO"}, {"id": "MOR2026111", "surname": "LOLKITEKUI", "firstName": "LAMATU", "gender": "M", "prevSchool": "MORIJO", "prevClass": "GRADE 9", "newSchool": "MORIJO MIXED SENIOR SCHOOL", "newClass": "GRADE 10", "sponsor": "PALERMO LEONARDA", "status": "ADOTTATO"}, {"id": "MOR2026112", "surname": "LESIRITE", "firstName": "GIOVANNI", "gender": "M", "prevSchool": "MORIJO", "prevClass": "GRADE 9", "newSchool": "MORIJO MIXED SENIOR SCHOOL", "newClass": "GRADE 10", "sponsor": "SALMASO SANDRA", "status": "ADOTTATO"}, {"id": "MOR2026113", "surname": "LENGAALEI", "firstName": "MAGDALINE", "gender": "F", "prevSchool": "NKIRENYI", "prevClass": "GRADE 9", "newSchool": "MORIJO MIXED SENIOR SCHOOL", "newClass": "GRADE 10", "sponsor": "BATTAGLION ANNA MARIA", "status": "ADOTTATO"}, {"id": "MOR2026114", "surname": "LELESHEP", "firstName": "LMELITA", "gender": "M", "prevSchool": "NKIRENYI", "prevClass": "GRADE 9", "newSchool": "MORIJO MIXED SENIOR SCHOOL", "newClass": "GRADE 10", "sponsor": "MODOLO MONIA", "status": "ADOTTATO"}, {"id": "MOR2026115", "surname": "LESHIMPIRO", "firstName": "RAINBOW", "gender": "M", "prevSchool": "NKIRENYI", "prevClass": "GRADE 9", "newSchool": "MORIJO MIXED SENIOR SCHOOL", "newClass": "GRADE 10", "sponsor": "BARBATO FRANCESCO", "status": "ADOTTATO"}, {"id": "MOR2026116", "surname": "LELEEJUK", "firstName": "LMELITA", "gender": "M", "prevSchool": "NKIRENYI", "prevClass": "GRADE 9", "newSchool": "MORIJO MIXED SENIOR SCHOOL", "newClass": "GRADE 10", "sponsor": "GANADU MARIA PINA", "status": "ADOTTATO"}, {"id": "MOR2026117", "surname": "LEMUNEN", "firstName": "KALTO", "gender": "M", "prevSchool": "NKIRENYI", "prevClass": "GRADE 9", "newSchool": "MORIJO MIXED SENIOR SCHOOL", "newClass": "GRADE 10", "sponsor": "BISCARO RENZO  MARIA E LAURA", "status": "ADOTTATO"}, {"id": "MOR2026118", "surname": "LEKAPUA", "firstName": "LDADISO", "gender": "M", "prevSchool": "PORRO", "prevClass": "GRADE 9", "newSchool": "MORIJO MIXED SENIOR SCHOOL", "newClass": "GRADE 10", "sponsor": "GIUST SILVIA", "status": "ADOTTATO"}, {"id": "MOR2026119", "surname": "LBULAKI", "firstName": "FRANCIS", "gender": "M", "prevSchool": "MORIJO MIXED DAY SEC. SCHOOL", "prevClass": "FORM 2", "newSchool": "MORIJO MIXED DAY SECONDARY SCHOOL", "newClass": "FORM 3", "sponsor": "SORCI GINO - ZAVATTA PAOLA", "status": "ADOTTATO"}, {"id": "MOR2026120", "surname": "LEKESIKE", "firstName": "BENEDETTA", "gender": "F", "prevSchool": "MORIJO MIXED DAY SEC. SCHOOL", "prevClass": "FORM 2", "newSchool": "MORIJO MIXED DAY SECONDARY SCHOOL", "newClass": "FORM 3", "sponsor": "FOND. ANNA M. FEDER", "status": "ADOTTATO"}, {"id": "MOR2026121", "surname": "LELESIIT", "firstName": "ANTONELLA NAISISA", "gender": "F", "prevSchool": "MORIJO MIXED DAY SEC. SCHOOL", "prevClass": "FORM 2", "newSchool": "MORIJO MIXED DAY SECONDARY SCHOOL", "newClass": "FORM 3", "sponsor": "ONOFRI GIUSEPPE", "status": "ADOTTATO"}, {"id": "MOR2026122", "surname": "LELESIIT", "firstName": "LOIDIMUA", "gender": "M", "prevSchool": "MORIJO MIXED DAY SEC. SCHOOL", "prevClass": "FORM 2", "newSchool": "MORIJO MIXED DAY SECONDARY SCHOOL", "newClass": "FORM 3", "sponsor": "FOND. ANNA M. FEDER", "status": "ADOTTATO"}, {"id": "MOR2026123", "surname": "LEMELENY", "firstName": "PAPASI", "gender": "F", "prevSchool": "MORIJO MIXED DAY SEC. SCHOOL", "prevClass": "FORM 2", "newSchool": "MORIJO MIXED DAY SECONDARY SCHOOL", "newClass": "FORM 3", "sponsor": "SETTE NADIA", "status": "ADOTTATO"}, {"id": "MOR2026124", "surname": "LENAIDAMAA", "firstName": "LOITEMUA", "gender": "M", "prevSchool": "MORIJO MIXED DAY SEC. SCHOOL", "prevClass": "FORM 2", "newSchool": "MORIJO MIXED DAY SECONDARY SCHOOL", "newClass": "FORM 3", "sponsor": "BANDINI NARA C/O GR.BIBLICO CASTIGLIONCELLO", "status": "ADOTTATO"}, {"id": "MOR2026125", "surname": "LENAIDAMAA", "firstName": "LTABAWA", "gender": "M", "prevSchool": "MORIJO MIXED DAY SEC. SCHOOL", "prevClass": "FORM 2", "newSchool": "MORIJO MIXED DAY SECONDARY SCHOOL", "newClass": "FORM 3", "sponsor": "PIRAS ANNA AGNESE", "status": "ADOTTATO"}, {"id": "MOR2026126", "surname": "LENAITASHA", "firstName": "NAIPUTUA", "gender": "F", "prevSchool": "MORIJO MIXED DAY SEC. SCHOOL", "prevClass": "FORM 2", "newSchool": "MORIJO MIXED DAY SECONDARY SCHOOL", "newClass": "FORM 3", "sponsor": "DE MARCHIS PREITE TERESA", "status": "ADOTTATO"}, {"id": "MOR2026127", "surname": "LENASEYIAN", "firstName": "LOYIAI", "gender": "M", "prevSchool": "MORIJO MIXED DAY SEC. SCHOOL", "prevClass": "FORM 2", "newSchool": "MORIJO MIXED DAY SECONDARY SCHOOL", "newClass": "FORM 3", "sponsor": "SUN 2 MOON DI VISCONTI ROBERTO", "status": "ADOTTATO"}, {"id": "MOR2026128", "surname": "LENAPEER", "firstName": "SOLOMON", "gender": "M", "prevSchool": "MORIJO MIXED DAY SEC. SCHOOL", "prevClass": "FORM 2", "newSchool": "MORIJO MIXED DAY SECONDARY SCHOOL", "newClass": "FORM 3", "sponsor": "TOFFOLON ALDO-CHIARA-GIULIA-TIZIANA", "status": "ADOTTATO"}, {"id": "MOR2026129", "surname": "LEPAATI", "firstName": "TORIAS", "gender": "M", "prevSchool": "MORIJO MIXED DAY SEC. SCHOOL", "prevClass": "FORM 2", "newSchool": "MORIJO MIXED DAY SECONDARY SCHOOL", "newClass": "FORM 3", "sponsor": "MATTAROLLO ENRICO", "status": "ADOTTATO"}, {"id": "MOR2026130", "surname": "LEPARTANAPA", "firstName": "LONGIDU", "gender": "M", "prevSchool": "MORIJO MIXED DAY SEC. SCHOOL", "prevClass": "FORM 2", "newSchool": "MORIJO MIXED DAY SECONDARY SCHOOL", "newClass": "FORM 3", "sponsor": "ANCORA FRANCESCO", "status": "ADOTTATO"}, {"id": "MOR2026131", "surname": "LESHIMPIRO", "firstName": "NTINTONI", "gender": "F", "prevSchool": "MORIJO MIXED DAY SEC. SCHOOL", "prevClass": "FORM 2", "newSchool": "MORIJO MIXED DAY SECONDARY SCHOOL", "newClass": "FORM 3", "sponsor": "CROSATO BRUNA - INES-CARRER GINO", "status": "ADOTTATO"}, {"id": "MOR2026132", "surname": "LESIRITE", "firstName": "CAREMA", "gender": "F", "prevSchool": "MORIJO MIXED DAY SEC. SCHOOL", "prevClass": "FORM 2", "newSchool": "MORIJO MIXED DAY SECONDARY SCHOOL", "newClass": "FORM 3", "sponsor": "SOTGIA MARIA GAVINA - PAOLA", "status": "ADOTTATO"}, {"id": "MOR2026133", "surname": "LEWAO", "firstName": "LPUNYAKI", "gender": "M", "prevSchool": "MORIJO MIXED DAY SEC. SCHOOL", "prevClass": "FORM 2", "newSchool": "MORIJO MIXED DAY SECONDARY SCHOOL", "newClass": "FORM 3", "sponsor": "FORLIN GIORGIO", "status": "ADOTTATO"}, {"id": "MOR2026134", "surname": "LOTUAI", "firstName": "LTOMINO", "gender": "M", "prevSchool": "MORIJO MIXED DAY SEC. SCHOOL", "prevClass": "FORM 2", "newSchool": "MORIJO MIXED DAY SECONDARY SCHOOL", "newClass": "FORM 3", "sponsor": "SORCI GINO - ZAVATTA PAOLA", "status": "ADOTTATO"}, {"id": "MOR2026135", "surname": "LEARAO", "firstName": "NARTU", "gender": "F", "prevSchool": "MORIJO MIXED DAY SEC. SCHOOL", "prevClass": "FORM 3", "newSchool": "MORIJO MIXED DAY SECONDARY SCHOOL", "newClass": "FORM 4", "sponsor": "CAPIZZI ENZO-VANIN M. LUISA", "status": "ADOTTATO"}, {"id": "MOR2026136", "surname": "LEKARIKEI", "firstName": "LMERINYO", "gender": "M", "prevSchool": "MORIJO MIXED DAY SEC. SCHOOL", "prevClass": "FORM 3", "newSchool": "MORIJO MIXED DAY SECONDARY SCHOOL", "newClass": "FORM 4", "sponsor": "SANGIORGI MARIA", "status": "ADOTTATO"}, {"id": "MOR2026137", "surname": "LEKERISAE", "firstName": "FLORENCE NAITIPA", "gender": "F", "prevSchool": "MORIJO MIXED DAY SEC. SCHOOL", "prevClass": "FORM 3", "newSchool": "MORIJO MIXED DAY SECONDARY SCHOOL", "newClass": "FORM 4", "sponsor": "PADOVANI PAOLO-FERRARELLI STEFANIA", "status": "ADOTTATO"}, {"id": "MOR2026138", "surname": "LEKIRENYEI", "firstName": "LOISULA", "gender": "M", "prevSchool": "MORIJO MIXED DAY SEC. SCHOOL", "prevClass": "FORM 3", "newSchool": "MORIJO MIXED DAY SECONDARY SCHOOL", "newClass": "FORM 4", "sponsor": "DUCCI MARCO- CARIATI CRISTINA", "status": "ADOTTATO"}, {"id": "MOR2026139", "surname": "LELERUK", "firstName": "BARAKA", "gender": "M", "prevSchool": "MORIJO MIXED DAY SEC. SCHOOL", "prevClass": "FORM 3", "newSchool": "MORIJO MIXED DAY SECONDARY SCHOOL", "newClass": "FORM 4", "sponsor": "POLO MARINO E RITA", "status": "ADOTTATO"}, {"id": "MOR2026140", "surname": "LELESIIT", "firstName": "KIBAKI", "gender": "M", "prevSchool": "MORIJO MIXED DAY SEC. SCHOOL", "prevClass": "FORM 3", "newSchool": "MORIJO MIXED DAY SECONDARY SCHOOL", "newClass": "FORM 4", "sponsor": "SIDERURGICA FIORENTINA", "status": "ADOTTATO"}, {"id": "MOR2026141", "surname": "LELESIIT", "firstName": "RAILA", "gender": "M", "prevSchool": "MORIJO MIXED DAY SEC. SCHOOL", "prevClass": "FORM 3", "newSchool": "MORIJO MIXED DAY SECONDARY SCHOOL", "newClass": "FORM 4", "sponsor": "BRAGAGNI BRUNO", "status": "ADOTTATO"}, {"id": "MOR2026142", "surname": "LENKIDI", "firstName": "HALLENA", "gender": "F", "prevSchool": "MORIJO MIXED DAY SEC. SCHOOL", "prevClass": "FORM 3", "newSchool": "MORIJO MIXED DAY SECONDARY SCHOOL", "newClass": "FORM 4", "sponsor": "CAZZARO RENATO - TORTORA ANNALISA", "status": "ADOTTATO"}, {"id": "MOR2026143", "surname": "LENTUMUNAI", "firstName": "MALKIA", "gender": "F", "prevSchool": "MORIJO MIXED DAY SEC. SCHOOL", "prevClass": "FORM 3", "newSchool": "MORIJO MIXED DAY SECONDARY SCHOOL", "newClass": "FORM 4", "sponsor": "FOND. ANNA M. FEDER", "status": "ADOTTATO"}, {"id": "MOR2026144", "surname": "LENTUMUNAI", "firstName": "NAIJIPUA", "gender": "F", "prevSchool": "MORIJO MIXED DAY SEC. SCHOOL", "prevClass": "FORM 3", "newSchool": "MORIJO MIXED DAY SECONDARY SCHOOL", "newClass": "FORM 4", "sponsor": "AMIPA", "status": "ADOTTATO"}, {"id": "MOR2026145", "surname": "LENTUMUNAI", "firstName": "RASINKA", "gender": "M", "prevSchool": "MORIJO MIXED DAY SEC. SCHOOL", "prevClass": "FORM 3", "newSchool": "MORIJO MIXED DAY SECONDARY SCHOOL", "newClass": "FORM 4", "sponsor": "MICHIELETTO LUIGI", "status": "ADOTTATO"}, {"id": "MOR2026146", "surname": "LESHIMPIRO", "firstName": "NASERIAN", "gender": "F", "prevSchool": "MORIJO MIXED DAY SEC. SCHOOL", "prevClass": "FORM 3", "newSchool": "MORIJO MIXED DAY SECONDARY SCHOOL", "newClass": "FORM 4", "sponsor": "FOND. ANNA M. FEDER", "status": "ADOTTATO"}, {"id": "MOR2026147", "surname": "LESUYAI", "firstName": "NTASHAKA", "gender": "F", "prevSchool": "MORIJO MIXED DAY SEC. SCHOOL", "prevClass": "FORM 3", "newSchool": "MORIJO MIXED DAY SECONDARY SCHOOL", "newClass": "FORM 4", "sponsor": "FRANCHIN LUCIANO", "status": "ADOTTATO"}, {"id": "MOR2026148", "surname": "LESIRITE", "firstName": "LTABAWA", "gender": "M", "prevSchool": "MORIJO MIXED DAY SEC. SCHOOL", "prevClass": "FORM 3", "newSchool": "MORIJO MIXED DAY SECONDARY SCHOOL", "newClass": "FORM 4", "sponsor": "MESTRINER PAOLO", "status": "ADOTTATO"}, {"id": "MOR2026149", "surname": "LETOLUAI", "firstName": "KIRISIA", "gender": "F", "prevSchool": "MORIJO MIXED DAY SEC. SCHOOL", "prevClass": "FORM 3", "newSchool": "MORIJO MIXED DAY SECONDARY SCHOOL", "newClass": "FORM 4", "sponsor": "FORLIN GIORGIO", "status": "ADOTTATO"}, {"id": "MOR2026150", "surname": "LETOLUAI", "firstName": "NCHAKAI", "gender": "M", "prevSchool": "MORIJO MIXED DAY SEC. SCHOOL", "prevClass": "FORM 3", "newSchool": "MORIJO MIXED DAY SECONDARY SCHOOL", "newClass": "FORM 4", "sponsor": "BAFFIONI AVE", "status": "ADOTTATO"}, {"id": "MOR2026151", "surname": "LEWAO", "firstName": "MESHACK", "gender": "M", "prevSchool": "MORIJO MIXED DAY SEC. SCHOOL", "prevClass": "FORM 3", "newSchool": "MORIJO MIXED DAY SECONDARY SCHOOL", "newClass": "FORM 4", "sponsor": "BELLIENI ALESSIA", "status": "ADOTTATO"}, {"id": "MOR2026152", "surname": "LOLKIRIK", "firstName": "NTANAPUA", "gender": "F", "prevSchool": "MORIJO MIXED DAY SEC. SCHOOL", "prevClass": "FORM 3", "newSchool": "MORIJO MIXED DAY SECONDARY SCHOOL", "newClass": "FORM 4", "sponsor": "PILLON GIORGIO - DONADI ANNA", "status": "ADOTTATO"}, {"id": "MOR2026153", "surname": "LOLMARENY", "firstName": "MASULA", "gender": "F", "prevSchool": "MORIJO MIXED DAY SEC. SCHOOL", "prevClass": "FORM 3", "newSchool": "MORIJO MIXED DAY SECONDARY SCHOOL", "newClass": "FORM 4", "sponsor": "ORLANDO ROSA", "status": "ADOTTATO"}, {"id": "MOR2026154", "surname": "LOSIRKAT", "firstName": "MUNYAKI", "gender": "F", "prevSchool": "MORIJO MIXED DAY SEC. SCHOOL", "prevClass": "FORM 3", "newSchool": "MORIJO MIXED DAY SECONDARY SCHOOL", "newClass": "FORM 4", "sponsor": "BAFFIONI AVE", "status": "ADOTTATO"}, {"id": "MOR2026155", "surname": "LOSIRKAT", "firstName": "NDIKANY", "gender": "F", "prevSchool": "MORIJO MIXED DAY SEC. SCHOOL", "prevClass": "FORM 3", "newSchool": "MORIJO MIXED DAY SECONDARY SCHOOL", "newClass": "FORM 4", "sponsor": "SUN 2 MOON DI VISCONTI ROBERTO", "status": "ADOTTATO"}, {"id": "MOR2026156", "surname": "LEMUNEN", "firstName": "MECHACK", "gender": "M", "prevSchool": "MORIJO MIXED DAY SEC. SCHOOL", "prevClass": "FORM 3", "newSchool": "MORIJO MIXED DAY SECONDARY SCHOOL", "newClass": "FORM 4", "sponsor": "FERRARI VINCENZO", "status": "ADOTTATO"}, {"id": "MOR2026157", "surname": "LENANGURAM", "firstName": "LINA", "gender": "F", "prevSchool": "MORIJO MIXED DAY SEC. SCHOOL", "prevClass": "FORM 3", "newSchool": "MORIJO MIXED DAY SECONDARY SCHOOL", "newClass": "FORM 4", "sponsor": "FACCIN ROBERTA", "status": "ADOTTATO"}, {"id": "MOR2026158", "surname": "SAOSI", "firstName": "JOHN", "gender": "M", "prevSchool": "MORIJO MIXED DAY SEC. SCHOOL", "prevClass": "FORM 3", "newSchool": "MORIJO MIXED DAY SECONDARY SCHOOL", "newClass": "FORM 4", "sponsor": "AMIPA", "status": "ADOTTATO"}, {"id": "MOR2026159", "surname": "NAPUNYU", "firstName": "ANN STACY", "gender": "F", "prevSchool": "MARALAL ST. MARY'S SCHOOL", "prevClass": "GRADE 9", "newSchool": "NDURURUMO HIGH SENIOR SCHOOL", "newClass": "GRADE 10", "sponsor": "SALMASO GIANNI-CARLA-CASSON MARIA", "status": "ADOTTATO"}, {"id": "MOR2026160", "surname": "LETOLUAI", "firstName": "NELSON", "gender": "M", "prevSchool": "NKORIKA", "prevClass": "GRADE 5", "newSchool": "NKORIKA/LKUJITA", "newClass": "LCHEKUTI", "sponsor": "FAVARETTO FIORAVANTE - POZZOBON M.", "status": "ADOTTATO"}, {"id": "MOR2026161", "surname": "LEIPELE", "firstName": "ZAKAYO", "gender": "M", "prevSchool": "MORIJO", "prevClass": "GRADE 1", "newSchool": "NKORIKA PRIMARY SCHOOL", "newClass": "GRADE 2", "sponsor": "PARONETTO GIANNI", "status": "ADOTTATO"}, {"id": "MOR2026162", "surname": "LEMUNEN", "firstName": "MAGDALINE NKARIBISH", "gender": "F", "prevSchool": "MORIJO", "prevClass": "LCHEKUTI", "newSchool": "NKORIKA PRIMARY SCHOOL", "newClass": "GRADE 3", "sponsor": "LEUZZI LUCIO ROCCO", "status": "ADOTTATO"}, {"id": "MOR2026163", "surname": "LENTUMUNAI", "firstName": "LENSHULA", "gender": "M", "prevSchool": "NKORIKA", "prevClass": "GRADE 3", "newSchool": "NKORIKA PRIMARY SCHOOL", "newClass": "GRADE 4", "sponsor": "SCUOLA ELEMENTARE \"LINO PELLIZZARI\"", "status": "ADOTTATO"}, {"id": "MOR2026164", "surname": "LELERUK", "firstName": "KELVIN", "gender": "M", "prevSchool": "NKORIKA", "prevClass": "GRADE 4", "newSchool": "NKORIKA PRIMARY SCHOOL", "newClass": "GRADE 5", "sponsor": "VEDOVELLO CRISTIAN-CASELLA CLAUDIA", "status": "ADOTTATO"}, {"id": "MOR2026165", "surname": "LEMUNEN", "firstName": "LMUDOSI", "gender": "M", "prevSchool": "NKORIKA", "prevClass": "GRADE 5", "newSchool": "NKORIKA PRIMARY SCHOOL", "newClass": "GRADE 6", "sponsor": "ZAMBON MAURO-MATTEO-FUSER BARBARA", "status": "ADOTTATO"}, {"id": "MOR2026166", "surname": "LEKAIPURE", "firstName": "SOLOMON", "gender": "M", "prevSchool": "NKORIKA", "prevClass": "GRADE 6", "newSchool": "NKORIKA PRIMARY SCHOOL", "newClass": "GRADE 7", "sponsor": "SEVERI STEFANIA-ROSSETTI MASSIMILIANO", "status": "ADOTTATO"}, {"id": "MOR2026167", "surname": "LEMETEKI", "firstName": "VANILLA", "gender": "F", "prevSchool": "SOIT - PUS", "prevClass": "GRADE 2", "newSchool": "SOIT-PUS PRIMARY SCHOOL", "newClass": "GRADE 3", "sponsor": "SCHIAVON MARIA", "status": "ADOTTATO"}, {"id": "MOR2026168", "surname": "LOLMARENY", "firstName": "SAITABAU", "gender": "M", "prevSchool": "SOIT - PUS", "prevClass": "GRADE 2", "newSchool": "SOIT-PUS PRIMARY SCHOOL", "newClass": "GRADE 3", "sponsor": "BUCCIARELLI SAURO - BERNINI BARBARA", "status": "ADOTTATO"}, {"id": "MOR2026169", "surname": "LEKUPE", "firstName": "DESMON", "gender": "M", "prevSchool": "SOIT - PUS", "prevClass": "GRADE 3", "newSchool": "SOIT-PUS PRIMARY SCHOOL", "newClass": "GRADE 4", "sponsor": "RANDISI M. GABRIELLA", "status": "ADOTTATO"}, {"id": "MOR2026170", "surname": "LEKUSUMO", "firstName": "PURITY", "gender": "F", "prevSchool": "SOIT - PUS", "prevClass": "GRADE 3", "newSchool": "SOIT-PUS PRIMARY SCHOOL", "newClass": "GRADE 4", "sponsor": "BAFFETTI ERMANNO", "status": "ADOTTATO"}, {"id": "MOR2026171", "surname": "LESEYIA", "firstName": "MARY", "gender": "F", "prevSchool": "SOIT - PUS", "prevClass": "GRADE 3", "newSchool": "SOIT-PUS PRIMARY SCHOOL", "newClass": "GRADE 4", "sponsor": "ZAMBON MARIO - GUERRA IVETTA", "status": "ADOTTATO"}, {"id": "MOR2026172", "surname": "LEMOOSA", "firstName": "NAIJIPUA", "gender": "F", "prevSchool": "SOIT - PUS", "prevClass": "GRADE 4", "newSchool": "SOIT-PUS PRIMARY SCHOOL", "newClass": "GRADE 5", "sponsor": "CESCHIN NADIA", "status": "ADOTTATO"}, {"id": "MOR2026173", "surname": "LENADONGER", "firstName": "LPANARI", "gender": "M", "prevSchool": "SOIT - PUS", "prevClass": "GRADE 4", "newSchool": "SOIT-PUS PRIMARY SCHOOL", "newClass": "GRADE 5", "sponsor": "GRIMANDI MARCELLO", "status": "ADOTTATO"}, {"id": "MOR2026174", "surname": "LENGELESHI", "firstName": "NASERIAN", "gender": "F", "prevSchool": "SOIT - PUS", "prevClass": "GRADE 4", "newSchool": "SOIT-PUS PRIMARY SCHOOL", "newClass": "GRADE 5", "sponsor": "CALDO DANIELA", "status": "ADOTTATO"}, {"id": "MOR2026175", "surname": "LESEREWA", "firstName": "PERENIS", "gender": "F", "prevSchool": "SOIT - PUS", "prevClass": "GRADE 5", "newSchool": "SOIT-PUS PRIMARY SCHOOL", "newClass": "GRADE 6", "sponsor": "MONGARDI VANDA - PAGANI ORESTE", "status": "ADOTTATO"}, {"id": "MOR2026176", "surname": "LESUYAI", "firstName": "RENIYIAI", "gender": "F", "prevSchool": "SOIT - PUS", "prevClass": "GRADE 5", "newSchool": "SOIT-PUS PRIMARY SCHOOL", "newClass": "GRADE 6", "sponsor": "BONETTI ANTONIO", "status": "ADOTTATO"}, {"id": "MOR2026177", "surname": "LENKAAK", "firstName": "LTABAWA", "gender": "M", "prevSchool": "SOIT - PUS", "prevClass": "GRADE 5", "newSchool": "SOIT-PUS PRIMARY SCHOOL", "newClass": "GRADE 6", "sponsor": "STELLIN GIOVANNA", "status": "ADOTTATO"}, {"id": "MOR2026178", "surname": "LENKOROWAE", "firstName": "MARY NAIDIMUA", "gender": "F", "prevSchool": "SOIT - PUS", "prevClass": "GRADE 6", "newSchool": "SOIT-PUS PRIMARY SCHOOL", "newClass": "GRADE 7", "sponsor": "MONTAGNER RENATA", "status": "ADOTTATO"}, {"id": "MOR2026179", "surname": "LEKEMPE", "firstName": "EUNICE REBECCA", "gender": "F", "prevSchool": "SOIT - PUS", "prevClass": "GRADE 8", "newSchool": "SOIT-PUS PRIMARY SCHOOL", "newClass": "GRADE 9", "sponsor": "BONA MARIA TERESA", "status": "ADOTTATO"}, {"id": "MOR2026180", "surname": "LEPAKIYIO", "firstName": "ALLAMANO", "gender": "M", "prevSchool": "PORRO/LGOOS", "prevClass": "GRADE 3", "newSchool": "LGOOS CBC", "newClass": "GRADE 4", "sponsor": "BABINI AURELIA", "status": "ADOTTATO"}, {"id": "MOR2026181", "surname": "LEPARTANAPA", "firstName": "MARTIYO DAVID", "gender": "M", "prevSchool": "SAMBURU MIXED DAY SEC. SCHO.", "prevClass": "FORM 2", "newSchool": "SAMBURU MIXED MIXED DAY SEC. SCH.", "newClass": "FORM 3", "sponsor": "VETTORI EFREM - D'ACQUISTO MARIAROSA", "status": "ADOTTATO"}, {"id": "MOR2026182", "surname": "LEKUPE", "firstName": "MBARICHOE", "gender": "F", "prevSchool": "NKORIKA", "prevClass": "GRADE 2", "newSchool": "ST. PAUL CBC", "newClass": "GRADE 3", "sponsor": "MUFFATO GIOVANNA - BOTTER PIETRO", "status": "ADOTTATO"}, {"id": "MOR2026183", "surname": "LEKOROLE", "firstName": "JEREMY", "gender": "M", "prevSchool": "MORIJO", "prevClass": "GRADE 8", "newSchool": "ST. PAUL CBC", "newClass": "GRADE 7", "sponsor": "TASSINARI MANUELA", "status": "ADOTTATO"}, {"id": "MOR2026184", "surname": "LEKASUYIAN", "firstName": "SAYUNI", "gender": "F", "prevSchool": "MARALAL/ST, MARY'S", "prevClass": "GRADE 9", "newSchool": "ST. THERESAS GIRLS SENIOR SCHOOL", "newClass": "GRADE 10", "sponsor": "CESCHIN CAMPION GIANFRANCA", "status": "ADOTTATO"}, {"id": "MOR2026185", "surname": "LESEYIA", "firstName": "CELESTINE", "gender": "F", "prevSchool": "WAMBA/ST. THERESAS", "prevClass": "FORM 2", "newSchool": "ST.THERESAS GIRLS SECONDARY  SCHOOL", "newClass": "FORM 3", "sponsor": "FERRARESE FABIO E NADIA", "status": "ADOTTATO"}, {"id": "MOR2026186", "surname": "LESANGURIKURI", "firstName": "SANINGO", "gender": "M", "prevSchool": "TOP MAX COLLEGE", "prevClass": "YEAR 2", "newSchool": "TOP MAX", "newClass": "YEAR 3", "sponsor": "ASSOCIAZIONE SAN FRANCESCO", "status": "ADOTTATO"}, {"id": "MOR2026187", "surname": "LEWAO", "firstName": "SALION NTELA", "gender": "M", "prevSchool": "MORIJO MIXED DAY SEC. SCHOOL", "prevClass": "FORM 4", "newSchool": "FINISH", "newClass": "FINISH", "sponsor": "DEOTTI FRANCO - SPADETTO M. ANTONIETTA", "status": "COMPLETATO"}, {"id": "MOR2026188", "surname": "LEPARTANAPA", "firstName": "LTASHAWA", "gender": "M", "prevSchool": "MORIJO MIXED DAY SEC. SCHOOL", "prevClass": "FORM 4", "newSchool": "FINISH", "newClass": "FINISH", "sponsor": "COLUSSO CESARE", "status": "COMPLETATO"}, {"id": "MOR2026189", "surname": "LESEEWA", "firstName": "NAITIBIK", "gender": "F", "prevSchool": "MORIJO MIXED DAY SEC. SCHOOL", "prevClass": "FORM 4", "newSchool": "FINISH", "newClass": "FINISH", "sponsor": "SALUCCI CINZIA", "status": "COMPLETATO"}, {"id": "MOR2026190", "surname": "LENTIIPO", "firstName": "OLIAN", "gender": "M", "prevSchool": "MORIJO MIXED DAY SEC. SCHOOL", "prevClass": "FORM 4", "newSchool": "FINISH", "newClass": "FINISH", "sponsor": "FAM. BUSNELLO DURANTE MARINA", "status": "COMPLETATO"}, {"id": "MOR2026191", "surname": "LEMANTE", "firstName": "EVALINE", "gender": "F", "prevSchool": "MORIJO MIXED DAY SEC. SCHOOL", "prevClass": "FORM 4", "newSchool": "FINISH", "newClass": "FINISH", "sponsor": "GALLI VINCENZO", "status": "COMPLETATO"}, {"id": "MOR2026192", "surname": "LOTUAI", "firstName": "MATHAYO", "gender": "M", "prevSchool": "MORIJO MIXED DAY SEC. SCHOOL", "prevClass": "FORM 4", "newSchool": "FINISH", "newClass": "FINISH", "sponsor": "BORTOLANZA GIORDANA", "status": "COMPLETATO"}, {"id": "MOR2026193", "surname": "LEKERISAE", "firstName": "NKOOTEYIE", "gender": "F", "prevSchool": "MORIJO MIXED DAY SEC. SCHOOL", "prevClass": "FORM 1", "newSchool": "NO SCHOOL", "newClass": "NO SCHOOL", "sponsor": "AMICI CL.1954 C/O SALVALAIO GIANNI", "status": "INATTIVO"}, {"id": "MOR2026194", "surname": "LENTUMUNAI", "firstName": "BARAKA", "gender": "M", "prevSchool": "MORIJO MIXED DAY SEC. SCHOOL", "prevClass": "FORM 4", "newSchool": "FINISH", "newClass": "FINISH", "sponsor": "AMIPA", "status": "COMPLETATO"}, {"id": "MOR2026195", "surname": "LESHIMPIRO", "firstName": "DANIEL TIBERIO", "gender": "M", "prevSchool": "MORIJO MIXED DAY SEC. SCHOOL", "prevClass": "FORM 4", "newSchool": "FINISH", "newClass": "FINISH", "sponsor": "POZZOBON STEFANIA - DURIGHEL STEFANO", "status": "COMPLETATO"}, {"id": "MOR2026196", "surname": "LEWAO", "firstName": "CHIKO", "gender": "F", "prevSchool": "MARALAL/MOI GIRLS SEC. SCH", "prevClass": "FORM 3", "newSchool": "FINISH", "newClass": "FINISH", "sponsor": "AMIPA", "status": "COMPLETATO"}, {"id": "MOR2026197", "surname": "LEKASUYIAN", "firstName": "LOSINYA", "gender": "M", "prevSchool": "RUMURUTI/MARY MOTHER OF GRACE", "prevClass": "FORM 4", "newSchool": "FINISH", "newClass": "FINISH", "sponsor": "SERRAGIOTTO ZOE", "status": "COMPLETATO"}, {"id": "MOR2026198", "surname": "LEKAPUA", "firstName": "SANTOS", "gender": "M", "prevSchool": "PORO/LOROK MIXED DAY SEC. SCH.", "prevClass": "FORM 4", "newSchool": "FINISH", "newClass": "FINISH", "sponsor": "POZZOBON GIORGIO C/O POZZONON ALBINO", "status": "COMPLETATO"}, {"id": "MOR2026199", "surname": "LEKERDE", "firstName": "NJELINA ANN", "gender": "F", "prevSchool": "MARALAL/KISIMA MIXED DAY SEC. SCH.", "prevClass": "FORM 4", "newSchool": "FINISH", "newClass": "FINISH", "sponsor": "SCHIAVON MARIA", "status": "COMPLETATO"}, {"id": "MOR2026200", "surname": "LEKIRENYEI", "firstName": "RAPUNYE", "gender": "M", "prevSchool": "RUMURUTI/MARY MOTHER OF GRACE", "prevClass": "FORM 3", "newSchool": "FINISH", "newClass": "FINISH", "sponsor": "RICCI MONICA CALDERONI DOMENICO", "status": "COMPLETATO"}, {"id": "MOR2026201", "surname": "LEKOROLE", "firstName": "BRENDA JESKA", "gender": "F", "prevSchool": "MARALAL/IRENE SCHOOL", "prevClass": "FORM 4", "newSchool": "FINISH", "newClass": "FINISH", "sponsor": "SARI TERESA", "status": "COMPLETATO"}, {"id": "MOR2026202", "surname": "LEKOROLE", "firstName": "TYSON", "gender": "M", "prevSchool": "MARALAL/SEMINARY", "prevClass": "FORM 4", "newSchool": "FINISH", "newClass": "FINISH", "sponsor": "CAMBA ADRIANA LUISA GIUDITTA", "status": "COMPLETATO"}, {"id": "MOR2026203", "surname": "LELERUK", "firstName": "KETIKAI", "gender": "M", "prevSchool": "MORIJO MIXED DAY SEC. SCHOOL", "prevClass": "FORM 4", "newSchool": "FINISH", "newClass": "FINISH", "sponsor": "PRESOT CESARE - FRACAS ALIDA", "status": "COMPLETATO"}, {"id": "MOR2026204", "surname": "LEMEIKARI", "firstName": "MARY  SIMPAYO", "gender": "F", "prevSchool": "SOIT - PUS", "prevClass": "STD 8", "newSchool": "NO SCHOOL", "newClass": "NO SCHOOL", "sponsor": "BORTOLANZA MARIELLA", "status": "INATTIVO"}, {"id": "MOR2026205", "surname": "LENASEYIAN", "firstName": "PARALI BENJAMIN", "gender": "M", "prevSchool": "MARALAL/KIRISIA BOYS SEC. SCH.", "prevClass": "FORM 4", "newSchool": "FINISH", "newClass": "FINISH", "sponsor": "GIULIANO CICCONE MARIA", "status": "COMPLETATO"}, {"id": "MOR2026206", "surname": "LENGELESHI", "firstName": "SAPUKI", "gender": "M", "prevSchool": "SOIT - PUS", "prevClass": "STD 8", "newSchool": "FINISH", "newClass": "FINISH", "sponsor": "GRESPAN GRAZIANO", "status": "COMPLETATO"}, {"id": "MOR2026207", "surname": "LENGURNET", "firstName": "NTINGIDUA", "gender": "F", "prevSchool": "SOIT - PUS", "prevClass": "STD 8", "newSchool": "FINISH", "newClass": "FINISH", "sponsor": "PULCINI FABIO - PITUELLO ELEONORA", "status": "COMPLETATO"}, {"id": "MOR2026208", "surname": "LENGURO", "firstName": "LTUSHANA", "gender": "M", "prevSchool": "MORIJO MIXED DAY SEC. SCHOOL", "prevClass": "STD 8", "newSchool": "FINISH", "newClass": "FINISH", "sponsor": "ACCETTULLI ALBERTO", "status": "COMPLETATO"}, {"id": "MOR2026209", "surname": "LENKAAK", "firstName": "LOPUNYU", "gender": "M", "prevSchool": "SOIT - PUS", "prevClass": "GRADE 8", "newSchool": "FINISH", "newClass": "FINISH", "sponsor": "BONETTI ANTONIO - BEA COMPAGNIA", "status": "COMPLETATO"}, {"id": "MOR2026210", "surname": "LENKILILI", "firstName": "ANGELO", "gender": "M", "prevSchool": "PORO/LOROK MIXED DAY SEC. SCH.", "prevClass": "FORM 4", "newSchool": "FINISH", "newClass": "FINISH", "sponsor": "LAZZARI IVO E ALESSANDRA", "status": "COMPLETATO"}, {"id": "MOR2026211", "surname": "LENTUMUNAI", "firstName": "ASHAN", "gender": "M", "prevSchool": "MORIJO MIXED DAY SEC. SCHOOL", "prevClass": "FORM 4", "newSchool": "FINISH", "newClass": "FINISH", "sponsor": "GHEZZI FABIANO", "status": "COMPLETATO"}, {"id": "MOR2026212", "surname": "LENTUMUNAI", "firstName": "NTIRINYWA", "gender": "F", "prevSchool": "ELDORET INSTITUTE", "prevClass": "YEAR 2", "newSchool": "FINISH", "newClass": "FINISH", "sponsor": "BOVO DANIELA", "status": "COMPLETATO"}, {"id": "MOR2026213", "surname": "LEMUNEN", "firstName": "LISTA", "gender": "F", "prevSchool": "MORIJO MIXED DAY SEC. SCHOOL", "prevClass": "FORM I", "newSchool": "MARRIED", "newClass": "NO SCHOOL", "sponsor": "SORCI GINO - ZAVATTA PAOLA", "status": "INATTIVO"}, {"id": "MOR2026214", "surname": "LENAASALE", "firstName": "ELIJAH", "gender": "M", "prevSchool": "MORIJO MIXED DAY SEC. SCHOOL", "prevClass": "FORM 4", "newSchool": "FINISH", "newClass": "FINISH", "sponsor": "BORTOLATO MILENA", "status": "COMPLETATO"}, {"id": "MOR2026215", "surname": "LEPARTANAPA", "firstName": "LEBANON", "gender": "F", "prevSchool": "NKIRENYI", "prevClass": "STD 8", "newSchool": "FINISH", "newClass": "FINISH", "sponsor": "BOLZONELLO ALFIO -LIEVORE SERENELLA", "status": "COMPLETATO"}, {"id": "MOR2026216", "surname": "LESEEWA", "firstName": "SADIPO", "gender": "M", "prevSchool": "MORIJO MIXED DAY SEC. SCHOOL", "prevClass": "FORM 2", "newSchool": "FINISH", "newClass": "FINISH", "sponsor": "SARTORI ANGELO - BANDIERA ELISA", "status": "COMPLETATO"}, {"id": "MOR2026217", "surname": "LESEYIA", "firstName": "MPAAYIO", "gender": "M", "prevSchool": "MORIJO MIXED DAY SEC. SCHOOL", "prevClass": "FORM 1", "newSchool": "FINISH", "newClass": "FINISH", "sponsor": "BONETTI RAFFAELLA - CROSATO MAURO", "status": "COMPLETATO"}, {"id": "MOR2026218", "surname": "LEKADAA", "firstName": "LKUTOSIAN", "gender": "M", "prevSchool": "SUNONI", "prevClass": "STD 8", "newSchool": "NO SCHOOL", "newClass": "NO SCHOOL", "sponsor": "ROSSI EMMA", "status": "INATTIVO"}, {"id": "MOR2026219", "surname": "LEERTE", "firstName": "LMALEIS", "gender": "M", "prevSchool": "NKIRENYI", "prevClass": "STD 8", "newSchool": "NO SCHOOL", "newClass": "NO SCHOOL", "sponsor": "CATALDI MAURIZIO - MEZZAVILLA ANTONELLA", "status": "INATTIVO"}, {"id": "MOR2026220", "surname": "LEPARTANAPA", "firstName": "LEKTON", "gender": "M", "prevSchool": "SUNONI", "prevClass": "FORM 1", "newSchool": "NO SCHOOL", "newClass": "NO SCHOOL", "sponsor": "ERRANI PAOLA-GIOVANNA FUSCHINI", "status": "INATTIVO"}, {"id": "MOR2026221", "surname": "LOKORO", "firstName": "NGASIKE", "gender": "M", "prevSchool": "MARTI MIXED DAY SECONDARY", "prevClass": "FORM 4", "newSchool": "FINISH", "newClass": "FINISH", "sponsor": "ASSOCIAZIONE AMICI DI NERESHEM", "status": "COMPLETATO"}, {"id": "MOR2026222", "surname": "LOKORO", "firstName": "STELLA", "gender": "F", "prevSchool": "MARTI MIXED DAY SECONDARY", "prevClass": "FORM 4", "newSchool": "FINISH", "newClass": "FINISH", "sponsor": "MARCHIORI DANIELA - GIURIATO VALTER", "status": "COMPLETATO"}, {"id": "MOR2026223", "surname": "LOMURAI", "firstName": "NGOROKO", "gender": "M", "prevSchool": "MARTI MIXED DAY SECONDARY", "prevClass": "FORM 4", "newSchool": "FINISH", "newClass": "FINISH", "sponsor": "PIOVESAN LADIMIRO E TOFFOLO ANNA", "status": "COMPLETATO"}, {"id": "MOR2026224", "surname": "LOSERIAN", "firstName": "LERIANO", "gender": "M", "prevSchool": "MARALALA/SAMBURU MIXED", "prevClass": "FORM 4", "newSchool": "FINISH", "newClass": "FINISH", "sponsor": "CECCONI TIZIANO", "status": "COMPLETATO"}, {"id": "MOR2026225", "surname": "NAPEEI", "firstName": "IKATHUKOUT", "gender": "F", "prevSchool": "MARTI", "prevClass": "LCHEKUTI", "newSchool": "NO SCHOOL", "newClass": "NO SCHOOL", "sponsor": "LIBRALESSO MARIA", "status": "INATTIVO"}, {"id": "MOR2026226", "surname": "NKURCHANA", "firstName": "LEARUNI", "gender": "M", "prevSchool": "MARTI MIXED DAY SECONDARY", "prevClass": "FORM 4", "newSchool": "FINISH", "newClass": "FINISH", "sponsor": "POLO MARINO E RITA", "status": "COMPLETATO"}, {"id": "MOR2026227", "surname": "LENASEYIAN", "firstName": "SAAKOI", "gender": "M", "prevSchool": "MORIJO", "prevClass": "GRADE 9", "newSchool": "NO SCHOOL", "newClass": "NO SCHOOL", "sponsor": "SUN 2 MOON DI VISCONTI ROBERTO", "status": "INATTIVO"}, {"id": "MOR2026228", "surname": "LESHIMPIRO", "firstName": "TERESA NTAJEU", "gender": "F", "prevSchool": "MORIJO MIXED DAY SEC. SCHOOL", "prevClass": "FORM 2", "newSchool": "NO SCHOOL", "newClass": "NO SCHOOL", "sponsor": "POLO MARINO E RITA", "status": "INATTIVO"}, {"id": "MOR2026229", "surname": "LETOWON", "firstName": "SERAFINA", "gender": "F", "prevSchool": "NO SCHOOL", "prevClass": "NO SCHOOL", "newSchool": "NO SCHOOL", "newClass": "NO SCHOOL", "sponsor": "BANDIERA MAURIZIO", "status": "INATTIVO"}];
+
+let studentsData = [];
+let currentId = null;
+let sortField = 'id';
+let sortDir = 1;
+
+function initApp() {
+    const saved = localStorage.getItem('morijoStudents2026');
+    studentsData = saved ? JSON.parse(saved) : JSON.parse(JSON.stringify(MASTER_DATA));
+    renderTable();
+    updateStats();
+}
+
+function save() {
+    localStorage.setItem('morijoStudents2026', JSON.stringify(studentsData));
+}
+
+// ── NAVIGATION ────────────────────────────────────────────────────────
+function showSection(id) {
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    const map = { registry: 0, studentForm: 1 };
+    document.querySelectorAll('.nav-btn')[map[id] || 0].classList.add('active');
+    window.scrollTo(0, 0);
+}
+
+// ── STATS ─────────────────────────────────────────────────────────────
+function updateStats() {
+    const d = studentsData;
+    document.getElementById('sTot').textContent = d.length;
+    document.getElementById('sAdo').textContent = d.filter(s=>s.status==='ADOTTATO').length;
+    document.getElementById('sCom').textContent = d.filter(s=>s.status==='COMPLETATO').length;
+    document.getElementById('sIna').textContent = d.filter(s=>s.status==='INATTIVO').length;
+    document.getElementById('sMas').textContent = d.filter(s=>s.gender==='M').length;
+    document.getElementById('sFem').textContent = d.filter(s=>s.gender==='F').length;
+    document.getElementById('hdrCount').textContent = d.length;
+}
+
+// ── TABLE ─────────────────────────────────────────────────────────────
+function renderTable(data) {
+    if (!data) data = getFiltered();
+    const tbody = document.getElementById('tBody');
+    tbody.innerHTML = '';
+    data.forEach(s => {
+        const statusMap = {
+            'ADOTTATO':   '<span class="badge badge-adottato">Adottato</span>',
+            'COMPLETATO': '<span class="badge badge-completato">Completato</span>',
+            'INATTIVO':   '<span class="badge badge-inattivo">Inattivo</span>',
+            'ADOTTABILE': '<span class="badge badge-adottabile">Adottabile</span>',
+        };
+        const gLabel = s.gender==='M'
+            ? '<span class="gender-m">M</span>'
+            : '<span class="gender-f">F</span>';
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+            <td class="td-id">${s.id}</td>
+            <td class="td-name td-surname">${s.surname}</td>
+            <td>${s.firstName}</td>
+            <td>${gLabel}</td>
+            <td style="font-size:0.8rem;">${s.prevSchool||'—'}</td>
+            <td style="font-size:0.8rem;">${s.prevClass||'—'}</td>
+            <td style="font-size:0.8rem;">${s.newSchool||'—'}</td>
+            <td style="font-size:0.8rem;">${s.newClass||'—'}</td>
+            <td>${statusMap[s.status]||s.status}</td>
+            <td class="td-sponsor">${s.sponsor||'<em style="color:#aaa">—</em>'}</td>
+            <td><button class="btn-edit" onclick="editStudent('${s.id}')">Modifica</button></td>
+        `;
+        tbody.appendChild(tr);
+    });
+    document.getElementById('filterCount').textContent =
+        data.length < studentsData.length ? `${data.length} di ${studentsData.length} studenti` : `${data.length} studenti`;
+}
+
+function getFiltered() {
+    const q = document.getElementById('srchInput').value.toLowerCase();
+    const st = document.getElementById('filterStatus').value;
+    const ge = document.getElementById('filterGender').value;
+    let data = studentsData.filter(s => {
+        const txt = [s.id, s.surname, s.firstName, s.newSchool, s.prevSchool, s.sponsor].join(' ').toLowerCase();
+        return (!q || txt.includes(q)) && (!st || s.status===st) && (!ge || s.gender===ge);
+    });
+    data.sort((a,b) => {
+        const va = (a[sortField]||'').toString().toLowerCase();
+        const vb = (b[sortField]||'').toString().toLowerCase();
+        return va < vb ? -sortDir : va > vb ? sortDir : 0;
+    });
+    return data;
+}
+
+function filterTable() { renderTable(); }
+
+function sortBy(field) {
+    if (sortField === field) sortDir = -sortDir; else { sortField = field; sortDir = 1; }
+    document.querySelectorAll('thead th').forEach(th => {
+        th.classList.remove('sort-asc','sort-desc');
+    });
+    const idx = ['id','surname','firstName','gender','prevSchool','prevClass','newSchool','newClass','status','sponsor'].indexOf(field);
+    const ths = document.querySelectorAll('thead th');
+    if (ths[idx]) ths[idx].classList.add(sortDir===1 ? 'sort-asc' : 'sort-desc');
+    renderTable();
+}
+
+// ── FORM ──────────────────────────────────────────────────────────────
+function openNewStudent() {
+    currentId = 'MOR2026' + String(studentsData.length + 1).padStart(3, '0');
+    document.getElementById('studentFormEl').reset();
+    document.getElementById('photoPreview').style.display = 'none';
+    document.getElementById('photoPh').style.display = 'flex';
+    document.getElementById('photoBox').classList.remove('has-img');
+    document.getElementById('adoptToggle').checked = false;
+    toggleAdoption();
+    document.getElementById('dispId').textContent = currentId;
+    showSection('studentForm');
+}
+
+function editStudent(id) {
+    const s = studentsData.find(x => x.id === id);
+    if (!s) return;
+    currentId = id;
+    document.getElementById('dispId').textContent = id;
+    document.getElementById('fSurname').value   = s.surname   || '';
+    document.getElementById('fFirstName').value = s.firstName || '';
+    document.getElementById('fGender').value    = s.gender    || 'M';
+    document.getElementById('fPrevSchool').value = s.prevSchool || '';
+    document.getElementById('fPrevClass').value  = s.prevClass  || '';
+    document.getElementById('fNewSchool').value  = s.newSchool  || '';
+    document.getElementById('fNewClass').value   = s.newClass   || '';
+    document.getElementById('fDob').value        = s.dob        || '';
+    document.getElementById('fPob').value        = s.pob        || '';
+    document.getElementById('fVillage').value    = s.village    || '';
+    document.getElementById('fFather').value     = s.father     || '';
+    document.getElementById('fMother').value     = s.mother     || '';
+    document.getElementById('fFamStatus').value  = s.famStatus  || '';
+    document.getElementById('fNotes').value      = s.notes      || '';
+    document.getElementById('sponsorName').value = s.sponsor    || '';
+    const adopted = s.status === 'ADOTTATO' || (s.sponsor && s.status !== 'COMPLETATO' && s.status !== 'INATTIVO');
+    document.getElementById('adoptToggle').checked = adopted;
+    toggleAdoption();
+    showSection('studentForm');
+}
+
+function toggleAdoption() {
+    const on = document.getElementById('adoptToggle').checked;
+    document.getElementById('adoptLabel').innerHTML = on ? '<strong>Adottato</strong>' : '<strong>Non adottato / Inattivo</strong>';
+    document.getElementById('sponsorWrap').classList.toggle('visible', on);
+    const badge = document.getElementById('fStatusBadge');
+    if (on) {
+        badge.style.background = '#e8f5e9'; badge.style.color = '#1a5c38'; badge.style.borderColor = '#1a5c38';
+        badge.textContent = '● ADOTTATO';
+    } else {
+        badge.style.background = '#fce4ec'; badge.style.color = '#8b0000'; badge.style.borderColor = '#8b0000';
+        badge.textContent = '● NON ADOTTATO';
+    }
+}
+
+function saveStudent(e) {
+    e.preventDefault();
+    const adopted = document.getElementById('adoptToggle').checked;
+    const newSchool = document.getElementById('fNewSchool').value;
+    let status = 'ADOTTABILE';
+    if (['FINISH','finish'].includes(newSchool.trim().toUpperCase())) status = 'COMPLETATO';
+    else if (['NO SCHOOL','MARRIED'].includes(newSchool.trim().toUpperCase())) status = 'INATTIVO';
+    else if (adopted) status = 'ADOTTATO';
+
+    const rec = {
+        id: currentId,
+        surname:    document.getElementById('fSurname').value.toUpperCase().trim(),
+        firstName:  document.getElementById('fFirstName').value.toUpperCase().trim(),
+        gender:     document.getElementById('fGender').value,
+        prevSchool: document.getElementById('fPrevSchool').value.trim(),
+        prevClass:  document.getElementById('fPrevClass').value.trim(),
+        newSchool:  document.getElementById('fNewSchool').value.trim(),
+        newClass:   document.getElementById('fNewClass').value.trim(),
+        dob:        document.getElementById('fDob').value,
+        pob:        document.getElementById('fPob').value.trim(),
+        village:    document.getElementById('fVillage').value.trim(),
+        father:     document.getElementById('fFather').value.trim(),
+        mother:     document.getElementById('fMother').value.trim(),
+        famStatus:  document.getElementById('fFamStatus').value,
+        notes:      document.getElementById('fNotes').value.trim(),
+        sponsor:    document.getElementById('sponsorName').value.trim(),
+        status
+    };
+    const idx = studentsData.findIndex(s => s.id === currentId);
+    if (idx >= 0) studentsData[idx] = { ...studentsData[idx], ...rec };
+    else studentsData.push(rec);
+    save();
+    updateStats();
+    alert('✔ Scheda salvata con successo: ' + rec.surname + ' ' + rec.firstName);
+    showSection('registry');
+    renderTable();
+}
+
+function deleteStudent() {
+    if (!confirm('Eliminare definitivamente questa scheda?')) return;
+    studentsData = studentsData.filter(s => s.id !== currentId);
+    save(); updateStats();
+    alert('Scheda eliminata.');
+    showSection('registry');
+    renderTable();
+}
+
+// ── PHOTO ─────────────────────────────────────────────────────────────
+function handlePhoto(e) {
+    const file = e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = ev => {
+        const img = document.getElementById('photoPreview');
+        img.src = ev.target.result;
+        img.style.display = 'block';
+        document.getElementById('photoPh').style.display = 'none';
+        document.getElementById('photoBox').classList.add('has-img');
+    };
+    reader.readAsDataURL(file);
+}
+function removePhoto() {
+    const img = document.getElementById('photoPreview');
+    img.src = ''; img.style.display = 'none';
+    document.getElementById('photoPh').style.display = 'flex';
+    document.getElementById('photoBox').classList.remove('has-img');
+    document.getElementById('photoInput').value = '';
+}
+
+// ── EXPORT ────────────────────────────────────────────────────────────
+function exportCSV() {
+    const headers = ['ID','Cognome','Nome','Sesso','Scuola 2025','Classe 2025','Scuola 2026','Classe 2026','Stato','Adottante'];
+    const rows = getFiltered().map(s => [
+        s.id, s.surname, s.firstName,
+        s.gender==='M'?'Maschio':'Femmina',
+        s.prevSchool, s.prevClass, s.newSchool, s.newClass, s.status, s.sponsor
+    ].map(v => '"' + String(v||'').replace(/"/g,'""') + '"').join(','));
+    const csv = '\uFEFF' + [headers.join(','), ...rows].join('\n');
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(new Blob([csv], {type:'text/csv;charset=utf-8'}));
+    a.download = 'MORIJO_ADOTTATI_2026.csv';
+    a.click();
+}
+</script>
+</body>
+</html>

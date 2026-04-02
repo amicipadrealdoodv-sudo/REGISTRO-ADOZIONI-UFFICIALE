@@ -259,10 +259,40 @@
             align-items: center;
             flex-wrap: wrap;
             gap: 0.75rem;
-            margin-bottom: 1rem;
+            margin-bottom: 0;
             padding: 0.75rem 1rem;
             background: var(--paper);
             border: 1px solid var(--border);
+            border-bottom: none;
+        }
+        .cloud-bar {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.5rem 1rem;
+            background: #f0ede6;
+            border: 1px solid var(--border);
+            border-top: 2px solid var(--navy);
+            margin-bottom: 1rem;
+        }
+        .cloud-bar-label {
+            font-size: 0.7rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--muted);
+            font-weight: bold;
+            white-space: nowrap;
+        }
+        #cloudStatus {
+            flex: 1;
+            font-size: 0.8rem;
+            padding: 0.3rem 0.75rem;
+            background: white;
+            border: 1px solid var(--border);
+            min-height: 28px;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
         }
         .toolbar input[type=search], .toolbar select {
             padding: 0.4rem 0.7rem;
@@ -642,6 +672,12 @@
                 <button class="btn gold" onclick="openNewStudent()">+ Nuovo Studente</button>
                 <button class="btn outline" onclick="exportCSV()">⬇ Esporta CSV</button>
             </div>
+            <div class="cloud-bar">
+                <span class="cloud-bar-label">☁ JSONbin Cloud:</span>
+                <div id="cloudStatus">⚪ <span>non sincronizzato</span></div>
+                <button class="btn outline" onclick="loadFromCloud()" title="Carica dati da JSONbin">☁ Carica dal Cloud</button>
+                <button class="btn gold"    onclick="saveToCloud()"   title="Salva dati su JSONbin">☁ Salva sul Cloud</button>
+            </div>
 
             <div class="table-wrap">
                 <table id="mainTable">
@@ -887,6 +923,8 @@ function initApp() {
     studentsData = saved ? JSON.parse(saved) : JSON.parse(JSON.stringify(MASTER_DATA));
     renderTable();
     updateStats();
+    // Sync automatica al login
+    loadFromCloud();
 }
 
 function save() {
@@ -1065,18 +1103,18 @@ function saveStudent(e) {
     else studentsData.push(rec);
     save();
     updateStats();
-    alert('✔ Scheda salvata con successo: ' + rec.surname + ' ' + rec.firstName);
     showSection('registry');
     renderTable();
+    saveToCloud();
 }
 
 function deleteStudent() {
     if (!confirm('Eliminare definitivamente questa scheda?')) return;
     studentsData = studentsData.filter(s => s.id !== currentId);
     save(); updateStats();
-    alert('Scheda eliminata.');
     showSection('registry');
     renderTable();
+    saveToCloud();
 }
 
 // ── PHOTO ─────────────────────────────────────────────────────────────
@@ -1099,6 +1137,84 @@ function removePhoto() {
     document.getElementById('photoPh').style.display = 'flex';
     document.getElementById('photoBox').classList.remove('has-img');
     document.getElementById('photoInput').value = '';
+}
+
+// ── JSONBIN CLOUD ─────────────────────────────────────────────────────
+const JSONBIN_KEY = '$2a$10$mZ.qMlZMju3bJxDm7vY69u31zv0HwAPxAqBfdfa.Wn25oUJQ76coa';
+const JSONBIN_API = 'https://api.jsonbin.io/v3';
+const BIN_ID = '69ceec7aaaba882197bcb142';
+
+function updateCloudStatus(msg, icon) {
+    const el = document.getElementById('cloudStatus');
+    if (!el) return;
+    const colors = { '✅': '#1a5c38', '🔴': '#8b0000', '🔄': '#b8962e', '🟡': '#b8962e', '⚪': '#6b6b6b' };
+    const color = colors[icon] || '#6b6b6b';
+    el.style.display = 'flex';
+    el.style.alignItems = 'center';
+    el.style.gap = '6px';
+    el.innerHTML = `<span style="font-size:1.1rem;line-height:1">${icon}</span><span style="color:${color};font-weight:bold;font-size:0.82rem;">${msg}</span>`;
+}
+
+async function saveToCloud() {
+    updateCloudStatus('Salvataggio in corso…', '🔄');
+    try {
+        const res = await fetch(`${JSONBIN_API}/b/${BIN_ID}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-Master-Key': JSONBIN_KEY,
+                'X-Bin-Versioning': 'false'
+            },
+            body: JSON.stringify({ students: studentsData, lastUpdate: new Date().toISOString() })
+        });
+        if (!res.ok) {
+            const txt = await res.text();
+            updateCloudStatus('Errore HTTP ' + res.status + ': ' + txt.slice(0,80), '🔴');
+            return;
+        }
+        const d = await res.json();
+        if (d.metadata?.id) {
+            updateCloudStatus('Salvato — ' + new Date().toLocaleTimeString('it-IT'), '✅');
+        } else {
+            updateCloudStatus('Risposta inattesa: ' + JSON.stringify(d).slice(0,80), '🔴');
+        }
+    } catch(e) {
+        updateCloudStatus('Errore di rete: ' + e.message, '🔴');
+    }
+}
+
+async function loadFromCloud() {
+    updateCloudStatus('Caricamento dal cloud…', '🔄');
+    try {
+        const res = await fetch(`${JSONBIN_API}/b/${BIN_ID}/latest`, {
+            headers: {
+                'X-Master-Key': JSONBIN_KEY
+            }
+        });
+        if (!res.ok) {
+            const txt = await res.text();
+            updateCloudStatus('Errore HTTP ' + res.status + ': ' + txt.slice(0,80), '🔴');
+            return;
+        }
+        const d = await res.json();
+        if (d.record?.students && Array.isArray(d.record.students) && d.record.students.length > 0) {
+            studentsData = d.record.students;
+            localStorage.setItem('morijoStudents2026', JSON.stringify(studentsData));
+            renderTable();
+            updateStats();
+            const ts = d.record.lastUpdate
+                ? new Date(d.record.lastUpdate).toLocaleString('it-IT')
+                : '—';
+            updateCloudStatus('Sincronizzato — ' + ts, '✅');
+        } else if (d.record?.students?.length === 0) {
+            updateCloudStatus('Bin vuoto — uso dati locali', '🟡');
+        } else {
+            updateCloudStatus('Struttura non riconosciuta', '🔴');
+            console.error('JSONbin response:', d);
+        }
+    } catch(e) {
+        updateCloudStatus('Errore di rete: ' + e.message, '🔴');
+    }
 }
 
 // ── EXPORT ────────────────────────────────────────────────────────────

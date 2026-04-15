@@ -555,34 +555,80 @@
         }
         .site-footer strong { color: var(--gold2); }
 
-        /* ── PRINT ───────────────────────────────────── */
+        /* Intestazione istituzionale — solo stampa */
+        .print-institutional-header { display: none; }
+
         @media print {
             #loginScreen { display: none !important; }
-            .site-header, .site-nav, .toolbar, .form-actions, .site-footer, #registry { display: none !important; }
-            body { background: white; font-size: 12px; }
+            .site-header, .site-nav, .toolbar, .cloud-bar, .form-actions, .site-footer, #registry { display: none !important; }
+            body { background: white; font-size: 10px; }
             .table-wrap { border: none; }
             #studentForm { display: block !important; }
             .main-content { padding: 0; max-width: 100%; }
+            #printPage2 { display: none !important; }
 
-            /* Prima pagina A4: foto + adozione + anagrafica base */
+            /* Intestazione istituzionale stampa */
+            .print-institutional-header {
+                display: block !important;
+                text-align: center;
+                border-bottom: 2px solid #b8962e;
+                padding-bottom: 4px;
+                margin-bottom: 6px;
+            }
+            .print-org-name {
+                font-size: 8pt;
+                letter-spacing: 0.14em;
+                text-transform: uppercase;
+                color: #555;
+                font-family: "Times New Roman", serif;
+            }
+            .print-programme-name {
+                font-size: 13pt;
+                font-weight: bold;
+                font-family: "Times New Roman", serif;
+                color: #1c1c1c;
+                letter-spacing: 0.04em;
+            }
+            .print-year {
+                font-size: 7.5pt;
+                color: #777;
+                font-style: italic;
+            }
+
+            /* Header bar scheda: niente sfondo blu, solo bordo oro */
             .form-header-bar {
-                background: var(--navy) !important;
-                color: white !important;
+                background: white !important;
+                color: #1c1c1c !important;
+                border: none !important;
+                border-bottom: 2px solid #b8962e !important;
+                padding: 4px 0 6px 0 !important;
+                margin-bottom: 6px !important;
                 -webkit-print-color-adjust: exact;
                 print-color-adjust: exact;
                 page-break-after: avoid;
-                padding: 1.2rem 1.5rem;
+            }
+            .form-header-bar .fid {
+                color: #555 !important;
+                font-size: 7pt !important;
+            }
+            .form-header-bar > div:first-child span {
+                color: #888 !important;
             }
             #studentNameDisplay {
-                font-size: 2.2rem !important;
-                color: #d4af37 !important;
-                -webkit-print-color-adjust: exact;
-                print-color-adjust: exact;
+                font-size: 18pt !important;
+                color: #1c1c1c !important;
+                font-family: "Times New Roman", serif !important;
             }
+            .form-status-badge {
+                font-size: 7pt !important;
+                padding: 2px 6px !important;
+            }
+
+            /* Layout compatto a due colonne */
             .form-body {
                 display: grid;
-                grid-template-columns: 1fr 2fr;
-                gap: 1rem;
+                grid-template-columns: 0.85fr 2fr;
+                gap: 6px;
                 page-break-inside: avoid;
             }
             .form-card {
@@ -590,33 +636,76 @@
                 break-inside: avoid;
             }
             .form-card-head {
-                background: #1a2744 !important;
-                color: white !important;
+                background: #f0ede6 !important;
+                color: #1a2744 !important;
+                border-bottom: 1.5px solid #1a2744 !important;
+                font-size: 6.5pt !important;
+                padding: 3px 7px !important;
                 -webkit-print-color-adjust: exact;
                 print-color-adjust: exact;
             }
-            /* Seconda pagina A4: storia/note */
-            #printPage2 {
-                page-break-before: always;
-                padding: 1rem;
+            .form-card-body {
+                padding: 6px 8px !important;
             }
-            #fNotes {
-                min-height: 400px !important;
-                height: auto !important;
-                border: 1px solid #ccc;
-                padding: 0.75rem;
-                font-size: 12px;
-                line-height: 1.7;
-                width: 100%;
-                box-sizing: border-box;
+
+            /* Photo box compatto */
+            .photo-box {
+                aspect-ratio: 3/4;
+                max-height: 120px !important;
             }
-            .fgroup input, .fgroup select, .fgroup textarea {
+            .photo-actions { display: none !important; }
+
+            /* Adoption box compatto */
+            .adoption-box {
+                padding: 4px 6px !important;
+                margin-top: 5px !important;
+            }
+            .adoption-toggle-row { display: none !important; }
+            .sponsor-input-wrap { display: block !important; margin-top: 3px !important; }
+
+            /* Sezioni form compatte — zero margini extra */
+            .form-section-title {
+                font-size: 6.5pt !important;
+                padding-bottom: 2px !important;
+                margin: 5px 0 3px 0 !important;
+            }
+            .frow {
+                gap: 3px !important;
+                margin-bottom: 3px !important;
+            }
+            .fgroup {
+                margin: 0 !important;
+                padding: 0 !important;
+            }
+            .fgroup label {
+                font-size: 6pt !important;
+                margin-bottom: 1px !important;
+                display: block;
+            }
+            .fgroup input, .fgroup select {
+                border: none !important;
+                border-bottom: 1px solid #bbb !important;
+                background: white !important;
+                font-size: 8pt !important;
+                padding: 1px 2px !important;
+                border-radius: 0 !important;
+            }
+            .fgroup textarea {
                 border: 1px solid #ccc !important;
                 background: white !important;
+                font-size: 7.5pt !important;
+                padding: 4px 6px !important;
+                min-height: unset !important;
+                height: auto !important;
+                resize: none !important;
             }
+
             @page {
                 size: A4 portrait;
-                margin: 15mm;
+                margin: 12mm 14mm;
+                /* Rimuove URL e titolo del browser */
+                @top-center { content: ""; }
+                @bottom-center { content: ""; }
             }
         }
     </style>
@@ -760,6 +849,13 @@
 
         <!-- ─── STUDENT FORM SECTION ─────────────── -->
         <section id="studentForm" class="section">
+
+            <!-- Intestazione istituzionale — visibile solo in stampa -->
+            <div class="print-institutional-header">
+                <div class="print-org-name">Amicipadrealdo ODV &mdash; Progetto Adozioni Morijo Kenya</div>
+                <div class="print-programme-name">Morijo Educational Programme</div>
+                <div class="print-year">Scheda Anagrafica Studente &mdash; Anno Scolastico 2026</div>
+            </div>
 
             <div class="form-header-bar">
                 <div>
@@ -1208,23 +1304,10 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('fSurname').addEventListener('input', updateHeaderName);
 });
 
-// Override window.print to build page2 before printing
+// Override window.print — scheda su singola pagina A4
 const _origPrint = window.print.bind(window);
 window.print = function() {
-    const notesVal = document.getElementById('fNotes').value;
-    const nameVal = document.getElementById('studentNameDisplay').textContent;
-    const idVal = document.getElementById('dispId').textContent;
-    const p2 = document.getElementById('printPage2');
-    p2.style.display = 'block';
-    p2.innerHTML = `
-        <div style="border-bottom:3px solid #1a2744; padding-bottom:0.5rem; margin-bottom:1rem;">
-            <div style="font-size:1.6rem; font-weight:bold; color:#1a2744; text-transform:uppercase;">${nameVal}</div>
-            <div style="font-size:0.75rem; color:#6b6b6b; letter-spacing:0.1em; text-transform:uppercase;">${idVal} — Storia e Osservazioni</div>
-        </div>
-        <div style="font-size:12px; line-height:1.8; white-space:pre-wrap; font-family:Georgia,serif;">${notesVal || '(nessuna nota inserita)'}</div>
-    `;
     _origPrint();
-    setTimeout(() => { p2.style.display = 'none'; p2.innerHTML = ''; }, 1000);
 };
 function handlePhoto(e) {
     const file = e.target.files[0];

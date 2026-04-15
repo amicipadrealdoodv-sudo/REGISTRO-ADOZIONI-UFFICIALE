@@ -415,6 +415,72 @@
             display: grid;
             grid-template-columns: 1fr 2fr;
             gap: 1.5rem;
+            background: var(--paper);
+            border: 25px solid transparent;
+            border-image: linear-gradient(135deg, #d4af37, #b8962e, #d4af37, #c9a96e) 1;
+            box-shadow: 
+                inset 0 0 25px rgba(184,150,46,0.08),
+                0 15px 50px rgba(0,0,0,0.2);
+            padding: 1.5rem;
+            position: relative;
+        }
+        .form-body::before {
+            content: "✦";
+            position: absolute;
+            top: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 1.2rem;
+            color: var(--gold);
+            opacity: 0.6;
+        }
+        .form-body::after {
+            content: "✦";
+            position: absolute;
+            bottom: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 1.2rem;
+            color: var(--gold);
+            opacity: 0.6;
+        }
+
+        /* Corner decorations for parchment */
+        .parchment-corner {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            border: 2px solid var(--gold);
+            opacity: 0.3;
+            pointer-events: none;
+        }
+        .parchment-corner.top-left {
+            top: 15px;
+            left: 15px;
+            border-right: none;
+            border-bottom: none;
+            border-radius: 4px 0 0 0;
+        }
+        .parchment-corner.top-right {
+            top: 15px;
+            right: 15px;
+            border-left: none;
+            border-bottom: none;
+            border-radius: 0 4px 0 0;
+        }
+        .parchment-corner.bottom-left {
+            bottom: 15px;
+            left: 15px;
+            border-right: none;
+            border-top: none;
+            border-radius: 0 0 0 4px;
+        }
+        .parchment-corner.bottom-right {
+            bottom: 15px;
+            right: 15px;
+            border-left: none;
+            border-top: none;
+            border-radius: 0 0 4px 0;
         }
         @media (max-width: 900px) { .form-body { grid-template-columns: 1fr; } }
         .form-card {
@@ -435,7 +501,7 @@
         .photo-box {
             width: 100%;
             aspect-ratio: 3/4;
-            border: 2px dashed var(--border);
+            border: 4px solid var(--gold);
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -445,8 +511,10 @@
             position: relative;
             overflow: hidden;
             transition: border-color 0.2s;
+            box-shadow: 0 6px 20px rgba(184,150,46,0.25);
+            min-height: 380px;
         }
-        .photo-box:hover { border-color: var(--gold); }
+        .photo-box:hover { border-color: var(--gold2); }
         .photo-box.has-img { border-style: solid; border-color: var(--navy); }
         .photo-box img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
         .photo-ph { text-align: center; color: var(--muted); font-size: 0.8rem; }
@@ -490,7 +558,14 @@
         }
         input:checked + .toggle-slider { background: var(--green); }
         input:checked + .toggle-slider:before { transform: translateX(22px); }
-        .sponsor-input-wrap { margin-top: 0.75rem; display: none; }
+        .sponsor-input-wrap { 
+            margin-top: 1rem; 
+            display: none;
+            padding: 0.75rem;
+            background: linear-gradient(135deg, rgba(212,175,55,0.08), rgba(184,150,46,0.05));
+            border-left: 4px solid var(--gold);
+            border-radius: 2px;
+        }
         .sponsor-input-wrap.visible { display: block; }
         .frow {
             display: grid;
@@ -630,6 +705,14 @@
                 grid-template-columns: 0.85fr 2fr;
                 gap: 6px;
                 page-break-inside: avoid;
+                border: 15px solid transparent;
+                border-image: linear-gradient(135deg, #d4af37, #b8962e, #d4af37, #c9a96e) 1;
+                padding: 8px;
+                background: white;
+            }
+            .form-body::before,
+            .form-body::after {
+                display: none !important;
             }
             .form-card {
                 border: 1px solid #ccc !important;
@@ -651,7 +734,9 @@
             /* Photo box compatto */
             .photo-box {
                 aspect-ratio: 3/4;
-                max-height: 120px !important;
+                max-height: 160px !important;
+                border: 2px solid #b8962e !important;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.15) !important;
             }
             .photo-actions { display: none !important; }
 
@@ -661,7 +746,22 @@
                 margin-top: 5px !important;
             }
             .adoption-toggle-row { display: none !important; }
-            .sponsor-input-wrap { display: block !important; margin-top: 3px !important; }
+            .sponsor-input-wrap { 
+                display: block !important; 
+                margin-top: 3px !important;
+                padding: 3px 5px !important;
+                background: #f9f6ef !important;
+                border-left: 2px solid #b8962e !important;
+            }
+            .sponsor-input-wrap input {
+                border: 1px solid #b8962e !important;
+                font-size: 8pt !important;
+                padding: 3px 5px !important;
+            }
+            .sponsor-input-wrap label {
+                font-size: 6pt !important;
+                color: #b8962e !important;
+            }
 
             /* Sezioni form compatte — zero margini extra */
             .form-section-title {
@@ -903,9 +1003,9 @@
                                     <span id="adoptLabel"><strong>Non adottato</strong></span>
                                 </div>
                                 <div class="sponsor-input-wrap" id="sponsorWrap">
-                                    <div class="fgroup" style="margin-top:0.5rem;">
-                                        <label>Adottante / Sponsor</label>
-                                        <input type="text" id="sponsorName" placeholder="Nome adottante o organizzazione…">
+                                    <div class="fgroup full" style="margin-top:0.5rem;">
+                                        <label style="font-size: 0.85rem; font-weight: bold; color: var(--gold); text-transform: uppercase; letter-spacing: 0.08em;">➤ Adottante / Sponsor</label>
+                                        <input type="text" id="sponsorName" placeholder="Nome adottante o organizzazione…" style="font-size: 0.95rem; padding: 0.8rem 1rem; border: 2px solid var(--gold); background: var(--cream); color: var(--navy); font-weight: 500;">
                                     </div>
                                 </div>
                             </div>

@@ -558,9 +558,66 @@
         /* ── PRINT ───────────────────────────────────── */
         @media print {
             #loginScreen { display: none !important; }
-            .site-header, .toolbar, .form-actions, .site-footer { display: none !important; }
-            body { background: white; }
+            .site-header, .site-nav, .toolbar, .form-actions, .site-footer, #registry { display: none !important; }
+            body { background: white; font-size: 12px; }
             .table-wrap { border: none; }
+            #studentForm { display: block !important; }
+            .main-content { padding: 0; max-width: 100%; }
+
+            /* Prima pagina A4: foto + adozione + anagrafica base */
+            .form-header-bar {
+                background: var(--navy) !important;
+                color: white !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+                page-break-after: avoid;
+                padding: 1.2rem 1.5rem;
+            }
+            #studentNameDisplay {
+                font-size: 2.2rem !important;
+                color: #d4af37 !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            .form-body {
+                display: grid;
+                grid-template-columns: 1fr 2fr;
+                gap: 1rem;
+                page-break-inside: avoid;
+            }
+            .form-card {
+                border: 1px solid #ccc !important;
+                break-inside: avoid;
+            }
+            .form-card-head {
+                background: #1a2744 !important;
+                color: white !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            /* Seconda pagina A4: storia/note */
+            #printPage2 {
+                page-break-before: always;
+                padding: 1rem;
+            }
+            #fNotes {
+                min-height: 400px !important;
+                height: auto !important;
+                border: 1px solid #ccc;
+                padding: 0.75rem;
+                font-size: 12px;
+                line-height: 1.7;
+                width: 100%;
+                box-sizing: border-box;
+            }
+            .fgroup input, .fgroup select, .fgroup textarea {
+                border: 1px solid #ccc !important;
+                background: white !important;
+            }
+            @page {
+                size: A4 portrait;
+                margin: 15mm;
+            }
         }
     </style>
 </head>
@@ -703,18 +760,13 @@
 
         <!-- ─── STUDENT FORM SECTION ─────────────── -->
         <section id="studentForm" class="section">
-            <div class="page-heading">
-                <div>
-                    <h1>Scheda Anagrafica Studente</h1>
-                    <div class="subtitle">Inserimento e modifica dati individuali</div>
-                </div>
-            </div>
 
             <div class="form-header-bar">
                 <div>
                     <span style="font-size:0.75rem;opacity:0.7;letter-spacing:0.1em;text-transform:uppercase;">Codice identificativo</span>
                     <div class="fid" id="dispId">—</div>
                 </div>
+                <div id="studentNameDisplay" style="flex:1; text-align:center; font-size:1.8rem; font-weight:bold; letter-spacing:0.06em; color:var(--gold2); text-transform:uppercase; padding:0 1rem; line-height:1.1;"></div>
                 <div class="form-status-badge" id="fStatusBadge" style="background:#e8f5e9;color:#1a5c38;border-color:#1a5c38;">
                     ● ADOTTATO
                 </div>
@@ -790,8 +842,26 @@
                         </div>
                         <div class="frow">
                             <div class="fgroup">
-                                <label>Data di Nascita</label>
-                                <input type="date" id="fDob">
+                                <label>Età</label>
+                                <select id="fDob">
+                                    <option value="">— Seleziona età —</option>
+                                    <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option>
+                                    <option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option>
+                                    <option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option>
+                                    <option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option>
+                                    <option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option>
+                                    <option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option>
+                                    <option value="31">31</option><option value="32">32</option><option value="33">33</option><option value="34">34</option><option value="35">35</option>
+                                    <option value="36">36</option><option value="37">37</option><option value="38">38</option><option value="39">39</option><option value="40">40</option>
+                                    <option value="41">41</option><option value="42">42</option><option value="43">43</option><option value="44">44</option><option value="45">45</option>
+                                    <option value="46">46</option><option value="47">47</option><option value="48">48</option><option value="49">49</option><option value="50">50</option>
+                                    <option value="51">51</option><option value="52">52</option><option value="53">53</option><option value="54">54</option><option value="55">55</option>
+                                    <option value="56">56</option><option value="57">57</option><option value="58">58</option><option value="59">59</option><option value="60">60</option>
+                                    <option value="61">61</option><option value="62">62</option><option value="63">63</option><option value="64">64</option><option value="65">65</option>
+                                    <option value="66">66</option><option value="67">67</option><option value="68">68</option><option value="69">69</option><option value="70">70</option>
+                                    <option value="71">71</option><option value="72">72</option><option value="73">73</option><option value="74">74</option><option value="75">75</option>
+                                    <option value="76">76</option><option value="77">77</option><option value="78">78</option><option value="79">79</option><option value="80">80</option>
+                                </select>
                             </div>
                             <div class="fgroup">
                                 <label>Luogo di Nascita</label>
@@ -853,7 +923,7 @@
                         <div class="frow">
                             <div class="fgroup full">
                                 <label>Osservazioni / Storia dello studente</label>
-                                <textarea id="fNotes" rows="3" style="resize:vertical;"></textarea>
+                                <textarea id="fNotes" rows="10" style="resize:vertical; min-height:180px; font-size:0.95rem; line-height:1.7; padding:0.75rem;"></textarea>
                             </div>
                         </div>
 
@@ -861,6 +931,9 @@
                 </div><!-- /form-card -->
 
             </div><!-- /form-body -->
+
+            <!-- SECONDA PAGINA STAMPA: storia studente -->
+            <div id="printPage2" style="display:none;"></div>
 
             <div class="form-actions">
                 <div class="form-actions-left">
@@ -1027,6 +1100,7 @@ function openNewStudent() {
     document.getElementById('adoptToggle').checked = false;
     toggleAdoption();
     document.getElementById('dispId').textContent = currentId;
+    document.getElementById('studentNameDisplay').textContent = '— Nuovo Studente —';
     showSection('studentForm');
 }
 
@@ -1035,6 +1109,7 @@ function editStudent(id) {
     if (!s) return;
     currentId = id;
     document.getElementById('dispId').textContent = id;
+    document.getElementById('studentNameDisplay').textContent = ((s.firstName || '') + ' ' + (s.surname || '')).trim() || '—';
     document.getElementById('fSurname').value   = s.surname   || '';
     document.getElementById('fFirstName').value = s.firstName || '';
     document.getElementById('fGender').value    = s.gender    || 'M';
@@ -1101,6 +1176,8 @@ function saveStudent(e) {
     const idx = studentsData.findIndex(s => s.id === currentId);
     if (idx >= 0) studentsData[idx] = { ...studentsData[idx], ...rec };
     else studentsData.push(rec);
+    // Update header name display
+    document.getElementById('studentNameDisplay').textContent = (rec.firstName + ' ' + rec.surname).trim();
     save();
     updateStats();
     showSection('registry');
@@ -1117,7 +1194,38 @@ function deleteStudent() {
     saveToCloud();
 }
 
-// ── PHOTO ─────────────────────────────────────────────────────────────
+// ── LIVE NAME UPDATE IN HEADER ──────────────────────────────────────
+function updateHeaderName() {
+    const fn = document.getElementById('fFirstName').value.toUpperCase().trim();
+    const sn = document.getElementById('fSurname').value.toUpperCase().trim();
+    const full = [fn, sn].filter(Boolean).join(' ');
+    document.getElementById('studentNameDisplay').textContent = full || '— Nuovo Studente —';
+}
+
+// Attach listeners after DOM load
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('fFirstName').addEventListener('input', updateHeaderName);
+    document.getElementById('fSurname').addEventListener('input', updateHeaderName);
+});
+
+// Override window.print to build page2 before printing
+const _origPrint = window.print.bind(window);
+window.print = function() {
+    const notesVal = document.getElementById('fNotes').value;
+    const nameVal = document.getElementById('studentNameDisplay').textContent;
+    const idVal = document.getElementById('dispId').textContent;
+    const p2 = document.getElementById('printPage2');
+    p2.style.display = 'block';
+    p2.innerHTML = `
+        <div style="border-bottom:3px solid #1a2744; padding-bottom:0.5rem; margin-bottom:1rem;">
+            <div style="font-size:1.6rem; font-weight:bold; color:#1a2744; text-transform:uppercase;">${nameVal}</div>
+            <div style="font-size:0.75rem; color:#6b6b6b; letter-spacing:0.1em; text-transform:uppercase;">${idVal} — Storia e Osservazioni</div>
+        </div>
+        <div style="font-size:12px; line-height:1.8; white-space:pre-wrap; font-family:Georgia,serif;">${notesVal || '(nessuna nota inserita)'}</div>
+    `;
+    _origPrint();
+    setTimeout(() => { p2.style.display = 'none'; p2.innerHTML = ''; }, 1000);
+};
 function handlePhoto(e) {
     const file = e.target.files[0];
     if (!file) return;

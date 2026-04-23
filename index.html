@@ -636,7 +636,7 @@
         @media print {
             #loginScreen { display: none !important; }
             .site-header, .site-nav, .toolbar, .cloud-bar, .form-actions, .site-footer, #registry { display: none !important; }
-            body { background: white; font-size: 10px; }
+            body { background: white; font-size: 8pt !important; line-height: 1.3 !important; }
             .table-wrap { border: none; }
             #studentForm { display: block !important; }
             .main-content { padding: 0; max-width: 100%; }
@@ -646,68 +646,69 @@
             .print-institutional-header {
                 display: block !important;
                 text-align: center;
-                border-bottom: 2px solid #b8962e;
-                padding-bottom: 4px;
-                margin-bottom: 6px;
+                border-bottom: 1.5px solid #b8962e;
+                padding-bottom: 3px;
+                margin-bottom: 4px;
             }
             .print-org-name {
-                font-size: 8pt;
-                letter-spacing: 0.14em;
+                font-size: 7pt !important;
+                letter-spacing: 0.12em;
                 text-transform: uppercase;
                 color: #555;
                 font-family: "Times New Roman", serif;
             }
             .print-programme-name {
-                font-size: 13pt;
+                font-size: 11pt !important;
                 font-weight: bold;
                 font-family: "Times New Roman", serif;
                 color: #1c1c1c;
                 letter-spacing: 0.04em;
             }
             .print-year {
-                font-size: 7.5pt;
+                font-size: 7pt !important;
                 color: #777;
                 font-style: italic;
             }
 
-            /* Header bar scheda: niente sfondo blu, solo bordo oro */
+            /* Header bar scheda */
             .form-header-bar {
                 background: white !important;
                 color: #1c1c1c !important;
                 border: none !important;
-                border-bottom: 2px solid #b8962e !important;
-                padding: 4px 0 6px 0 !important;
-                margin-bottom: 6px !important;
+                border-bottom: 1.5px solid #b8962e !important;
+                padding: 2px 0 4px 0 !important;
+                margin-bottom: 4px !important;
                 -webkit-print-color-adjust: exact;
                 print-color-adjust: exact;
                 page-break-after: avoid;
             }
             .form-header-bar .fid {
                 color: #555 !important;
-                font-size: 7pt !important;
+                font-size: 6pt !important;
             }
             .form-header-bar > div:first-child span {
                 color: #888 !important;
+                font-size: 6pt !important;
             }
             #studentNameDisplay {
-                font-size: 18pt !important;
+                font-size: 14pt !important;
                 color: #1c1c1c !important;
                 font-family: "Times New Roman", serif !important;
             }
             .form-status-badge {
-                font-size: 7pt !important;
-                padding: 2px 6px !important;
+                font-size: 6pt !important;
+                padding: 1px 5px !important;
             }
 
-            /* Layout compatto a due colonne */
+            /* Layout a due colonne ultra-compatto per landscape */
             .form-body {
                 display: grid;
-                grid-template-columns: 0.85fr 2fr;
+                grid-template-columns: 140px 1fr;
                 gap: 6px;
                 page-break-inside: avoid;
-                border: 15px solid transparent;
+                border: 10px solid transparent;
                 border-image: linear-gradient(135deg, #d4af37, #b8962e, #d4af37, #c9a96e) 1;
-                padding: 8px;
+                padding: 6px;
                 background: white;
             }
             .form-body::before,
@@ -717,93 +718,106 @@
             .form-card {
                 border: 1px solid #ccc !important;
                 break-inside: avoid;
+                page-break-inside: avoid;
             }
             .form-card-head {
                 background: #f0ede6 !important;
                 color: #1a2744 !important;
-                border-bottom: 1.5px solid #1a2744 !important;
-                font-size: 6.5pt !important;
-                padding: 3px 7px !important;
+                border-bottom: 1px solid #1a2744 !important;
+                font-size: 6pt !important;
+                padding: 2px 5px !important;
                 -webkit-print-color-adjust: exact;
                 print-color-adjust: exact;
             }
             .form-card-body {
-                padding: 6px 8px !important;
+                padding: 3px 5px !important;
             }
 
             /* Photo box compatto */
             .photo-box {
                 aspect-ratio: 3/4;
-                max-height: 160px !important;
-                border: 2px solid #b8962e !important;
-                box-shadow: 0 2px 8px rgba(0,0,0,0.15) !important;
+                max-height: 110px !important;
+                min-height: 80px !important;
+                border: 1.5px solid #b8962e !important;
+                box-shadow: none !important;
             }
             .photo-actions { display: none !important; }
 
             /* Adoption box compatto */
             .adoption-box {
-                padding: 4px 6px !important;
-                margin-top: 5px !important;
+                padding: 2px 4px !important;
+                margin-top: 3px !important;
             }
             .adoption-toggle-row { display: none !important; }
-            .sponsor-input-wrap { 
-                display: block !important; 
-                margin-top: 3px !important;
-                padding: 3px 5px !important;
+            .sponsor-input-wrap {
+                display: block !important;
+                margin-top: 2px !important;
+                padding: 2px 4px !important;
                 background: #f9f6ef !important;
                 border-left: 2px solid #b8962e !important;
             }
             .sponsor-input-wrap input {
                 border: 1px solid #b8962e !important;
-                font-size: 8pt !important;
-                padding: 3px 5px !important;
+                font-size: 7pt !important;
+                padding: 1px 3px !important;
             }
             .sponsor-input-wrap label {
-                font-size: 6pt !important;
+                font-size: 5.5pt !important;
                 color: #b8962e !important;
             }
 
-            /* Sezioni form compatte — zero margini extra */
+            /* Sezioni form compatte */
             .form-section-title {
-                font-size: 6.5pt !important;
-                padding-bottom: 2px !important;
-                margin: 5px 0 3px 0 !important;
+                font-size: 6pt !important;
+                padding-bottom: 1px !important;
+                margin: 3px 0 2px 0 !important;
+                border-bottom: 0.5px solid #ccc !important;
             }
             .frow {
-                gap: 3px !important;
-                margin-bottom: 3px !important;
+                gap: 2px !important;
+                margin-bottom: 2px !important;
             }
             .fgroup {
                 margin: 0 !important;
                 padding: 0 !important;
             }
             .fgroup label {
-                font-size: 6pt !important;
-                margin-bottom: 1px !important;
+                font-size: 5.5pt !important;
+                margin-bottom: 0px !important;
                 display: block;
+                line-height: 1.1 !important;
             }
             .fgroup input, .fgroup select {
                 border: none !important;
-                border-bottom: 1px solid #bbb !important;
+                border-bottom: 0.5px solid #bbb !important;
                 background: white !important;
-                font-size: 8pt !important;
-                padding: 1px 2px !important;
+                font-size: 7pt !important;
+                padding: 0px 2px !important;
                 border-radius: 0 !important;
+                height: auto !important;
+                line-height: 1.2 !important;
             }
             .fgroup textarea {
-                border: 1px solid #ccc !important;
+                border: 0.5px solid #ccc !important;
                 background: white !important;
-                font-size: 7.5pt !important;
-                padding: 4px 6px !important;
+                font-size: 6.5pt !important;
+                padding: 2px 4px !important;
                 min-height: unset !important;
                 height: auto !important;
                 resize: none !important;
+                overflow: visible !important;
+                white-space: pre-wrap !important;
+                word-wrap: break-word !important;
+                line-height: 1.35 !important;
+                max-height: none !important;
             }
 
+            /* Parchment corners nascoste in stampa */
+            .parchment-corner { display: none !important; }
+
             @page {
-                size: A4 portrait;
-                margin: 12mm 14mm;
-                /* Rimuove URL e titolo del browser */
+                size: A4 landscape;
+                margin: 8mm 10mm;
                 @top-center { content: ""; }
                 @bottom-center { content: ""; }
             }
@@ -1188,6 +1202,7 @@ let sortField = 'id';
 let sortDir = 1;
 
 function initApp() {
+    window.currentPhotoData = null;
     const saved = localStorage.getItem('morijoStudents2026');
     studentsData = saved ? JSON.parse(saved) : JSON.parse(JSON.stringify(MASTER_DATA));
     renderTable();
@@ -1297,6 +1312,7 @@ function openNewStudent() {
     toggleAdoption();
     document.getElementById('dispId').textContent = currentId;
     document.getElementById('studentNameDisplay').textContent = '— Nuovo Studente —';
+    window.currentPhotoData = null;
     showSection('studentForm');
 }
 
@@ -1324,6 +1340,16 @@ function editStudent(id) {
     const adopted = s.status === 'ADOTTATO' || (s.sponsor && s.status !== 'COMPLETATO' && s.status !== 'INATTIVO');
     document.getElementById('adoptToggle').checked = adopted;
     toggleAdoption();
+    if (s.photo) {
+        const img = document.getElementById('photoPreview');
+        img.src = s.photo;
+        img.style.display = 'block';
+        document.getElementById('photoPh').style.display = 'none';
+        document.getElementById('photoBox').classList.add('has-img');
+        window.currentPhotoData = s.photo;
+    } else {
+        removePhoto();
+    }
     showSection('studentForm');
 }
 
@@ -1367,6 +1393,7 @@ function saveStudent(e) {
         famStatus:  document.getElementById('fFamStatus').value,
         notes:      document.getElementById('fNotes').value.trim(),
         sponsor:    document.getElementById('sponsorName').value.trim(),
+        photo:      window.currentPhotoData || (studentsData.find(s => s.id === currentId)?.photo) || '',
         status
     };
     const idx = studentsData.findIndex(s => s.id === currentId);
@@ -1409,18 +1436,44 @@ const _origPrint = window.print.bind(window);
 window.print = function() {
     _origPrint();
 };
+function compressPhoto(file, callback) {
+    const reader = new FileReader();
+    reader.onload = function(e) {
+        const img = new Image();
+        img.onload = function() {
+            const canvas = document.createElement('canvas');
+            const MAX_WIDTH = 400;
+            const MAX_HEIGHT = 500;
+            let width = img.width;
+            let height = img.height;
+            if (width > height) {
+                if (width > MAX_WIDTH) { height *= MAX_WIDTH / width; width = MAX_WIDTH; }
+            } else {
+                if (height > MAX_HEIGHT) { width *= MAX_HEIGHT / height; height = MAX_HEIGHT; }
+            }
+            canvas.width = width;
+            canvas.height = height;
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(img, 0, 0, width, height);
+            const dataUrl = canvas.toDataURL('image/jpeg', 0.6);
+            callback(dataUrl);
+        };
+        img.src = e.target.result;
+    };
+    reader.readAsDataURL(file);
+}
+
 function handlePhoto(e) {
     const file = e.target.files[0];
     if (!file) return;
-    const reader = new FileReader();
-    reader.onload = ev => {
+    compressPhoto(file, function(dataUrl) {
         const img = document.getElementById('photoPreview');
-        img.src = ev.target.result;
+        img.src = dataUrl;
         img.style.display = 'block';
         document.getElementById('photoPh').style.display = 'none';
         document.getElementById('photoBox').classList.add('has-img');
-    };
-    reader.readAsDataURL(file);
+        window.currentPhotoData = dataUrl;
+    });
 }
 function removePhoto() {
     const img = document.getElementById('photoPreview');
@@ -1428,6 +1481,7 @@ function removePhoto() {
     document.getElementById('photoPh').style.display = 'flex';
     document.getElementById('photoBox').classList.remove('has-img');
     document.getElementById('photoInput').value = '';
+    window.currentPhotoData = null;
 }
 
 // ── JSONBIN CLOUD ─────────────────────────────────────────────────────

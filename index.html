@@ -979,18 +979,15 @@
                 <button class="btn outline" onclick="exportCSV()">⬇ Esporta CSV</button>
             </div>
             <div class="cloud-bar" style="flex-wrap:wrap;">
-                <span class="cloud-bar-label">☁ JSONbin Cloud:</span>
-                <input type="password" id="cloudApiKey" value="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" placeholder="X-Master-Key" title="JSONbin API Key" style="width:160px;padding:0.35rem 0.5rem;border:1px solid var(--border);font-family:inherit;font-size:0.8rem;">
-                <input type="text" id="cloudBinId" value="6a8f38f7f5f4af5e29462953" placeholder="Bin ID" title="JSONbin Bin ID" style="width:140px;padding:0.35rem 0.5rem;border:1px solid var(--border);font-family:inherit;font-size:0.8rem;">
+                <span class="cloud-bar-label">☁ GitHub Gist:</span>
+                <input type="password" id="cloudApiKey" value="" placeholder="GitHub Token" title="GitHub Personal Access Token" style="width:180px;padding:0.35rem 0.5rem;border:1px solid var(--border);font-family:inherit;font-size:0.8rem;">
+                <input type="text" id="cloudBinId" value="" placeholder="Gist ID (auto se nuovo)" title="GitHub Gist ID" style="width:160px;padding:0.35rem 0.5rem;border:1px solid var(--border);font-family:inherit;font-size:0.8rem;">
                 <button class="btn outline" onclick="saveCloudConfig()" title="Salva configurazione">💾 Configura</button>
-                <div id="cloudStatus" style="flex:1;min-width:200px;font-size:0.8rem;padding:0.3rem 0.75rem;background:white;border:1px solid var(--border);display:flex;align-items:center;gap:6px;"><span style="font-size:1.1rem;line-height:1">🟢</span><span style="color:#1a5c38;font-weight:bold;font-size:0.82rem;">Cloud configurato — pronto per Carica/Salva</span></div>
-                <button class="btn outline" onclick="loadFromCloud()" title="Carica dati da JSONbin">☁ Carica dal Cloud</button>
-                <button class="btn gold" onclick="saveToCloud()" title="Salva dati su JSONbin">☁ Salva sul Cloud</button>
+                <div id="cloudStatus" style="flex:1;min-width:200px;font-size:0.8rem;padding:0.3rem 0.75rem;background:white;border:1px solid var(--border);display:flex;align-items:center;gap:6px;"><span style="font-size:1.1rem;line-height:1">🟢</span><span style="color:#1a5c38;font-weight:bold;font-size:0.82rem;">Inserisci GitHub Token e premi Salva sul Cloud</span></div>
+                <button class="btn outline" onclick="loadFromCloud()" title="Carica dati da GitHub Gist">☁ Carica dal Cloud</button>
+                <button class="btn gold" onclick="saveToCloud()" title="Salva dati su GitHub Gist">☁ Salva sul Cloud</button>
                 <button class="btn outline" onclick="exportJSON()" title="Scarica backup JSON locale">⬇ Esporta JSON</button>
                 <button class="btn outline" onclick="importJSON()" title="Carica backup JSON locale">📁 Importa JSON</button>
-                <div style="width:1px;height:24px;background:var(--border);margin:0 4px;"></div>
-                <button class="btn outline" onclick="saveToGist()" title="Salva su GitHub Gist (funziona ovunque)">💾 Salva Gist</button>
-                <button class="btn outline" onclick="loadFromGist()" title="Carica da GitHub Gist">📂 Carica Gist</button>
             </div>
 
             <div class="table-wrap">
@@ -4707,76 +4704,10 @@ function setCloudStatus(msg, type) {
     const s = map[type] || map.info;
     el.innerHTML = '<span style="font-size:1.1rem;line-height:1">'+s.icon+'</span><span style="color:'+s.color+';font-weight:bold;font-size:0.82rem;">'+msg+'</span>';
 }
-function isCORSError(err) {
-    return err && (err.name==='TypeError') && /failed to fetch|networkerror|cors|fetch/i.test(err.message);
-}
-
 // ═══════════════════════════════════════════════════════════════════
-//  JSONBIN (con fallback automatico)
+//  CLOUD SYNC (GitHub Gist)
 // ═══════════════════════════════════════════════════════════════════
 async function saveToCloud() {
-    const key   = document.getElementById('cloudApiKey').value.trim();
-    const binId = document.getElementById('cloudBinId').value.trim();
-    if (!key || !binId) { setCloudStatus('Configura API Key e Bin ID', 'warn'); return; }
-    setCloudStatus('⏳ Salvataggio JSONbin...', 'info');
-    try {
-        const res = await fetch('https://api.jsonbin.io/v3/b/'+binId, {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-Master-Key': key,
-                'X-Bin-Private': 'false'
-            },
-            body: JSON.stringify({students: students, updated: new Date().toISOString()})
-        });
-        if (!res.ok) throw new Error('HTTP ' + res.status);
-        setCloudStatus('☁ JSONbin aggiornato — ' + new Date().toLocaleTimeString(), 'ok');
-        saveCloudConfig();
-    } catch (err) {
-        console.error(err);
-        saveToLocal();
-        if (isCORSError(err)) {
-            setCloudStatus('🔴 CORS/Rete bloccata. Usa GitHub Gist.', 'err');
-            alert('JSONbin bloccato da questo PC/rete (probabilmente CORS).\nI dati sono stati salvati nel backup locale del browser.\nUsa GitHub Gist per sincronizzare tra PC diversi.');
-        } else {
-            setCloudStatus('🔴 Errore JSONbin: ' + err.message, 'err');
-        }
-    }
-}
-async function loadFromCloud() {
-    const key   = document.getElementById('cloudApiKey').value.trim();
-    const binId = document.getElementById('cloudBinId').value.trim();
-    if (!key || !binId) { setCloudStatus('Configura API Key e Bin ID', 'warn'); return; }
-    setCloudStatus('⏳ Caricamento JSONbin...', 'info');
-    try {
-        const res = await fetch('https://api.jsonbin.io/v3/b/'+binId+'/latest', {
-            headers: {'X-Master-Key': key}
-        });
-        if (!res.ok) throw new Error('HTTP ' + res.status);
-        const data = await res.json();
-        if (data.record && data.record.students) {
-            students = data.record.students;
-            saveToLocal();
-            renderTable(); updateStats();
-            setCloudStatus('☁ Dati caricati da JSONbin', 'ok');
-        }
-    } catch (err) {
-        if (isCORSError(err)) {
-            setCloudStatus('🔴 CORS bloccato. Provo backup locale...', 'err');
-        } else {
-            setCloudStatus('🔴 ' + err.message + '. Provo locale...', 'err');
-        }
-        if (loadFromLocal()) {
-            renderTable(); updateStats();
-            alert('Cloud non raggiungibile. Caricati i dati dal backup locale.');
-        }
-    }
-}
-
-// ═══════════════════════════════════════════════════════════════════
-//  GITHUB GIST (alternativa CORS-friendly)
-// ═══════════════════════════════════════════════════════════════════
-async function saveToGist() {
     const token  = document.getElementById('cloudApiKey').value.trim();
     const gistId = document.getElementById('cloudBinId').value.trim();
     if (!token) { alert('Inserisci il GitHub Token nel campo API Key'); return; }
@@ -4811,9 +4742,9 @@ async function saveToGist() {
         alert('Errore Gist. Salvataggio locale effettuato.');
     }
 }
-async function loadFromGist() {
+async function loadFromCloud() {
     const gistId = document.getElementById('cloudBinId').value.trim();
-    if (!gistId) { alert("Inserisci l'ID del Gist nel campo Bin ID"); return; }
+    if (!gistId) { alert("Inserisci l'ID del Gist nel campo Gist ID"); return; }
     setCloudStatus('⏳ Caricamento Gist...', 'info');
     try {
         const res = await fetch('https://api.github.com/gists/'+gistId);
@@ -4853,7 +4784,6 @@ function restoreCloudConfig() {
         if (c.binId)  document.getElementById('cloudBinId').value  = c.binId;
     } catch(e){}
 }
-function saveCloudConfigWrapper() { saveCloudConfig(); setCloudStatus('💾 Configurazione salvata', 'ok'); }
 
 // ═══════════════════════════════════════════════════════════════════
 //  TABLE
@@ -5108,7 +5038,7 @@ document.addEventListener('DOMContentLoaded', () => {
     restoreCloudConfig();
     renderTable();
     updateStats();
-    setCloudStatus('🟢 Pronto. Dati in uso: backup locale.', 'ok');
+    setCloudStatus('🟢 Pronto. Inserisci GitHub Token per sincronizzare.', 'ok');
 });
 </script>
 </body>

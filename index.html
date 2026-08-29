@@ -875,7 +875,7 @@
 <!-- ═══════════════════════════════════════════════════
      LOGIN SCREEN
 ════════════════════════════════════════════════════ -->
-<div id="loginScreen" style="display: none;">
+<div id="loginScreen" style="display: flex;">
     <div class="login-box">
         <div class="login-crest">🦒</div>
         <div class="login-title">Morijo Educational Programme</div>
@@ -892,7 +892,7 @@
 <!-- ═══════════════════════════════════════════════════
      MAIN APPLICATION
 ════════════════════════════════════════════════════ -->
-<div id="appScreen" style="display: block;">
+<div id="appScreen" style="display: none;">
 
     <header class="site-header">
         <div class="header-top">
@@ -979,13 +979,11 @@
                 <button class="btn outline" onclick="exportCSV()">⬇ Esporta CSV</button>
             </div>
             <div class="cloud-bar" style="flex-wrap:wrap;">
-                <span class="cloud-bar-label">☁ GitHub Gist:</span>
-                <input type="password" id="cloudApiKey" value="" placeholder="GitHub Token" title="GitHub Personal Access Token" style="width:180px;padding:0.35rem 0.5rem;border:1px solid var(--border);font-family:inherit;font-size:0.8rem;">
-                <input type="text" id="cloudBinId" value="" placeholder="Gist ID (auto se nuovo)" title="GitHub Gist ID" style="width:160px;padding:0.35rem 0.5rem;border:1px solid var(--border);font-family:inherit;font-size:0.8rem;">
-                <button class="btn outline" onclick="saveCloudConfig()" title="Salva configurazione">💾 Configura</button>
-                <div id="cloudStatus" style="flex:1;min-width:200px;font-size:0.8rem;padding:0.3rem 0.75rem;background:white;border:1px solid var(--border);display:flex;align-items:center;gap:6px;"><span style="font-size:1.1rem;line-height:1">🟢</span><span style="color:#1a5c38;font-weight:bold;font-size:0.82rem;">Inserisci GitHub Token e premi Salva sul Cloud</span></div>
-                <button class="btn outline" onclick="loadFromCloud()" title="Carica dati da GitHub Gist">☁ Carica dal Cloud</button>
-                <button class="btn gold" onclick="saveToCloud()" title="Salva dati su GitHub Gist">☁ Salva sul Cloud</button>
+                <span class="cloud-bar-label">☁ Archivio condiviso:</span>
+                <input type="hidden" id="cloudApiKey"><input type="hidden" id="cloudBinId">
+                <div id="cloudStatus" style="flex:1;min-width:200px;font-size:0.8rem;padding:0.3rem 0.75rem;background:white;border:1px solid var(--border);display:flex;align-items:center;gap:6px;"><span style="font-size:1.1rem;line-height:1">🔵</span><span style="color:#1565c0;font-weight:bold;font-size:0.82rem;">Connessione al cloud…</span></div>
+                <button class="btn outline" onclick="cloudLoad()" title="Ricarica i dati dal cloud condiviso">🔄 Aggiorna dal Cloud</button>
+                <button class="btn gold" onclick="cloudSyncAll()" title="Invia tutte le schede al cloud condiviso">☁ Sincronizza tutto</button>
                 <button class="btn outline" onclick="exportJSON()" title="Scarica backup JSON locale">⬇ Esporta JSON</button>
                 <button class="btn outline" onclick="importJSON()" title="Carica backup JSON locale">📁 Importa JSON</button>
             </div>
@@ -4664,6 +4662,96 @@ function loadFromLocal() {
     catch(e) { return false; }
 }
 
+
+// ═══════════════════════════════════════════════════════════════════
+//  CLOUD CONDIVISO (Lovable Cloud) — tutti vedono gli stessi dati
+// ═══════════════════════════════════════════════════════════════════
+const SUPA_URL = 'https://gbiiafaskvqamjuulciv.supabase.co/rest/v1/students';
+const SUPA_KEY = 'sb_publishable_U9IhdRbb-rQEDWOwKDp66Q_AS7NnYRQ';
+const SUPA_HEADERS = { 'apikey': SUPA_KEY, 'Content-Type': 'application/json' };
+
+function toRow(s) {
+    return {
+        id: s.id, surname: s.surname||'', first_name: s.firstName||'', gender: s.gender||'',
+        dob: s.dob||'', pob: s.pob||'', village: s.village||'', father: s.father||'',
+        mother: s.mother||'', fam_status: s.famStatus||'', prev_school: s.prevSchool||'',
+        prev_class: s.prevClass||'', new_school: s.newSchool||'', new_class: s.newClass||'',
+        status: s.status||'ADOTTABILE', sponsor: s.sponsor||'', notes: s.notes||'', photo: s.photo||''
+    };
+}
+function fromRow(r) {
+    return {
+        id: r.id, surname: r.surname||'', firstName: r.first_name||'', gender: r.gender||'',
+        dob: r.dob||'', pob: r.pob||'', village: r.village||'', father: r.father||'',
+        mother: r.mother||'', famStatus: r.fam_status||'', prevSchool: r.prev_school||'',
+        prevClass: r.prev_class||'', newSchool: r.new_school||'', newClass: r.new_class||'',
+        status: r.status||'ADOTTABILE', sponsor: r.sponsor||'', notes: r.notes||'', photo: r.photo||''
+    };
+}
+async function cloudLoad(silent) {
+    if(!silent) setCloudStatus('⏳ Caricamento dal cloud…', 'info');
+    try {
+        const res = await fetch(SUPA_URL + '?select=*&order=id.asc', { headers: SUPA_HEADERS });
+        if(!res.ok) throw new Error('HTTP ' + res.status);
+        const rows = await res.json();
+        students = rows.map(fromRow);
+        saveToLocal();
+        renderTable(); updateStats();
+        setCloudStatus('☁ Archivio cloud condiviso — ' + students.length + ' schede', 'ok');
+        return true;
+    } catch(err) {
+        setCloudStatus('🔴 Cloud non raggiungibile (dati locali): ' + err.message, 'err');
+        return false;
+    }
+}
+async function cloudSave(obj) {
+    setCloudStatus('⏳ Salvataggio sul cloud…', 'info');
+    try {
+        const res = await fetch(SUPA_URL + '?on_conflict=id', {
+            method: 'POST',
+            headers: Object.assign({}, SUPA_HEADERS, { 'Prefer': 'resolution=merge-duplicates,return=minimal' }),
+            body: JSON.stringify(toRow(obj))
+        });
+        if(!res.ok) throw new Error('HTTP ' + res.status + ' ' + (await res.text()));
+        setCloudStatus('☁ Scheda salvata sul cloud condiviso', 'ok');
+        return true;
+    } catch(err) {
+        setCloudStatus('🔴 Errore salvataggio cloud: ' + err.message, 'err');
+        alert('Attenzione: la scheda non è stata salvata sul cloud.\n' + err.message);
+        return false;
+    }
+}
+async function cloudSyncAll() {
+    if(!confirm('Inviare tutte le ' + students.length + ' schede al cloud condiviso?')) return;
+    setCloudStatus('⏳ Sincronizzazione in corso…', 'info');
+    try {
+        for (let i = 0; i < students.length; i += 25) {
+            const chunk = students.slice(i, i + 25).map(toRow);
+            const res = await fetch(SUPA_URL + '?on_conflict=id', {
+                method: 'POST',
+                headers: Object.assign({}, SUPA_HEADERS, { 'Prefer': 'resolution=merge-duplicates,return=minimal' }),
+                body: JSON.stringify(chunk)
+            });
+            if(!res.ok) throw new Error('HTTP ' + res.status);
+            setCloudStatus('⏳ Sincronizzate ' + Math.min(i+25, students.length) + '/' + students.length + '…', 'info');
+        }
+        setCloudStatus('☁ Sincronizzazione completata — ' + students.length + ' schede', 'ok');
+    } catch(err) { setCloudStatus('🔴 Errore sincronizzazione: ' + err.message, 'err'); }
+}
+async function cloudDelete(id) {
+    try {
+        const res = await fetch(SUPA_URL + '?id=eq.' + encodeURIComponent(id), {
+            method: 'DELETE', headers: SUPA_HEADERS
+        });
+        if(!res.ok) throw new Error('HTTP ' + res.status);
+        setCloudStatus('☁ Scheda eliminata dal cloud condiviso', 'ok');
+        return true;
+    } catch(err) {
+        setCloudStatus('🔴 Errore eliminazione cloud: ' + err.message, 'err');
+        return false;
+    }
+}
+
 // ═══════════════════════════════════════════════════════════════════
 //  UI HELPERS
 // ═══════════════════════════════════════════════════════════════════
@@ -4943,19 +5031,25 @@ function saveStudent(e) {
     }
     saveToLocal();
     renderTable(); updateStats();
-    alert('Scheda salvata con successo');
+    cloudSave(obj).then(ok => { if(ok) alert('Scheda salvata sul cloud condiviso'); });
     showSection('registry');
 }
 function deleteStudent() {
     if(!currentId) return;
     if(!confirm('Eliminare definitivamente questo studente?')) return;
-    students = students.filter(s=>s.id!==currentId);
+    const delId = currentId;
+    students = students.filter(s=>s.id!==delId);
     saveToLocal();
     renderTable(); updateStats();
+    cloudDelete(delId);
     showSection('registry');
 }
 function generateId() {
-    const max = students.reduce((m,s)=>{ const n=parseInt(s.id.replace(/\D/g,'')); return n>m?n:m; },0);
+    const max = students.reduce((m,s)=>{
+        const mt = /^MOR2026(\d{3})$/.exec(s.id || '');
+        const n = mt ? parseInt(mt[1], 10) : 0;
+        return n > m ? n : m;
+    }, 0);
     return 'MOR2026' + String(max+1).padStart(3,'0');
 }
 
@@ -5038,7 +5132,9 @@ document.addEventListener('DOMContentLoaded', () => {
     restoreCloudConfig();
     renderTable();
     updateStats();
-    setCloudStatus('🟢 Pronto. Inserisci GitHub Token per sincronizzare.', 'ok');
+    setCloudStatus('⏳ Connessione al cloud condiviso…', 'info');
+    cloudLoad();
+    setInterval(() => { if(document.getElementById('appScreen').style.display !== 'none') cloudLoad(true); }, 30000);
 });
 </script>
 </body>

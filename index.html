@@ -1007,7 +1007,8 @@
                             <th onclick="sortBy(&#39;newSchool&#39;)">Scuola 2026</th>
                             <th onclick="sortBy(&#39;newClass&#39;)">Cl. 2026</th>
                             <th onclick="sortBy(&#39;status&#39;)">Stato</th>
-                            <th onclick="sortBy(&#39;adopted&#39;)">Adozione pagata</th>
+                            <th>Anno 2025</th>
+                            <th>Anno 2026</th>
                             <th onclick="sortBy(&#39;sponsor&#39;)">Adottante / Sponsor</th>
                             <th>Azioni</th>
                         </tr>
@@ -1164,6 +1165,14 @@
                                         <option>Tutore</option>
                                     </select>
                                 </div>
+                                <div class="fgroup">
+                                    <label>Fratelli</label>
+                                    <input type="number" id="fBrothers" min="0" placeholder="0">
+                                </div>
+                                <div class="fgroup">
+                                    <label>Sorelle</label>
+                                    <input type="number" id="fSisters" min="0" placeholder="0">
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -1255,8 +1264,11 @@ const MASTER_DATA = [
     "newSchool": "A.I.C MOI GIRLS SENIOR SCHOOL",
     "newClass": "GRADE 10",
     "status": "ADOTTATO",
-    "sponsor": "GAZZOLI D.SSA MARIA"
-  },
+    "sponsor": "GAZZOLI D.SSA MARIA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026002",
     "surname": "LESEEWA",
@@ -1267,8 +1279,11 @@ const MASTER_DATA = [
     "newSchool": "A.I.C MOI GIRLS SENIOR SCHOOL",
     "newClass": "GRADE 10",
     "status": "ADOTTATO",
-    "sponsor": "GHEDIN DANIELA"
-  },
+    "sponsor": "GHEDIN DANIELA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026003",
     "surname": "LOLKIRIK",
@@ -1279,8 +1294,11 @@ const MASTER_DATA = [
     "newSchool": "ANGATA PRIMARY SCHOOL",
     "newClass": "GRADE 5",
     "status": "ADOTTATO",
-    "sponsor": "BASSANELLO ANGELO E FAM."
-  },
+    "sponsor": "BASSANELLO ANGELO E FAM.",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026004",
     "surname": "LEKARIKEI",
@@ -1291,8 +1309,11 @@ const MASTER_DATA = [
     "newSchool": "ANGATA PRIMARY SCHOOL",
     "newClass": "GRADE 7",
     "status": "ADOTTATO",
-    "sponsor": "RIGON GIOVANNI E ZAROS ROSANNA"
-  },
+    "sponsor": "RIGON GIOVANNI E ZAROS ROSANNA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026005",
     "surname": "LENASEYIAN",
@@ -1303,8 +1324,11 @@ const MASTER_DATA = [
     "newSchool": "ANGATA PRIMARY SCHOOL",
     "newClass": "GRADE 8",
     "status": "ADOTTATO",
-    "sponsor": "BUCCIARELLI SAURO-BERNINI BARBARA"
-  },
+    "sponsor": "BUCCIARELLI SAURO-BERNINI BARBARA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026006",
     "surname": "LEKUPE",
@@ -1315,8 +1339,11 @@ const MASTER_DATA = [
     "newSchool": "ANGATA PRIMARY SCHOOL",
     "newClass": "GRADE 8",
     "status": "ADOTTATO",
-    "sponsor": "BERTOLI ROSANNA"
-  },
+    "sponsor": "BERTOLI ROSANNA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026007",
     "surname": "LELEJUK",
@@ -1327,8 +1354,11 @@ const MASTER_DATA = [
     "newSchool": "ANGATA PRIMARY SCHOOL",
     "newClass": "GRADE 8",
     "status": "ADOTTATO",
-    "sponsor": "VETTORI LUCIA"
-  },
+    "sponsor": "VETTORI LUCIA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026008",
     "surname": "LELEJUK",
@@ -1339,8 +1369,11 @@ const MASTER_DATA = [
     "newSchool": "ANGATA PRIMARY SCHOOL",
     "newClass": "GRADE 8",
     "status": "ADOTTATO",
-    "sponsor": "ACCIAIOLI M. GABRIELLA-BORELLA MICHELE-ALESS."
-  },
+    "sponsor": "ACCIAIOLI M. GABRIELLA-BORELLA MICHELE-ALESS.",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026009",
     "surname": "LEKUPE",
@@ -1351,8 +1384,11 @@ const MASTER_DATA = [
     "newSchool": "ANGATA PRIMARY SCHOOL",
     "newClass": "GRADE 9",
     "status": "ADOTTATO",
-    "sponsor": "MERLINO MARCO"
-  },
+    "sponsor": "MERLINO MARCO",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026010",
     "surname": "LESUYAI",
@@ -1363,8 +1399,11 @@ const MASTER_DATA = [
     "newSchool": "CHANIA BOYS HIGH SCHOOL.",
     "newClass": "FORM 4",
     "status": "ADOTTATO",
-    "sponsor": "CECOTTO MASSIMILIANO E MICHELA"
-  },
+    "sponsor": "CECOTTO MASSIMILIANO E MICHELA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026011",
     "surname": "ERIS",
@@ -1375,8 +1414,11 @@ const MASTER_DATA = [
     "newSchool": "CONSOLATA CBC",
     "newClass": "GRADE 5",
     "status": "ADOTTATO",
-    "sponsor": "RIGON GIOVANNI E ZAROS ROSANNA"
-  },
+    "sponsor": "RIGON GIOVANNI E ZAROS ROSANNA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026012",
     "surname": "ERUPE",
@@ -1387,8 +1429,11 @@ const MASTER_DATA = [
     "newSchool": "CONSOLATA CBC",
     "newClass": "GRADE 8",
     "status": "ADOTTATO",
-    "sponsor": "DE MARCHIS PREITE TERESA"
-  },
+    "sponsor": "DE MARCHIS PREITE TERESA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026013",
     "surname": "LEPARTANAPA",
@@ -1399,8 +1444,11 @@ const MASTER_DATA = [
     "newSchool": "GIDEON ELITE BOYS SENIOR SCHOOL",
     "newClass": "GRADE 10",
     "status": "ADOTTATO",
-    "sponsor": "CAZZARO RENATO - TORTORA ANNALISA"
-  },
+    "sponsor": "CAZZARO RENATO - TORTORA ANNALISA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026014",
     "surname": "LENTUMUNAI",
@@ -1411,8 +1459,11 @@ const MASTER_DATA = [
     "newSchool": "GOOD MINOR SHEPHERD SEMINARY",
     "newClass": "FORM 3",
     "status": "ADOTTATO",
-    "sponsor": "PALAZZO PARODI ANDREA"
-  },
+    "sponsor": "PALAZZO PARODI ANDREA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026015",
     "surname": "LENTUMUNAI",
@@ -1423,8 +1474,11 @@ const MASTER_DATA = [
     "newSchool": "GOOD MINOR SHEPHERD SEMINARY",
     "newClass": "FORM 3",
     "status": "ADOTTATO",
-    "sponsor": "RAMBELLI STEFANO - BAIONI ENZA"
-  },
+    "sponsor": "RAMBELLI STEFANO - BAIONI ENZA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026016",
     "surname": "LESHIMPIRO",
@@ -1435,8 +1489,11 @@ const MASTER_DATA = [
     "newSchool": "GOOD MINOR SHEPHERD SEMINARY",
     "newClass": "FORM 3",
     "status": "ADOTTATO",
-    "sponsor": "COLANGELO ANTONIO"
-  },
+    "sponsor": "COLANGELO ANTONIO",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026017",
     "surname": "LETOWON",
@@ -1447,8 +1504,11 @@ const MASTER_DATA = [
     "newSchool": "GOOD MINOR SHEPHERD SEMINARY",
     "newClass": "FORM 3",
     "status": "ADOTTATO",
-    "sponsor": "BARBIERI ENRICO"
-  },
+    "sponsor": "BARBIERI ENRICO",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026018",
     "surname": "LEKASUYIAN",
@@ -1459,8 +1519,11 @@ const MASTER_DATA = [
     "newSchool": "KISIMA GIRLS HIGH SCHOOL",
     "newClass": "FORM 3",
     "status": "ADOTTATO",
-    "sponsor": "SCARTABELLI TATIANA"
-  },
+    "sponsor": "SCARTABELLI TATIANA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026019",
     "surname": "LEMUNEN",
@@ -1471,8 +1534,11 @@ const MASTER_DATA = [
     "newSchool": "KISIMA GIRLS HIGH SCHOOL",
     "newClass": "FORM 3",
     "status": "ADOTTATO",
-    "sponsor": "CUGNO LAURA-ISABELLO ELISA"
-  },
+    "sponsor": "CUGNO LAURA-ISABELLO ELISA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026020",
     "surname": "LEKERISAE",
@@ -1483,8 +1549,11 @@ const MASTER_DATA = [
     "newSchool": "IRENE SCHOOL",
     "newClass": "GRADE 10",
     "status": "ADOTTATO",
-    "sponsor": "CALZOLARI  GALLI FEDERICA"
-  },
+    "sponsor": "CALZOLARI  GALLI FEDERICA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026021",
     "surname": "LENADONGER",
@@ -1495,8 +1564,11 @@ const MASTER_DATA = [
     "newSchool": "IRENE SCHOOL",
     "newClass": "FORM 3",
     "status": "ADOTTATO",
-    "sponsor": "BETTIN LUCIO"
-  },
+    "sponsor": "BETTIN LUCIO",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026022",
     "surname": "LEKESIKE",
@@ -1507,8 +1579,11 @@ const MASTER_DATA = [
     "newSchool": "MARALAL COMPUTER COLLEGE",
     "newClass": "YEAR 1",
     "status": "ADOTTATO",
-    "sponsor": "CROSATO BRUNA-INES-CARRER GINO"
-  },
+    "sponsor": "CROSATO BRUNA-INES-CARRER GINO",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026023",
     "surname": "LELESIIT",
@@ -1519,8 +1594,11 @@ const MASTER_DATA = [
     "newSchool": "MARALAL COMPUTER COLLEGE",
     "newClass": "YEAR 1",
     "status": "ADOTTATO",
-    "sponsor": "VETTORI GIANCARLO-SOFIA-GIACOMO-VALENTINA"
-  },
+    "sponsor": "VETTORI GIANCARLO-SOFIA-GIACOMO-VALENTINA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026024",
     "surname": "LESUYAI",
@@ -1531,8 +1609,11 @@ const MASTER_DATA = [
     "newSchool": "MARALAL TEACHERS COLLEGE",
     "newClass": "YEAR 1",
     "status": "ADOTTATO",
-    "sponsor": "PICCOLI GRAZIELLA"
-  },
+    "sponsor": "PICCOLI GRAZIELLA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026025",
     "surname": "LEKUPE",
@@ -1543,8 +1624,11 @@ const MASTER_DATA = [
     "newSchool": "MWANGAZA MIXED DAY SCHOOL",
     "newClass": "FORM 4",
     "status": "ADOTTATO",
-    "sponsor": "MORESCHI PAOLO"
-  },
+    "sponsor": "MORESCHI PAOLO",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026026",
     "surname": "ECHWA",
@@ -1555,8 +1639,11 @@ const MASTER_DATA = [
     "newSchool": "MWANGAZA MIXED DAY SCHOOL",
     "newClass": "FORM 4",
     "status": "ADOTTATO",
-    "sponsor": "FORLIN GIORGIO"
-  },
+    "sponsor": "FORLIN GIORGIO",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026027",
     "surname": "LETOWON",
@@ -1567,8 +1654,11 @@ const MASTER_DATA = [
     "newSchool": "KENYA MEDICAL TRAINING CENTRE",
     "newClass": "YEAR 3",
     "status": "ADOTTATO",
-    "sponsor": "CORO BOSCO DEL RESPIRO"
-  },
+    "sponsor": "CORO BOSCO DEL RESPIRO",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026028",
     "surname": "LEKARANGWA",
@@ -1579,8 +1669,11 @@ const MASTER_DATA = [
     "newSchool": "KIRISIA BOYS SENIOR SCHOOL",
     "newClass": "GRADE 10",
     "status": "ADOTTATO",
-    "sponsor": "MAZZON STEFANO - DOZZO FRANCESCA"
-  },
+    "sponsor": "MAZZON STEFANO - DOZZO FRANCESCA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026029",
     "surname": "LEMUNEN",
@@ -1591,8 +1684,11 @@ const MASTER_DATA = [
     "newSchool": "KIRISIA BOYS SENIOR SCHOOL",
     "newClass": "GRADE 10",
     "status": "ADOTTATO",
-    "sponsor": "SECCHI ELENA  - SCOTTO ENRICO"
-  },
+    "sponsor": "SECCHI ELENA  - SCOTTO ENRICO",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026030",
     "surname": "LEKISIMA",
@@ -1603,8 +1699,11 @@ const MASTER_DATA = [
     "newSchool": "KIRISIA BOYS SECONDARY SCHOOL",
     "newClass": "FORM 4",
     "status": "ADOTTATO",
-    "sponsor": "SIDERURGICA FIORENTINA"
-  },
+    "sponsor": "SIDERURGICA FIORENTINA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026031",
     "surname": "LESUYAI",
@@ -1615,8 +1714,11 @@ const MASTER_DATA = [
     "newSchool": "KIRISIA BOYS SECONDARY SCHOOL",
     "newClass": "FORM 4",
     "status": "ADOTTATO",
-    "sponsor": "AMIPA"
-  },
+    "sponsor": "AMIPA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026032",
     "surname": "LEKIMAIN",
@@ -1627,8 +1729,11 @@ const MASTER_DATA = [
     "newSchool": "LORROK PRIMARY SCHOOL",
     "newClass": "GRADE 8",
     "status": "ADOTTATO",
-    "sponsor": "TRONCOSSI EMANUELA"
-  },
+    "sponsor": "TRONCOSSI EMANUELA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026033",
     "surname": "LETOWON",
@@ -1639,8 +1744,11 @@ const MASTER_DATA = [
     "newSchool": "LORROK MIXED DAY SECONDARY SCHOOL",
     "newClass": "FORM 3",
     "status": "ADOTTATO",
-    "sponsor": "BIGANO ELIANA - RASSIGA DR. GIAMPIERO"
-  },
+    "sponsor": "BIGANO ELIANA - RASSIGA DR. GIAMPIERO",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026034",
     "surname": "LOLMUNYEI",
@@ -1651,8 +1759,11 @@ const MASTER_DATA = [
     "newSchool": "LORROK MIXED DAY SECONDARY SCHOOL",
     "newClass": "FORM 3",
     "status": "ADOTTATO",
-    "sponsor": "FAM. BALDO - PASTRELLO ROMANO E LAURA"
-  },
+    "sponsor": "FAM. BALDO - PASTRELLO ROMANO E LAURA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026035",
     "surname": "LESUYAI",
@@ -1663,8 +1774,11 @@ const MASTER_DATA = [
     "newSchool": "LORROK MIXED DAY SECONDARY SCHOOL",
     "newClass": "FORM 3",
     "status": "ADOTTATO",
-    "sponsor": "BREDA GIAMPIETRO e LIVIA"
-  },
+    "sponsor": "BREDA GIAMPIETRO e LIVIA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026036",
     "surname": "LETOLUAI",
@@ -1675,8 +1789,11 @@ const MASTER_DATA = [
     "newSchool": "MARY MOTHER OF GRACE BOYS SENIOR",
     "newClass": "GRADE 10",
     "status": "ADOTTATO",
-    "sponsor": "VISENTIN MARIA MARICA-DEL BO STEFANO"
-  },
+    "sponsor": "VISENTIN MARIA MARICA-DEL BO STEFANO",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026037",
     "surname": "HESSEN",
@@ -1687,8 +1804,11 @@ const MASTER_DATA = [
     "newSchool": "MARTI PRIMARY SCHOOL",
     "newClass": "GRADE 5",
     "status": "ADOTTATO",
-    "sponsor": "PIZZOLON ANNA ROSA"
-  },
+    "sponsor": "PIZZOLON ANNA ROSA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026038",
     "surname": "NACHIETTA",
@@ -1699,8 +1819,11 @@ const MASTER_DATA = [
     "newSchool": "MARTI PRIMARY SCHOOL",
     "newClass": "GRADE 5",
     "status": "ADOTTATO",
-    "sponsor": "BELLIENI ALESSIA"
-  },
+    "sponsor": "BELLIENI ALESSIA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026039",
     "surname": "NKONE",
@@ -1711,8 +1834,11 @@ const MASTER_DATA = [
     "newSchool": "MARTI PRIMARY SCHOOL",
     "newClass": "GRADE 5",
     "status": "ADOTTATO",
-    "sponsor": "MASCHIETTO ELENA"
-  },
+    "sponsor": "MASCHIETTO ELENA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026040",
     "surname": "ABORIANGIMOE",
@@ -1723,8 +1849,11 @@ const MASTER_DATA = [
     "newSchool": "MARTI PRIMARY SCHOOL",
     "newClass": "GRADE 6",
     "status": "ADOTTATO",
-    "sponsor": "DE POLLO ANNA BARBARINO GIANNI"
-  },
+    "sponsor": "DE POLLO ANNA BARBARINO GIANNI",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026041",
     "surname": "NGOLONG",
@@ -1735,8 +1864,11 @@ const MASTER_DATA = [
     "newSchool": "MARTI PRIMARY SCHOOL",
     "newClass": "GRADE 6",
     "status": "ADOTTATO",
-    "sponsor": "BERTACCINI GRAZIELLA-MONGARDI SANTE"
-  },
+    "sponsor": "BERTACCINI GRAZIELLA-MONGARDI SANTE",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026042",
     "surname": "AKIRU",
@@ -1747,8 +1879,11 @@ const MASTER_DATA = [
     "newSchool": "MARTI PRIMARY SCHOOL",
     "newClass": "GRADE 7",
     "status": "ADOTTATO",
-    "sponsor": "CAMPISI VINCENZO -NOTO ANTONELLA"
-  },
+    "sponsor": "CAMPISI VINCENZO -NOTO ANTONELLA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026043",
     "surname": "ECHUKA",
@@ -1759,8 +1894,11 @@ const MASTER_DATA = [
     "newSchool": "MARTI PRIMARY SCHOOL",
     "newClass": "GRADE 7",
     "status": "ADOTTATO",
-    "sponsor": "VENDRAMIN LOREDANA"
-  },
+    "sponsor": "VENDRAMIN LOREDANA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026044",
     "surname": "MALET",
@@ -1771,8 +1909,11 @@ const MASTER_DATA = [
     "newSchool": "MARTI PRIMARY SCHOOL",
     "newClass": "GRADE 7",
     "status": "ADOTTATO",
-    "sponsor": "CAPELLI GABRIELLA"
-  },
+    "sponsor": "CAPELLI GABRIELLA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026045",
     "surname": "NABENYO",
@@ -1783,8 +1924,11 @@ const MASTER_DATA = [
     "newSchool": "MARTI PRIMARY SCHOOL",
     "newClass": "GRADE 8",
     "status": "ADOTTATO",
-    "sponsor": "ASS. NAZ. VIGILI DEL FUOCO"
-  },
+    "sponsor": "ASS. NAZ. VIGILI DEL FUOCO",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026046",
     "surname": "TREVER",
@@ -1795,8 +1939,11 @@ const MASTER_DATA = [
     "newSchool": "MARTI PRIMARY SCHOOL",
     "newClass": "GRADE 8",
     "status": "ADOTTATO",
-    "sponsor": "CAMBA ADRIANA LUISA GIUDITTA"
-  },
+    "sponsor": "CAMBA ADRIANA LUISA GIUDITTA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026047",
     "surname": "ELOTO",
@@ -1807,8 +1954,11 @@ const MASTER_DATA = [
     "newSchool": "MARTI MIXED SENIOR SCHOOL",
     "newClass": "GRADE 10",
     "status": "ADOTTATO",
-    "sponsor": "ALBERTINI ANNALISA"
-  },
+    "sponsor": "ALBERTINI ANNALISA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026048",
     "surname": "LOKURE",
@@ -1819,8 +1969,11 @@ const MASTER_DATA = [
     "newSchool": "MARTI MIXED DAY SECONDARY SCHOOL",
     "newClass": "FORM 3",
     "status": "ADOTTATO",
-    "sponsor": "BARRECA FABIO - NICOLAO CHIARA"
-  },
+    "sponsor": "BARRECA FABIO - NICOLAO CHIARA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026049",
     "surname": "EKAI",
@@ -1831,8 +1984,11 @@ const MASTER_DATA = [
     "newSchool": "MARTI MIXED DAY SECONDARY SCHOOL",
     "newClass": "FORM 4",
     "status": "ADOTTATO",
-    "sponsor": "MUFFATO GIOVANNA - BOTTER PIETRO"
-  },
+    "sponsor": "MUFFATO GIOVANNA - BOTTER PIETRO",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026050",
     "surname": "EKOKOT",
@@ -1843,8 +1999,11 @@ const MASTER_DATA = [
     "newSchool": "MARTI MIXED DAY SECONDARY SCHOOL",
     "newClass": "FORM 4",
     "status": "ADOTTATO",
-    "sponsor": "BABINI AURELIA"
-  },
+    "sponsor": "BABINI AURELIA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026051",
     "surname": "LEKUMATO",
@@ -1855,8 +2014,11 @@ const MASTER_DATA = [
     "newSchool": "MORIJO LCHEKUTI SCHOOL",
     "newClass": "LCHEKUTI",
     "status": "ADOTTATO",
-    "sponsor": "GRESPAN LUIGINA"
-  },
+    "sponsor": "GRESPAN LUIGINA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026052",
     "surname": "LENTIIPO",
@@ -1879,8 +2041,11 @@ const MASTER_DATA = [
     "newSchool": "MORIJO LCHEKUTI SCHOOL",
     "newClass": "LCHEKUTI",
     "status": "ADOTTATO",
-    "sponsor": "SARTORI ENRICO"
-  },
+    "sponsor": "SARTORI ENRICO",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026054",
     "surname": "LESIYAMPE",
@@ -1891,8 +2056,11 @@ const MASTER_DATA = [
     "newSchool": "MORIJO LCHEKUTI SCHOOL",
     "newClass": "LCHEKUTI",
     "status": "ADOTTATO",
-    "sponsor": "GALLI VINCENZO"
-  },
+    "sponsor": "GALLI VINCENZO",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026055",
     "surname": "LETOLUAI",
@@ -1903,8 +2071,11 @@ const MASTER_DATA = [
     "newSchool": "MORIJO LCHEKUTI SCHOOL",
     "newClass": "LCHEKUTI",
     "status": "ADOTTATO",
-    "sponsor": "FOLLADOR LUCIA"
-  },
+    "sponsor": "FOLLADOR LUCIA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026056",
     "surname": "LOINGERUA",
@@ -1915,8 +2086,11 @@ const MASTER_DATA = [
     "newSchool": "MORIJO LCHEKUTI SCHOOL",
     "newClass": "LCHEKUTI",
     "status": "ADOTTATO",
-    "sponsor": "DE LAZZARI OSCAR-FAVRUZZO SONIA"
-  },
+    "sponsor": "DE LAZZARI OSCAR-FAVRUZZO SONIA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026057",
     "surname": "LENASEYIAN",
@@ -1927,8 +2101,11 @@ const MASTER_DATA = [
     "newSchool": "MORIJO PRIMARY SCHOOL",
     "newClass": "NURSERY",
     "status": "ADOTTATO",
-    "sponsor": "SNIDERO GIURIATI ELSA"
-  },
+    "sponsor": "SNIDERO GIURIATI ELSA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026058",
     "surname": "LENTIIPO",
@@ -1939,8 +2116,11 @@ const MASTER_DATA = [
     "newSchool": "MORIJO PRIMARY SCHOOL",
     "newClass": "GRADE 1",
     "status": "ADOTTATO",
-    "sponsor": "GAZZOLI D.SSA MARIA"
-  },
+    "sponsor": "GAZZOLI D.SSA MARIA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026059",
     "surname": "LOITAMANY",
@@ -1951,8 +2131,11 @@ const MASTER_DATA = [
     "newSchool": "MORIJO PRIMARY SCHOOL",
     "newClass": "GRADE 1",
     "status": "ADOTTATO",
-    "sponsor": "MARSURA  ELEONORA"
-  },
+    "sponsor": "MARSURA  ELEONORA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026060",
     "surname": "LESAMAJA",
@@ -1963,8 +2146,11 @@ const MASTER_DATA = [
     "newSchool": "MORIJO PRIMARY SCHOOL",
     "newClass": "GRADE 2",
     "status": "ADOTTATO",
-    "sponsor": "TREVISIOL ANGELO"
-  },
+    "sponsor": "TREVISIOL ANGELO",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026061",
     "surname": "LOLPETAI",
@@ -1975,8 +2161,11 @@ const MASTER_DATA = [
     "newSchool": "MORIJO PRIMARY SCHOOL",
     "newClass": "GRADE 2",
     "status": "ADOTTATO",
-    "sponsor": "BONETTI ANTONIO - BEA COMPAGNIA"
-  },
+    "sponsor": "BONETTI ANTONIO - BEA COMPAGNIA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026062",
     "surname": "LEMERDETE",
@@ -1987,8 +2176,11 @@ const MASTER_DATA = [
     "newSchool": "MORIJO PRIMARY SCHOOL",
     "newClass": "GRADE 3",
     "status": "ADOTTATO",
-    "sponsor": "GOBBO LAURA - ZANON DR. GIUSEPPE"
-  },
+    "sponsor": "GOBBO LAURA - ZANON DR. GIUSEPPE",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026063",
     "surname": "LESHUKUYIA",
@@ -1999,8 +2191,11 @@ const MASTER_DATA = [
     "newSchool": "MORIJO PRIMARY SCHOOL",
     "newClass": "GRADE 3",
     "status": "ADOTTATO",
-    "sponsor": "SARTORI ENRICO"
-  },
+    "sponsor": "SARTORI ENRICO",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026064",
     "surname": "LEMONGI",
@@ -2011,8 +2206,11 @@ const MASTER_DATA = [
     "newSchool": "MORIJO PRIMARY SCHOOL",
     "newClass": "GRADE 4",
     "status": "ADOTTATO",
-    "sponsor": "MASSACESI LUCA E ANNALISA"
-  },
+    "sponsor": "MASSACESI LUCA E ANNALISA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026065",
     "surname": "LENAIGERO",
@@ -2023,8 +2221,11 @@ const MASTER_DATA = [
     "newSchool": "MORIJO PRIMARY SCHOOL",
     "newClass": "GRADE 5",
     "status": "ADOTTATO",
-    "sponsor": "DORIGHET RAIMONDO"
-  },
+    "sponsor": "DORIGHET RAIMONDO",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026066",
     "surname": "LENTUMUNAI",
@@ -2035,8 +2236,11 @@ const MASTER_DATA = [
     "newSchool": "MORIJO PRIMARY SCHOOL",
     "newClass": "GRADE 5",
     "status": "ADOTTATO",
-    "sponsor": "FAM. D'URZO CASTIGLIONE SAVERIA"
-  },
+    "sponsor": "FAM. D'URZO CASTIGLIONE SAVERIA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026067",
     "surname": "LESHIMPIRO",
@@ -2047,8 +2251,11 @@ const MASTER_DATA = [
     "newSchool": "MORIJO PRIMARY SCHOOL",
     "newClass": "GRADE 5",
     "status": "ADOTTATO",
-    "sponsor": "CONTE GIUSEPPE- BOLZON GABRIELLA"
-  },
+    "sponsor": "CONTE GIUSEPPE- BOLZON GABRIELLA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026068",
     "surname": "LESHIMPIRO",
@@ -2059,8 +2266,11 @@ const MASTER_DATA = [
     "newSchool": "MORIJO PRIMARY SCHOOL",
     "newClass": "GRADE 5",
     "status": "ADOTTATO",
-    "sponsor": "GRESPAN GRAZIANO"
-  },
+    "sponsor": "GRESPAN GRAZIANO",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026069",
     "surname": "LEWAO",
@@ -2071,8 +2281,11 @@ const MASTER_DATA = [
     "newSchool": "MORIJO PRIMARY SCHOOL",
     "newClass": "GRADE 5",
     "status": "ADOTTATO",
-    "sponsor": "GRIMANDI MARCELLO"
-  },
+    "sponsor": "GRIMANDI MARCELLO",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026070",
     "surname": "LEKUMATO",
@@ -2083,8 +2296,11 @@ const MASTER_DATA = [
     "newSchool": "MORIJO PRIMARY SCHOOL",
     "newClass": "GRADE 6",
     "status": "ADOTTATO",
-    "sponsor": "FASOLIS GIOVANNI"
-  },
+    "sponsor": "FASOLIS GIOVANNI",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026071",
     "surname": "LEMPIRIS",
@@ -2095,8 +2311,11 @@ const MASTER_DATA = [
     "newSchool": "MORIJO PRIMARY SCHOOL",
     "newClass": "GRADE 6",
     "status": "ADOTTATO",
-    "sponsor": "LINZI ROBERTO"
-  },
+    "sponsor": "LINZI ROBERTO",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026072",
     "surname": "LENKIDI",
@@ -2107,8 +2326,11 @@ const MASTER_DATA = [
     "newSchool": "MORIJO PRIMARY SCHOOL",
     "newClass": "GRADE 6",
     "status": "ADOTTATO",
-    "sponsor": "SORCI GINO + ZAVATTA PAOLA"
-  },
+    "sponsor": "SORCI GINO + ZAVATTA PAOLA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026073",
     "surname": "LESAANA",
@@ -2119,8 +2341,11 @@ const MASTER_DATA = [
     "newSchool": "MORIJO PRIMARY SCHOOL",
     "newClass": "GRADE 6",
     "status": "ADOTTATO",
-    "sponsor": "MANCINI IDA"
-  },
+    "sponsor": "MANCINI IDA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026074",
     "surname": "LESOIPA",
@@ -2131,8 +2356,11 @@ const MASTER_DATA = [
     "newSchool": "MORIJO PRIMARY SCHOOL",
     "newClass": "GRADE 6",
     "status": "ADOTTATO",
-    "sponsor": "PAGNINI CARLA"
-  },
+    "sponsor": "PAGNINI CARLA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026075",
     "surname": "LETOWON",
@@ -2143,8 +2371,11 @@ const MASTER_DATA = [
     "newSchool": "MORIJO PRIMARY SCHOOL",
     "newClass": "GRADE 6",
     "status": "ADOTTATO",
-    "sponsor": "NOSTINI NARA"
-  },
+    "sponsor": "NOSTINI NARA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026076",
     "surname": "LOTUAI",
@@ -2155,8 +2386,11 @@ const MASTER_DATA = [
     "newSchool": "MORIJO PRIMARY SCHOOL",
     "newClass": "GRADE 6",
     "status": "ADOTTATO",
-    "sponsor": "SARTOR MAURIZIO - CIAN MARGHERITA"
-  },
+    "sponsor": "SARTOR MAURIZIO - CIAN MARGHERITA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026077",
     "surname": "LEKERISAE",
@@ -2167,8 +2401,11 @@ const MASTER_DATA = [
     "newSchool": "MORIJO PRIMARY SCHOOL",
     "newClass": "GRADE 7",
     "status": "ADOTTATO",
-    "sponsor": "MAZZOCATO VINCENZO-FUSER ANNAROSA"
-  },
+    "sponsor": "MAZZOCATO VINCENZO-FUSER ANNAROSA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026078",
     "surname": "LEKERISAE",
@@ -2179,8 +2416,11 @@ const MASTER_DATA = [
     "newSchool": "MORIJO PRIMARY SCHOOL",
     "newClass": "GRADE 7",
     "status": "ADOTTATO",
-    "sponsor": "DE LAZZARI PAOLA"
-  },
+    "sponsor": "DE LAZZARI PAOLA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026079",
     "surname": "LEKESIKE",
@@ -2191,8 +2431,11 @@ const MASTER_DATA = [
     "newSchool": "MORIJO PRIMARY SCHOOL",
     "newClass": "GRADE 7",
     "status": "ADOTTATO",
-    "sponsor": "GOLFETTO BARBARA"
-  },
+    "sponsor": "GOLFETTO BARBARA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026080",
     "surname": "LELESIIT",
@@ -2203,8 +2446,11 @@ const MASTER_DATA = [
     "newSchool": "MORIJO PRIMARY SCHOOL",
     "newClass": "GRADE 7",
     "status": "ADOTTATO",
-    "sponsor": "POVEGLIANO MARZIA"
-  },
+    "sponsor": "POVEGLIANO MARZIA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026081",
     "surname": "LELUAI",
@@ -2215,8 +2461,11 @@ const MASTER_DATA = [
     "newSchool": "MORIJO PRIMARY SCHOOL",
     "newClass": "GRADE 7",
     "status": "ADOTTATO",
-    "sponsor": "TORTORA FLAVIO"
-  },
+    "sponsor": "TORTORA FLAVIO",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026082",
     "surname": "LEMONGI",
@@ -2227,8 +2476,11 @@ const MASTER_DATA = [
     "newSchool": "MORIJO PRIMARY SCHOOL",
     "newClass": "GRADE 7",
     "status": "ADOTTATO",
-    "sponsor": "BONACCORSI CONCETTA"
-  },
+    "sponsor": "BONACCORSI CONCETTA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026083",
     "surname": "LENAPEER",
@@ -2239,8 +2491,11 @@ const MASTER_DATA = [
     "newSchool": "MORIJO PRIMARY SCHOOL",
     "newClass": "GRADE 7",
     "status": "ADOTTATO",
-    "sponsor": "DI CAGNO ANNA"
-  },
+    "sponsor": "DI CAGNO ANNA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026084",
     "surname": "LOLKITEKUI",
@@ -2251,8 +2506,11 @@ const MASTER_DATA = [
     "newSchool": "MORIJO PRIMARY SCHOOL",
     "newClass": "GRADE 7",
     "status": "ADOTTATO",
-    "sponsor": "TRE ERRE INGEGNERIA SRL"
-  },
+    "sponsor": "TRE ERRE INGEGNERIA SRL",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026085",
     "surname": "LEKOLUA",
@@ -2263,8 +2521,11 @@ const MASTER_DATA = [
     "newSchool": "MORIJO PRIMARY SCHOOL",
     "newClass": "GRADE 8",
     "status": "ADOTTATO",
-    "sponsor": "ANGELI SERGIO"
-  },
+    "sponsor": "ANGELI SERGIO",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026086",
     "surname": "LENAIGERO",
@@ -2275,8 +2536,11 @@ const MASTER_DATA = [
     "newSchool": "MORIJO PRIMARY SCHOOL",
     "newClass": "GRADE 8",
     "status": "ADOTTATO",
-    "sponsor": "MUFFATO GIOVANNA - BOTTER PIETRO"
-  },
+    "sponsor": "MUFFATO GIOVANNA - BOTTER PIETRO",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026087",
     "surname": "LENASEYIAN",
@@ -2287,8 +2551,11 @@ const MASTER_DATA = [
     "newSchool": "MORIJO PRIMARY SCHOOL",
     "newClass": "GRADE 8",
     "status": "ADOTTATO",
-    "sponsor": "GOBBO LAURA - ZANON DR. GIUSEPPE"
-  },
+    "sponsor": "GOBBO LAURA - ZANON DR. GIUSEPPE",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026088",
     "surname": "LENTUMUNAI",
@@ -2299,8 +2566,11 @@ const MASTER_DATA = [
     "newSchool": "MORIJO PRIMARY SCHOOL",
     "newClass": "GRADE 8",
     "status": "ADOTTATO",
-    "sponsor": "FOND. ANNA M. FEDER"
-  },
+    "sponsor": "FOND. ANNA M. FEDER",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026089",
     "surname": "LENTUMUNAI",
@@ -2311,8 +2581,11 @@ const MASTER_DATA = [
     "newSchool": "MORIJO PRIMARY SCHOOL",
     "newClass": "GRADE 8",
     "status": "ADOTTATO",
-    "sponsor": "BERTOLIN FERRUCCIO"
-  },
+    "sponsor": "BERTOLIN FERRUCCIO",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026090",
     "surname": "LESHIMPIRO",
@@ -2323,8 +2596,11 @@ const MASTER_DATA = [
     "newSchool": "MORIJO PRIMARY SCHOOL",
     "newClass": "GRADE 8",
     "status": "ADOTTATO",
-    "sponsor": "VENDRAME LUIGI - GALLINARO PAOLA"
-  },
+    "sponsor": "VENDRAME LUIGI - GALLINARO PAOLA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026091",
     "surname": "LOLKIRIK",
@@ -2335,8 +2611,11 @@ const MASTER_DATA = [
     "newSchool": "MORIJO PRIMARY SCHOOL",
     "newClass": "GRADE 8",
     "status": "ADOTTATO",
-    "sponsor": "MAZZA ROBERTO"
-  },
+    "sponsor": "MAZZA ROBERTO",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026092",
     "surname": "LEKENIT",
@@ -2347,8 +2626,11 @@ const MASTER_DATA = [
     "newSchool": "MORIJO PRIMARY SCHOOL",
     "newClass": "GRADE 9",
     "status": "ADOTTATO",
-    "sponsor": "LANCISI PAOLA E ANNA"
-  },
+    "sponsor": "LANCISI PAOLA E ANNA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026093",
     "surname": "LEKUPE",
@@ -2359,8 +2641,11 @@ const MASTER_DATA = [
     "newSchool": "MORIJO PRIMARY SCHOOL",
     "newClass": "GRADE 9",
     "status": "ADOTTATO",
-    "sponsor": "FACCIN GIANNI-VOLPATO LINO"
-  },
+    "sponsor": "FACCIN GIANNI-VOLPATO LINO",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026094",
     "surname": "LELERUK",
@@ -2371,8 +2656,11 @@ const MASTER_DATA = [
     "newSchool": "MORIJO PRIMARY SCHOOL",
     "newClass": "GRADE 9",
     "status": "ADOTTATO",
-    "sponsor": "SANGIORGI MARIA"
-  },
+    "sponsor": "SANGIORGI MARIA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026095",
     "surname": "LEKERISAE",
@@ -2383,8 +2671,11 @@ const MASTER_DATA = [
     "newSchool": "MORIJO PRIMARY SCHOOL",
     "newClass": "GRADE 9",
     "status": "ADOTTATO",
-    "sponsor": "PECCIANTI FRANCESCO E ADRIANA"
-  },
+    "sponsor": "PECCIANTI FRANCESCO E ADRIANA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026096",
     "surname": "LEKESIKE",
@@ -2395,8 +2686,11 @@ const MASTER_DATA = [
     "newSchool": "MORIJO PRIMARY SCHOOL",
     "newClass": "GRADE 9",
     "status": "ADOTTATO",
-    "sponsor": "BANDINI NARA - GR.BIBLICO CASTIGLIONCELLO"
-  },
+    "sponsor": "BANDINI NARA - GR.BIBLICO CASTIGLIONCELLO",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026097",
     "surname": "LENANGURAM",
@@ -2407,8 +2701,11 @@ const MASTER_DATA = [
     "newSchool": "MORIJO PRIMARY SCHOOL",
     "newClass": "GRADE 9",
     "status": "ADOTTATO",
-    "sponsor": "DEOTTI FRANCO - SPADETTO M. ANTONIETTA"
-  },
+    "sponsor": "DEOTTI FRANCO - SPADETTO M. ANTONIETTA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026098",
     "surname": "LESHIMPIRO",
@@ -2419,8 +2716,11 @@ const MASTER_DATA = [
     "newSchool": "MORIJO PRIMARY SCHOOL",
     "newClass": "GRADE 9",
     "status": "ADOTTATO",
-    "sponsor": "CAPELLI GABRIELLA"
-  },
+    "sponsor": "CAPELLI GABRIELLA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026099",
     "surname": "LESIRITE",
@@ -2431,8 +2731,11 @@ const MASTER_DATA = [
     "newSchool": "MORIJO PRIMARY SCHOOL",
     "newClass": "GRADE 9",
     "status": "ADOTTATO",
-    "sponsor": "BONETTI ANTONIO - BEA COMPAGNIA"
-  },
+    "sponsor": "BONETTI ANTONIO - BEA COMPAGNIA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026100",
     "surname": "LESIRITE",
@@ -2443,8 +2746,11 @@ const MASTER_DATA = [
     "newSchool": "MORIJO PRIMARY SCHOOL",
     "newClass": "GRADE 9",
     "status": "ADOTTATO",
-    "sponsor": "GRUPPO FAMIGLIA DEL VANGELO DI BETTONA"
-  },
+    "sponsor": "GRUPPO FAMIGLIA DEL VANGELO DI BETTONA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026101",
     "surname": "LESHIMPIRO",
@@ -2455,8 +2761,11 @@ const MASTER_DATA = [
     "newSchool": "MORIJO PRIMARY SCHOOL",
     "newClass": "GRADE 9",
     "status": "ADOTTATO",
-    "sponsor": "MARCHI FRANCO"
-  },
+    "sponsor": "MARCHI FRANCO",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026102",
     "surname": "LEKUMATO",
@@ -2467,8 +2776,11 @@ const MASTER_DATA = [
     "newSchool": "MORIJO MIXED SENIOR SCHOOL",
     "newClass": "GRADE 10",
     "status": "ADOTTATO",
-    "sponsor": "ALBONETTI ANDREA"
-  },
+    "sponsor": "ALBONETTI ANDREA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026103",
     "surname": "LEKUPUNY",
@@ -2479,8 +2791,11 @@ const MASTER_DATA = [
     "newSchool": "MORIJO MIXED SENIOR SCHOOL",
     "newClass": "GRADE 10",
     "status": "ADOTTATO",
-    "sponsor": "TRAMONTI GIANCARLO-FOSCHINI VALERIA"
-  },
+    "sponsor": "TRAMONTI GIANCARLO-FOSCHINI VALERIA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026104",
     "surname": "LENAADO",
@@ -2491,8 +2806,11 @@ const MASTER_DATA = [
     "newSchool": "MORIJO MIXED SENIOR SCHOOL",
     "newClass": "GRADE 10",
     "status": "ADOTTATO",
-    "sponsor": "BISCARO LUIGINO - LEONARDUZZI SANDRA"
-  },
+    "sponsor": "BISCARO LUIGINO - LEONARDUZZI SANDRA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026105",
     "surname": "LENAIGERO",
@@ -2503,8 +2821,11 @@ const MASTER_DATA = [
     "newSchool": "MORIJO MIXED SENIOR SCHOOL",
     "newClass": "GRADE 10",
     "status": "ADOTTATO",
-    "sponsor": "AURA ENERGY SRL  di VISCONTI DAGNA MIRELLA"
-  },
+    "sponsor": "AURA ENERGY SRL  di VISCONTI DAGNA MIRELLA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026106",
     "surname": "LENAIGERO",
@@ -2515,8 +2836,11 @@ const MASTER_DATA = [
     "newSchool": "MORIJO MIXED SENIOR SCHOOL",
     "newClass": "GRADE 10",
     "status": "ADOTTATO",
-    "sponsor": "NORBIATO MARIA LUISA"
-  },
+    "sponsor": "NORBIATO MARIA LUISA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026107",
     "surname": "LENOOMPERIA",
@@ -2527,8 +2851,11 @@ const MASTER_DATA = [
     "newSchool": "MORIJO MIXED SENIOR SCHOOL",
     "newClass": "GRADE 10",
     "status": "ADOTTATO",
-    "sponsor": "BISCARO LUIGINO - BENETTON MARIA LUCIA"
-  },
+    "sponsor": "BISCARO LUIGINO - BENETTON MARIA LUCIA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026108",
     "surname": "LEPARTANAPA",
@@ -2539,8 +2866,11 @@ const MASTER_DATA = [
     "newSchool": "MORIJO MIXED SENIOR SCHOOL",
     "newClass": "GRADE 10",
     "status": "ADOTTATO",
-    "sponsor": "NORBIATO MARIA LUISA"
-  },
+    "sponsor": "NORBIATO MARIA LUISA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026109",
     "surname": "LETUKEI",
@@ -2551,8 +2881,11 @@ const MASTER_DATA = [
     "newSchool": "MORIJO MIXED SENIOR SCHOOL",
     "newClass": "GRADE 10",
     "status": "ADOTTATO",
-    "sponsor": "MERLINO MARCO-PIOVESAN NICOLETTA"
-  },
+    "sponsor": "MERLINO MARCO-PIOVESAN NICOLETTA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026110",
     "surname": "LOLMODOONI",
@@ -2563,8 +2896,11 @@ const MASTER_DATA = [
     "newSchool": "MORIJO MIXED SENIOR SCHOOL",
     "newClass": "GRADE 10",
     "status": "ADOTTATO",
-    "sponsor": "LANZANI GABRIELLA - CARLA -GENOVEFFA"
-  },
+    "sponsor": "LANZANI GABRIELLA - CARLA -GENOVEFFA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026111",
     "surname": "LOLKITEKUI",
@@ -2575,8 +2911,11 @@ const MASTER_DATA = [
     "newSchool": "MORIJO MIXED SENIOR SCHOOL",
     "newClass": "GRADE 10",
     "status": "ADOTTATO",
-    "sponsor": "PALERMO LEONARDA"
-  },
+    "sponsor": "PALERMO LEONARDA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026112",
     "surname": "LESIRITE",
@@ -2587,8 +2926,11 @@ const MASTER_DATA = [
     "newSchool": "MORIJO MIXED SENIOR SCHOOL",
     "newClass": "GRADE 10",
     "status": "ADOTTATO",
-    "sponsor": "SALMASO SANDRA"
-  },
+    "sponsor": "SALMASO SANDRA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026113",
     "surname": "LENGAALEI",
@@ -2599,8 +2941,11 @@ const MASTER_DATA = [
     "newSchool": "MORIJO MIXED SENIOR SCHOOL",
     "newClass": "GRADE 10",
     "status": "ADOTTATO",
-    "sponsor": "BATTAGLION ANNA MARIA"
-  },
+    "sponsor": "BATTAGLION ANNA MARIA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026114",
     "surname": "LELESHEP",
@@ -2611,8 +2956,11 @@ const MASTER_DATA = [
     "newSchool": "MORIJO MIXED SENIOR SCHOOL",
     "newClass": "GRADE 10",
     "status": "ADOTTATO",
-    "sponsor": "MODOLO MONIA"
-  },
+    "sponsor": "MODOLO MONIA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026115",
     "surname": "LESHIMPIRO",
@@ -2623,8 +2971,11 @@ const MASTER_DATA = [
     "newSchool": "MORIJO MIXED SENIOR SCHOOL",
     "newClass": "GRADE 10",
     "status": "ADOTTATO",
-    "sponsor": "BARBATO FRANCESCO"
-  },
+    "sponsor": "BARBATO FRANCESCO",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026116",
     "surname": "LELEEJUK",
@@ -2635,8 +2986,11 @@ const MASTER_DATA = [
     "newSchool": "MORIJO MIXED SENIOR SCHOOL",
     "newClass": "GRADE 10",
     "status": "ADOTTATO",
-    "sponsor": "GANADU MARIA PINA"
-  },
+    "sponsor": "GANADU MARIA PINA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026117",
     "surname": "LEMUNEN",
@@ -2647,8 +3001,11 @@ const MASTER_DATA = [
     "newSchool": "MORIJO MIXED SENIOR SCHOOL",
     "newClass": "GRADE 10",
     "status": "ADOTTATO",
-    "sponsor": "BISCARO RENZO  MARIA E LAURA"
-  },
+    "sponsor": "BISCARO RENZO  MARIA E LAURA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026118",
     "surname": "LEKAPUA",
@@ -2659,8 +3016,11 @@ const MASTER_DATA = [
     "newSchool": "MORIJO MIXED SENIOR SCHOOL",
     "newClass": "GRADE 10",
     "status": "ADOTTATO",
-    "sponsor": "GIUST SILVIA"
-  },
+    "sponsor": "GIUST SILVIA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026119",
     "surname": "LBULAKI",
@@ -2671,8 +3031,11 @@ const MASTER_DATA = [
     "newSchool": "MORIJO MIXED DAY SECONDARY SCHOOL",
     "newClass": "FORM 3",
     "status": "ADOTTATO",
-    "sponsor": "SORCI GINO - ZAVATTA PAOLA"
-  },
+    "sponsor": "SORCI GINO - ZAVATTA PAOLA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026120",
     "surname": "LEKESIKE",
@@ -2683,8 +3046,11 @@ const MASTER_DATA = [
     "newSchool": "MORIJO MIXED DAY SECONDARY SCHOOL",
     "newClass": "FORM 3",
     "status": "ADOTTATO",
-    "sponsor": "FOND. ANNA M. FEDER"
-  },
+    "sponsor": "FOND. ANNA M. FEDER",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026121",
     "surname": "LELESIIT",
@@ -2695,8 +3061,11 @@ const MASTER_DATA = [
     "newSchool": "MORIJO MIXED DAY SECONDARY SCHOOL",
     "newClass": "FORM 3",
     "status": "ADOTTATO",
-    "sponsor": "ONOFRI GIUSEPPE"
-  },
+    "sponsor": "ONOFRI GIUSEPPE",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026122",
     "surname": "LELESIIT",
@@ -2707,8 +3076,11 @@ const MASTER_DATA = [
     "newSchool": "MORIJO MIXED DAY SECONDARY SCHOOL",
     "newClass": "FORM 3",
     "status": "ADOTTATO",
-    "sponsor": "FOND. ANNA M. FEDER"
-  },
+    "sponsor": "FOND. ANNA M. FEDER",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026123",
     "surname": "LEMELENY",
@@ -2719,8 +3091,11 @@ const MASTER_DATA = [
     "newSchool": "MORIJO MIXED DAY SECONDARY SCHOOL",
     "newClass": "FORM 3",
     "status": "ADOTTATO",
-    "sponsor": "SETTE NADIA"
-  },
+    "sponsor": "SETTE NADIA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026124",
     "surname": "LENAIDAMAA",
@@ -2731,8 +3106,11 @@ const MASTER_DATA = [
     "newSchool": "MORIJO MIXED DAY SECONDARY SCHOOL",
     "newClass": "FORM 3",
     "status": "ADOTTATO",
-    "sponsor": "BANDINI NARA C/O GR.BIBLICO CASTIGLIONCELLO"
-  },
+    "sponsor": "BANDINI NARA C/O GR.BIBLICO CASTIGLIONCELLO",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026125",
     "surname": "LENAIDAMAA",
@@ -2743,8 +3121,11 @@ const MASTER_DATA = [
     "newSchool": "MORIJO MIXED DAY SECONDARY SCHOOL",
     "newClass": "FORM 3",
     "status": "ADOTTATO",
-    "sponsor": "PIRAS ANNA AGNESE"
-  },
+    "sponsor": "PIRAS ANNA AGNESE",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026126",
     "surname": "LENAITASHA",
@@ -2755,8 +3136,11 @@ const MASTER_DATA = [
     "newSchool": "MORIJO MIXED DAY SECONDARY SCHOOL",
     "newClass": "FORM 3",
     "status": "ADOTTATO",
-    "sponsor": "DE MARCHIS PREITE TERESA"
-  },
+    "sponsor": "DE MARCHIS PREITE TERESA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026127",
     "surname": "LENASEYIAN",
@@ -2767,8 +3151,11 @@ const MASTER_DATA = [
     "newSchool": "MORIJO MIXED DAY SECONDARY SCHOOL",
     "newClass": "FORM 3",
     "status": "ADOTTATO",
-    "sponsor": "SUN 2 MOON DI VISCONTI ROBERTO"
-  },
+    "sponsor": "SUN 2 MOON DI VISCONTI ROBERTO",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026128",
     "surname": "LENAPEER",
@@ -2779,8 +3166,11 @@ const MASTER_DATA = [
     "newSchool": "MORIJO MIXED DAY SECONDARY SCHOOL",
     "newClass": "FORM 3",
     "status": "ADOTTATO",
-    "sponsor": "TOFFOLON ALDO-CHIARA-GIULIA-TIZIANA"
-  },
+    "sponsor": "TOFFOLON ALDO-CHIARA-GIULIA-TIZIANA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026129",
     "surname": "LEPAATI",
@@ -2791,8 +3181,11 @@ const MASTER_DATA = [
     "newSchool": "MORIJO MIXED DAY SECONDARY SCHOOL",
     "newClass": "FORM 3",
     "status": "ADOTTATO",
-    "sponsor": "MATTAROLLO ENRICO"
-  },
+    "sponsor": "MATTAROLLO ENRICO",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026130",
     "surname": "LEPARTANAPA",
@@ -2803,8 +3196,11 @@ const MASTER_DATA = [
     "newSchool": "MORIJO MIXED DAY SECONDARY SCHOOL",
     "newClass": "FORM 3",
     "status": "ADOTTATO",
-    "sponsor": "ANCORA FRANCESCO"
-  },
+    "sponsor": "ANCORA FRANCESCO",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026131",
     "surname": "LESHIMPIRO",
@@ -2815,8 +3211,11 @@ const MASTER_DATA = [
     "newSchool": "MORIJO MIXED DAY SECONDARY SCHOOL",
     "newClass": "FORM 3",
     "status": "ADOTTATO",
-    "sponsor": "CROSATO BRUNA - INES-CARRER GINO"
-  },
+    "sponsor": "CROSATO BRUNA - INES-CARRER GINO",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026132",
     "surname": "LESIRITE",
@@ -2827,8 +3226,11 @@ const MASTER_DATA = [
     "newSchool": "MORIJO MIXED DAY SECONDARY SCHOOL",
     "newClass": "FORM 3",
     "status": "ADOTTATO",
-    "sponsor": "SOTGIA MARIA GAVINA - PAOLA"
-  },
+    "sponsor": "SOTGIA MARIA GAVINA - PAOLA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026133",
     "surname": "LEWAO",
@@ -2839,8 +3241,11 @@ const MASTER_DATA = [
     "newSchool": "MORIJO MIXED DAY SECONDARY SCHOOL",
     "newClass": "FORM 3",
     "status": "ADOTTATO",
-    "sponsor": "FORLIN GIORGIO"
-  },
+    "sponsor": "FORLIN GIORGIO",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026134",
     "surname": "LOTUAI",
@@ -2851,8 +3256,11 @@ const MASTER_DATA = [
     "newSchool": "MORIJO MIXED DAY SECONDARY SCHOOL",
     "newClass": "FORM 3",
     "status": "ADOTTATO",
-    "sponsor": "SORCI GINO - ZAVATTA PAOLA"
-  },
+    "sponsor": "SORCI GINO - ZAVATTA PAOLA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026135",
     "surname": "LEARAO",
@@ -2863,8 +3271,11 @@ const MASTER_DATA = [
     "newSchool": "MORIJO MIXED DAY SECONDARY SCHOOL",
     "newClass": "FORM 4",
     "status": "ADOTTATO",
-    "sponsor": "CAPIZZI ENZO-VANIN M. LUISA"
-  },
+    "sponsor": "CAPIZZI ENZO-VANIN M. LUISA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026136",
     "surname": "LEKARIKEI",
@@ -2875,8 +3286,11 @@ const MASTER_DATA = [
     "newSchool": "MORIJO MIXED DAY SECONDARY SCHOOL",
     "newClass": "FORM 4",
     "status": "ADOTTATO",
-    "sponsor": "SANGIORGI MARIA"
-  },
+    "sponsor": "SANGIORGI MARIA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026137",
     "surname": "LEKERISAE",
@@ -2887,8 +3301,11 @@ const MASTER_DATA = [
     "newSchool": "MORIJO MIXED DAY SECONDARY SCHOOL",
     "newClass": "FORM 4",
     "status": "ADOTTATO",
-    "sponsor": "PADOVANI PAOLO-FERRARELLI STEFANIA"
-  },
+    "sponsor": "PADOVANI PAOLO-FERRARELLI STEFANIA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026138",
     "surname": "LEKIRENYEI",
@@ -2899,8 +3316,11 @@ const MASTER_DATA = [
     "newSchool": "MORIJO MIXED DAY SECONDARY SCHOOL",
     "newClass": "FORM 4",
     "status": "ADOTTATO",
-    "sponsor": "DUCCI MARCO- CARIATI CRISTINA"
-  },
+    "sponsor": "DUCCI MARCO- CARIATI CRISTINA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026139",
     "surname": "LELERUK",
@@ -2911,8 +3331,11 @@ const MASTER_DATA = [
     "newSchool": "MORIJO MIXED DAY SECONDARY SCHOOL",
     "newClass": "FORM 4",
     "status": "ADOTTATO",
-    "sponsor": "POLO MARINO E RITA"
-  },
+    "sponsor": "POLO MARINO E RITA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026140",
     "surname": "LELESIIT",
@@ -2923,8 +3346,11 @@ const MASTER_DATA = [
     "newSchool": "MORIJO MIXED DAY SECONDARY SCHOOL",
     "newClass": "FORM 4",
     "status": "ADOTTATO",
-    "sponsor": "SIDERURGICA FIORENTINA"
-  },
+    "sponsor": "SIDERURGICA FIORENTINA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026141",
     "surname": "LELESIIT",
@@ -2935,8 +3361,11 @@ const MASTER_DATA = [
     "newSchool": "MORIJO MIXED DAY SECONDARY SCHOOL",
     "newClass": "FORM 4",
     "status": "ADOTTATO",
-    "sponsor": "BRAGAGNI BRUNO"
-  },
+    "sponsor": "BRAGAGNI BRUNO",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026142",
     "surname": "LENKIDI",
@@ -2947,8 +3376,11 @@ const MASTER_DATA = [
     "newSchool": "MORIJO MIXED DAY SECONDARY SCHOOL",
     "newClass": "FORM 4",
     "status": "ADOTTATO",
-    "sponsor": "CAZZARO RENATO - TORTORA ANNALISA"
-  },
+    "sponsor": "CAZZARO RENATO - TORTORA ANNALISA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026143",
     "surname": "LENTUMUNAI",
@@ -2959,8 +3391,11 @@ const MASTER_DATA = [
     "newSchool": "MORIJO MIXED DAY SECONDARY SCHOOL",
     "newClass": "FORM 4",
     "status": "ADOTTATO",
-    "sponsor": "FOND. ANNA M. FEDER"
-  },
+    "sponsor": "FOND. ANNA M. FEDER",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026144",
     "surname": "LENTUMUNAI",
@@ -2971,8 +3406,11 @@ const MASTER_DATA = [
     "newSchool": "MORIJO MIXED DAY SECONDARY SCHOOL",
     "newClass": "FORM 4",
     "status": "ADOTTATO",
-    "sponsor": "AMIPA"
-  },
+    "sponsor": "AMIPA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026145",
     "surname": "LENTUMUNAI",
@@ -2983,8 +3421,11 @@ const MASTER_DATA = [
     "newSchool": "MORIJO MIXED DAY SECONDARY SCHOOL",
     "newClass": "FORM 4",
     "status": "ADOTTATO",
-    "sponsor": "MICHIELETTO LUIGI"
-  },
+    "sponsor": "MICHIELETTO LUIGI",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026146",
     "surname": "LESHIMPIRO",
@@ -2995,8 +3436,11 @@ const MASTER_DATA = [
     "newSchool": "MORIJO MIXED DAY SECONDARY SCHOOL",
     "newClass": "FORM 4",
     "status": "ADOTTATO",
-    "sponsor": "FOND. ANNA M. FEDER"
-  },
+    "sponsor": "FOND. ANNA M. FEDER",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026147",
     "surname": "LESUYAI",
@@ -3007,8 +3451,11 @@ const MASTER_DATA = [
     "newSchool": "MORIJO MIXED DAY SECONDARY SCHOOL",
     "newClass": "FORM 4",
     "status": "ADOTTATO",
-    "sponsor": "FRANCHIN LUCIANO"
-  },
+    "sponsor": "FRANCHIN LUCIANO",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026148",
     "surname": "LESIRITE",
@@ -3019,8 +3466,11 @@ const MASTER_DATA = [
     "newSchool": "MORIJO MIXED DAY SECONDARY SCHOOL",
     "newClass": "FORM 4",
     "status": "ADOTTATO",
-    "sponsor": "MESTRINER PAOLO"
-  },
+    "sponsor": "MESTRINER PAOLO",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026149",
     "surname": "LETOLUAI",
@@ -3031,8 +3481,11 @@ const MASTER_DATA = [
     "newSchool": "MORIJO MIXED DAY SECONDARY SCHOOL",
     "newClass": "FORM 4",
     "status": "ADOTTATO",
-    "sponsor": "FORLIN GIORGIO"
-  },
+    "sponsor": "FORLIN GIORGIO",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026150",
     "surname": "LETOLUAI",
@@ -3043,8 +3496,11 @@ const MASTER_DATA = [
     "newSchool": "MORIJO MIXED DAY SECONDARY SCHOOL",
     "newClass": "FORM 4",
     "status": "ADOTTATO",
-    "sponsor": "BAFFIONI AVE"
-  },
+    "sponsor": "BAFFIONI AVE",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026151",
     "surname": "LEWAO",
@@ -3055,8 +3511,11 @@ const MASTER_DATA = [
     "newSchool": "MORIJO MIXED DAY SECONDARY SCHOOL",
     "newClass": "FORM 4",
     "status": "ADOTTATO",
-    "sponsor": "BELLIENI ALESSIA"
-  },
+    "sponsor": "BELLIENI ALESSIA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026152",
     "surname": "LOLKIRIK",
@@ -3067,8 +3526,11 @@ const MASTER_DATA = [
     "newSchool": "MORIJO MIXED DAY SECONDARY SCHOOL",
     "newClass": "FORM 4",
     "status": "ADOTTATO",
-    "sponsor": "PILLON GIORGIO - DONADI ANNA"
-  },
+    "sponsor": "PILLON GIORGIO - DONADI ANNA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026153",
     "surname": "LOLMARENY",
@@ -3079,8 +3541,11 @@ const MASTER_DATA = [
     "newSchool": "MORIJO MIXED DAY SECONDARY SCHOOL",
     "newClass": "FORM 4",
     "status": "ADOTTATO",
-    "sponsor": "ORLANDO ROSA"
-  },
+    "sponsor": "ORLANDO ROSA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026154",
     "surname": "LOSIRKAT",
@@ -3091,8 +3556,11 @@ const MASTER_DATA = [
     "newSchool": "MORIJO MIXED DAY SECONDARY SCHOOL",
     "newClass": "FORM 4",
     "status": "ADOTTATO",
-    "sponsor": "BAFFIONI AVE"
-  },
+    "sponsor": "BAFFIONI AVE",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026155",
     "surname": "LOSIRKAT",
@@ -3103,8 +3571,11 @@ const MASTER_DATA = [
     "newSchool": "MORIJO MIXED DAY SECONDARY SCHOOL",
     "newClass": "FORM 4",
     "status": "ADOTTATO",
-    "sponsor": "SUN 2 MOON DI VISCONTI ROBERTO"
-  },
+    "sponsor": "SUN 2 MOON DI VISCONTI ROBERTO",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026156",
     "surname": "LEMUNEN",
@@ -3115,8 +3586,11 @@ const MASTER_DATA = [
     "newSchool": "MORIJO MIXED DAY SECONDARY SCHOOL",
     "newClass": "FORM 4",
     "status": "ADOTTATO",
-    "sponsor": "FERRARI VINCENZO"
-  },
+    "sponsor": "FERRARI VINCENZO",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026157",
     "surname": "LENANGURAM",
@@ -3127,8 +3601,11 @@ const MASTER_DATA = [
     "newSchool": "MORIJO MIXED DAY SECONDARY SCHOOL",
     "newClass": "FORM 4",
     "status": "ADOTTATO",
-    "sponsor": "FACCIN ROBERTA"
-  },
+    "sponsor": "FACCIN ROBERTA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026158",
     "surname": "SAOSI",
@@ -3139,8 +3616,11 @@ const MASTER_DATA = [
     "newSchool": "MORIJO MIXED DAY SECONDARY SCHOOL",
     "newClass": "FORM 4",
     "status": "ADOTTATO",
-    "sponsor": "AMIPA"
-  },
+    "sponsor": "AMIPA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026159",
     "surname": "NAPUNYU",
@@ -3151,8 +3631,11 @@ const MASTER_DATA = [
     "newSchool": "NDURURUMO HIGH SENIOR SCHOOL",
     "newClass": "GRADE 10",
     "status": "ADOTTATO",
-    "sponsor": "SALMASO GIANNI-CARLA-CASSON MARIA"
-  },
+    "sponsor": "SALMASO GIANNI-CARLA-CASSON MARIA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026160",
     "surname": "LETOLUAI",
@@ -3163,8 +3646,11 @@ const MASTER_DATA = [
     "newSchool": "NKORIKA/LKUJITA",
     "newClass": "LCHEKUTI",
     "status": "ADOTTATO",
-    "sponsor": "FAVARETTO FIORAVANTE - POZZOBON M."
-  },
+    "sponsor": "FAVARETTO FIORAVANTE - POZZOBON M.",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026161",
     "surname": "LEIPELE",
@@ -3175,8 +3661,11 @@ const MASTER_DATA = [
     "newSchool": "NKORIKA PRIMARY SCHOOL",
     "newClass": "GRADE 2",
     "status": "ADOTTATO",
-    "sponsor": "PARONETTO GIANNI"
-  },
+    "sponsor": "PARONETTO GIANNI",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026162",
     "surname": "LEMUNEN",
@@ -3187,8 +3676,11 @@ const MASTER_DATA = [
     "newSchool": "NKORIKA PRIMARY SCHOOL",
     "newClass": "GRADE 3",
     "status": "ADOTTATO",
-    "sponsor": "LEUZZI LUCIO ROCCO"
-  },
+    "sponsor": "LEUZZI LUCIO ROCCO",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026163",
     "surname": "LENTUMUNAI",
@@ -3211,8 +3703,11 @@ const MASTER_DATA = [
     "newSchool": "NKORIKA PRIMARY SCHOOL",
     "newClass": "GRADE 5",
     "status": "ADOTTATO",
-    "sponsor": "VEDOVELLO CRISTIAN-CASELLA CLAUDIA"
-  },
+    "sponsor": "VEDOVELLO CRISTIAN-CASELLA CLAUDIA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026165",
     "surname": "LEMUNEN",
@@ -3223,8 +3718,11 @@ const MASTER_DATA = [
     "newSchool": "NKORIKA PRIMARY SCHOOL",
     "newClass": "GRADE 6",
     "status": "ADOTTATO",
-    "sponsor": "ZAMBON MAURO-MATTEO-FUSER BARBARA"
-  },
+    "sponsor": "ZAMBON MAURO-MATTEO-FUSER BARBARA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026166",
     "surname": "LEKAIPURE",
@@ -3235,8 +3733,11 @@ const MASTER_DATA = [
     "newSchool": "NKORIKA PRIMARY SCHOOL",
     "newClass": "GRADE 7",
     "status": "ADOTTATO",
-    "sponsor": "SEVERI STEFANIA-ROSSETTI MASSIMILIANO"
-  },
+    "sponsor": "SEVERI STEFANIA-ROSSETTI MASSIMILIANO",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026167",
     "surname": "LEMETEKI",
@@ -3247,8 +3748,11 @@ const MASTER_DATA = [
     "newSchool": "SOIT-PUS PRIMARY SCHOOL",
     "newClass": "GRADE 3",
     "status": "ADOTTATO",
-    "sponsor": "SCHIAVON MARIA"
-  },
+    "sponsor": "SCHIAVON MARIA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026168",
     "surname": "LOLMARENY",
@@ -3259,8 +3763,11 @@ const MASTER_DATA = [
     "newSchool": "SOIT-PUS PRIMARY SCHOOL",
     "newClass": "GRADE 3",
     "status": "ADOTTATO",
-    "sponsor": "BUCCIARELLI SAURO - BERNINI BARBARA"
-  },
+    "sponsor": "BUCCIARELLI SAURO - BERNINI BARBARA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026169",
     "surname": "LEKUPE",
@@ -3271,8 +3778,11 @@ const MASTER_DATA = [
     "newSchool": "SOIT-PUS PRIMARY SCHOOL",
     "newClass": "GRADE 4",
     "status": "ADOTTATO",
-    "sponsor": "RANDISI M. GABRIELLA"
-  },
+    "sponsor": "RANDISI M. GABRIELLA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026170",
     "surname": "LEKUSUMO",
@@ -3283,8 +3793,11 @@ const MASTER_DATA = [
     "newSchool": "SOIT-PUS PRIMARY SCHOOL",
     "newClass": "GRADE 4",
     "status": "ADOTTATO",
-    "sponsor": "BAFFETTI ERMANNO"
-  },
+    "sponsor": "BAFFETTI ERMANNO",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026171",
     "surname": "LESEYIA",
@@ -3295,8 +3808,11 @@ const MASTER_DATA = [
     "newSchool": "SOIT-PUS PRIMARY SCHOOL",
     "newClass": "GRADE 4",
     "status": "ADOTTATO",
-    "sponsor": "ZAMBON MARIO - GUERRA IVETTA"
-  },
+    "sponsor": "ZAMBON MARIO - GUERRA IVETTA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026172",
     "surname": "LEMOOSA",
@@ -3307,8 +3823,11 @@ const MASTER_DATA = [
     "newSchool": "SOIT-PUS PRIMARY SCHOOL",
     "newClass": "GRADE 5",
     "status": "ADOTTATO",
-    "sponsor": "CESCHIN NADIA"
-  },
+    "sponsor": "CESCHIN NADIA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026173",
     "surname": "LENADONGER",
@@ -3319,8 +3838,11 @@ const MASTER_DATA = [
     "newSchool": "SOIT-PUS PRIMARY SCHOOL",
     "newClass": "GRADE 5",
     "status": "ADOTTATO",
-    "sponsor": "GRIMANDI MARCELLO"
-  },
+    "sponsor": "GRIMANDI MARCELLO",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026174",
     "surname": "LENGELESHI",
@@ -3331,8 +3853,11 @@ const MASTER_DATA = [
     "newSchool": "SOIT-PUS PRIMARY SCHOOL",
     "newClass": "GRADE 5",
     "status": "ADOTTATO",
-    "sponsor": "CALDO DANIELA"
-  },
+    "sponsor": "CALDO DANIELA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026175",
     "surname": "LESEREWA",
@@ -3343,8 +3868,11 @@ const MASTER_DATA = [
     "newSchool": "SOIT-PUS PRIMARY SCHOOL",
     "newClass": "GRADE 6",
     "status": "ADOTTATO",
-    "sponsor": "MONGARDI VANDA - PAGANI ORESTE"
-  },
+    "sponsor": "MONGARDI VANDA - PAGANI ORESTE",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026176",
     "surname": "LESUYAI",
@@ -3355,8 +3883,11 @@ const MASTER_DATA = [
     "newSchool": "SOIT-PUS PRIMARY SCHOOL",
     "newClass": "GRADE 6",
     "status": "ADOTTATO",
-    "sponsor": "BONETTI ANTONIO"
-  },
+    "sponsor": "BONETTI ANTONIO",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026177",
     "surname": "LENKAAK",
@@ -3367,8 +3898,11 @@ const MASTER_DATA = [
     "newSchool": "SOIT-PUS PRIMARY SCHOOL",
     "newClass": "GRADE 6",
     "status": "ADOTTATO",
-    "sponsor": "STELLIN GIOVANNA"
-  },
+    "sponsor": "STELLIN GIOVANNA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026178",
     "surname": "LENKOROWAE",
@@ -3379,8 +3913,11 @@ const MASTER_DATA = [
     "newSchool": "SOIT-PUS PRIMARY SCHOOL",
     "newClass": "GRADE 7",
     "status": "ADOTTATO",
-    "sponsor": "MONTAGNER RENATA"
-  },
+    "sponsor": "MONTAGNER RENATA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026179",
     "surname": "LEKEMPE",
@@ -3391,8 +3928,11 @@ const MASTER_DATA = [
     "newSchool": "SOIT-PUS PRIMARY SCHOOL",
     "newClass": "GRADE 9",
     "status": "ADOTTATO",
-    "sponsor": "BONA MARIA TERESA"
-  },
+    "sponsor": "BONA MARIA TERESA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026180",
     "surname": "LEPAKIYIO",
@@ -3403,8 +3943,11 @@ const MASTER_DATA = [
     "newSchool": "LGOOS CBC",
     "newClass": "GRADE 4",
     "status": "ADOTTATO",
-    "sponsor": "BABINI AURELIA"
-  },
+    "sponsor": "BABINI AURELIA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026181",
     "surname": "LEPARTANAPA",
@@ -3415,8 +3958,11 @@ const MASTER_DATA = [
     "newSchool": "SAMBURU MIXED MIXED DAY SEC. SCH.",
     "newClass": "FORM 3",
     "status": "ADOTTATO",
-    "sponsor": "VETTORI EFREM - D'ACQUISTO MARIAROSA"
-  },
+    "sponsor": "VETTORI EFREM - D'ACQUISTO MARIAROSA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026182",
     "surname": "LEKUPE",
@@ -3427,8 +3973,11 @@ const MASTER_DATA = [
     "newSchool": "ST. PAUL CBC",
     "newClass": "GRADE 3",
     "status": "ADOTTATO",
-    "sponsor": "MUFFATO GIOVANNA - BOTTER PIETRO"
-  },
+    "sponsor": "MUFFATO GIOVANNA - BOTTER PIETRO",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026183",
     "surname": "LEKOROLE",
@@ -3439,8 +3988,11 @@ const MASTER_DATA = [
     "newSchool": "ST. PAUL CBC",
     "newClass": "GRADE 7",
     "status": "ADOTTATO",
-    "sponsor": "TASSINARI MANUELA"
-  },
+    "sponsor": "TASSINARI MANUELA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026184",
     "surname": "LEKASUYIAN",
@@ -3451,8 +4003,11 @@ const MASTER_DATA = [
     "newSchool": "ST. THERESAS GIRLS SENIOR SCHOOL",
     "newClass": "GRADE 10",
     "status": "ADOTTATO",
-    "sponsor": "CESCHIN CAMPION GIANFRANCA"
-  },
+    "sponsor": "CESCHIN CAMPION GIANFRANCA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026185",
     "surname": "LESEYIA",
@@ -3463,8 +4018,11 @@ const MASTER_DATA = [
     "newSchool": "ST.THERESAS GIRLS SECONDARY  SCHOOL",
     "newClass": "FORM 3",
     "status": "ADOTTATO",
-    "sponsor": "FERRARESE FABIO E NADIA"
-  },
+    "sponsor": "FERRARESE FABIO E NADIA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026186",
     "surname": "LESANGURIKURI",
@@ -3475,8 +4033,11 @@ const MASTER_DATA = [
     "newSchool": "TOP MAX",
     "newClass": "YEAR 3",
     "status": "ADOTTATO",
-    "sponsor": "ASSOCIAZIONE SAN FRANCESCO"
-  },
+    "sponsor": "ASSOCIAZIONE SAN FRANCESCO",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026187",
     "surname": "LEWAO",
@@ -3487,8 +4048,11 @@ const MASTER_DATA = [
     "newSchool": "FINISH",
     "newClass": "FINISH",
     "status": "COMPLETATO",
-    "sponsor": "DEOTTI FRANCO - SPADETTO M. ANTONIETTA"
-  },
+    "sponsor": "DEOTTI FRANCO - SPADETTO M. ANTONIETTA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026188",
     "surname": "LEPARTANAPA",
@@ -3499,8 +4063,11 @@ const MASTER_DATA = [
     "newSchool": "FINISH",
     "newClass": "FINISH",
     "status": "COMPLETATO",
-    "sponsor": "COLUSSO CESARE"
-  },
+    "sponsor": "COLUSSO CESARE",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026189",
     "surname": "LESEEWA",
@@ -3511,8 +4078,11 @@ const MASTER_DATA = [
     "newSchool": "FINISH",
     "newClass": "FINISH",
     "status": "COMPLETATO",
-    "sponsor": "SALUCCI CINZIA"
-  },
+    "sponsor": "SALUCCI CINZIA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026190",
     "surname": "LENTIIPO",
@@ -3523,8 +4093,11 @@ const MASTER_DATA = [
     "newSchool": "FINISH",
     "newClass": "FINISH",
     "status": "COMPLETATO",
-    "sponsor": "FAM. BUSNELLO DURANTE MARINA"
-  },
+    "sponsor": "FAM. BUSNELLO DURANTE MARINA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026191",
     "surname": "LEMANTE",
@@ -3535,8 +4108,11 @@ const MASTER_DATA = [
     "newSchool": "FINISH",
     "newClass": "FINISH",
     "status": "COMPLETATO",
-    "sponsor": "GALLI VINCENZO"
-  },
+    "sponsor": "GALLI VINCENZO",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026192",
     "surname": "LOTUAI",
@@ -3547,8 +4123,11 @@ const MASTER_DATA = [
     "newSchool": "FINISH",
     "newClass": "FINISH",
     "status": "COMPLETATO",
-    "sponsor": "BORTOLANZA GIORDANA"
-  },
+    "sponsor": "BORTOLANZA GIORDANA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026193",
     "surname": "LEKERISAE",
@@ -3559,8 +4138,11 @@ const MASTER_DATA = [
     "newSchool": "NO SCHOOL",
     "newClass": "NO SCHOOL",
     "status": "INATTIVO",
-    "sponsor": "AMICI CL.1954 C/O SALVALAIO GIANNI"
-  },
+    "sponsor": "AMICI CL.1954 C/O SALVALAIO GIANNI",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026194",
     "surname": "LENTUMUNAI",
@@ -3571,8 +4153,11 @@ const MASTER_DATA = [
     "newSchool": "FINISH",
     "newClass": "FINISH",
     "status": "COMPLETATO",
-    "sponsor": "AMIPA"
-  },
+    "sponsor": "AMIPA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026195",
     "surname": "LESHIMPIRO",
@@ -3583,8 +4168,11 @@ const MASTER_DATA = [
     "newSchool": "FINISH",
     "newClass": "FINISH",
     "status": "COMPLETATO",
-    "sponsor": "POZZOBON STEFANIA - DURIGHEL STEFANO"
-  },
+    "sponsor": "POZZOBON STEFANIA - DURIGHEL STEFANO",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026196",
     "surname": "LEWAO",
@@ -3595,8 +4183,11 @@ const MASTER_DATA = [
     "newSchool": "FINISH",
     "newClass": "FINISH",
     "status": "COMPLETATO",
-    "sponsor": "AMIPA"
-  },
+    "sponsor": "AMIPA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026197",
     "surname": "LEKASUYIAN",
@@ -3607,8 +4198,11 @@ const MASTER_DATA = [
     "newSchool": "FINISH",
     "newClass": "FINISH",
     "status": "COMPLETATO",
-    "sponsor": "SERRAGIOTTO ZOE"
-  },
+    "sponsor": "SERRAGIOTTO ZOE",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026198",
     "surname": "LEKAPUA",
@@ -3619,8 +4213,11 @@ const MASTER_DATA = [
     "newSchool": "FINISH",
     "newClass": "FINISH",
     "status": "COMPLETATO",
-    "sponsor": "POZZOBON GIORGIO C/O POZZONON ALBINO"
-  },
+    "sponsor": "POZZOBON GIORGIO C/O POZZONON ALBINO",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026199",
     "surname": "LEKERDE",
@@ -3631,8 +4228,11 @@ const MASTER_DATA = [
     "newSchool": "FINISH",
     "newClass": "FINISH",
     "status": "COMPLETATO",
-    "sponsor": "SCHIAVON MARIA"
-  },
+    "sponsor": "SCHIAVON MARIA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026200",
     "surname": "LEKIRENYEI",
@@ -3643,8 +4243,11 @@ const MASTER_DATA = [
     "newSchool": "FINISH",
     "newClass": "FINISH",
     "status": "COMPLETATO",
-    "sponsor": "RICCI MONICA CALDERONI DOMENICO"
-  },
+    "sponsor": "RICCI MONICA CALDERONI DOMENICO",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026201",
     "surname": "LEKOROLE",
@@ -3655,8 +4258,11 @@ const MASTER_DATA = [
     "newSchool": "FINISH",
     "newClass": "FINISH",
     "status": "COMPLETATO",
-    "sponsor": "SARI TERESA"
-  },
+    "sponsor": "SARI TERESA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026202",
     "surname": "LEKOROLE",
@@ -3667,8 +4273,11 @@ const MASTER_DATA = [
     "newSchool": "FINISH",
     "newClass": "FINISH",
     "status": "COMPLETATO",
-    "sponsor": "CAMBA ADRIANA LUISA GIUDITTA"
-  },
+    "sponsor": "CAMBA ADRIANA LUISA GIUDITTA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026203",
     "surname": "LELERUK",
@@ -3679,8 +4288,11 @@ const MASTER_DATA = [
     "newSchool": "FINISH",
     "newClass": "FINISH",
     "status": "COMPLETATO",
-    "sponsor": "PRESOT CESARE - FRACAS ALIDA"
-  },
+    "sponsor": "PRESOT CESARE - FRACAS ALIDA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026204",
     "surname": "LEMEIKARI",
@@ -3691,8 +4303,11 @@ const MASTER_DATA = [
     "newSchool": "NO SCHOOL",
     "newClass": "NO SCHOOL",
     "status": "INATTIVO",
-    "sponsor": "BORTOLANZA MARIELLA"
-  },
+    "sponsor": "BORTOLANZA MARIELLA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026205",
     "surname": "LENASEYIAN",
@@ -3703,8 +4318,11 @@ const MASTER_DATA = [
     "newSchool": "FINISH",
     "newClass": "FINISH",
     "status": "COMPLETATO",
-    "sponsor": "GIULIANO CICCONE MARIA"
-  },
+    "sponsor": "GIULIANO CICCONE MARIA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026206",
     "surname": "LENGELESHI",
@@ -3715,8 +4333,11 @@ const MASTER_DATA = [
     "newSchool": "FINISH",
     "newClass": "FINISH",
     "status": "COMPLETATO",
-    "sponsor": "GRESPAN GRAZIANO"
-  },
+    "sponsor": "GRESPAN GRAZIANO",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026207",
     "surname": "LENGURNET",
@@ -3727,8 +4348,11 @@ const MASTER_DATA = [
     "newSchool": "FINISH",
     "newClass": "FINISH",
     "status": "COMPLETATO",
-    "sponsor": "PULCINI FABIO - PITUELLO ELEONORA"
-  },
+    "sponsor": "PULCINI FABIO - PITUELLO ELEONORA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026208",
     "surname": "LENGURO",
@@ -3739,8 +4363,11 @@ const MASTER_DATA = [
     "newSchool": "FINISH",
     "newClass": "FINISH",
     "status": "COMPLETATO",
-    "sponsor": "ACCETTULLI ALBERTO"
-  },
+    "sponsor": "ACCETTULLI ALBERTO",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026209",
     "surname": "LENKAAK",
@@ -3751,8 +4378,11 @@ const MASTER_DATA = [
     "newSchool": "FINISH",
     "newClass": "FINISH",
     "status": "COMPLETATO",
-    "sponsor": "BONETTI ANTONIO - BEA COMPAGNIA"
-  },
+    "sponsor": "BONETTI ANTONIO - BEA COMPAGNIA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026210",
     "surname": "LENKILILI",
@@ -3763,8 +4393,11 @@ const MASTER_DATA = [
     "newSchool": "FINISH",
     "newClass": "FINISH",
     "status": "COMPLETATO",
-    "sponsor": "LAZZARI IVO E ALESSANDRA"
-  },
+    "sponsor": "LAZZARI IVO E ALESSANDRA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026211",
     "surname": "LENTUMUNAI",
@@ -3775,8 +4408,11 @@ const MASTER_DATA = [
     "newSchool": "FINISH",
     "newClass": "FINISH",
     "status": "COMPLETATO",
-    "sponsor": "GHEZZI FABIANO"
-  },
+    "sponsor": "GHEZZI FABIANO",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026212",
     "surname": "LENTUMUNAI",
@@ -3787,8 +4423,11 @@ const MASTER_DATA = [
     "newSchool": "FINISH",
     "newClass": "FINISH",
     "status": "COMPLETATO",
-    "sponsor": "BOVO DANIELA"
-  },
+    "sponsor": "BOVO DANIELA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026213",
     "surname": "LEMUNEN",
@@ -3799,8 +4438,11 @@ const MASTER_DATA = [
     "newSchool": "MARRIED",
     "newClass": "NO SCHOOL",
     "status": "INATTIVO",
-    "sponsor": "SORCI GINO - ZAVATTA PAOLA"
-  },
+    "sponsor": "SORCI GINO - ZAVATTA PAOLA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026214",
     "surname": "LENAASALE",
@@ -3811,8 +4453,11 @@ const MASTER_DATA = [
     "newSchool": "FINISH",
     "newClass": "FINISH",
     "status": "COMPLETATO",
-    "sponsor": "BORTOLATO MILENA"
-  },
+    "sponsor": "BORTOLATO MILENA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026215",
     "surname": "LEPARTANAPA",
@@ -3823,8 +4468,11 @@ const MASTER_DATA = [
     "newSchool": "FINISH",
     "newClass": "FINISH",
     "status": "COMPLETATO",
-    "sponsor": "BOLZONELLO ALFIO -LIEVORE SERENELLA"
-  },
+    "sponsor": "BOLZONELLO ALFIO -LIEVORE SERENELLA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026216",
     "surname": "LESEEWA",
@@ -3835,8 +4483,11 @@ const MASTER_DATA = [
     "newSchool": "FINISH",
     "newClass": "FINISH",
     "status": "COMPLETATO",
-    "sponsor": "SARTORI ANGELO - BANDIERA ELISA"
-  },
+    "sponsor": "SARTORI ANGELO - BANDIERA ELISA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026217",
     "surname": "LESEYIA",
@@ -3847,8 +4498,11 @@ const MASTER_DATA = [
     "newSchool": "FINISH",
     "newClass": "FINISH",
     "status": "COMPLETATO",
-    "sponsor": "BONETTI RAFFAELLA - CROSATO MAURO"
-  },
+    "sponsor": "BONETTI RAFFAELLA - CROSATO MAURO",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026218",
     "surname": "LEKADAA",
@@ -3859,8 +4513,11 @@ const MASTER_DATA = [
     "newSchool": "NO SCHOOL",
     "newClass": "NO SCHOOL",
     "status": "INATTIVO",
-    "sponsor": "ROSSI EMMA"
-  },
+    "sponsor": "ROSSI EMMA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026219",
     "surname": "LEERTE",
@@ -3871,8 +4528,11 @@ const MASTER_DATA = [
     "newSchool": "NO SCHOOL",
     "newClass": "NO SCHOOL",
     "status": "INATTIVO",
-    "sponsor": "CATALDI MAURIZIO - MEZZAVILLA ANTONELLA"
-  },
+    "sponsor": "CATALDI MAURIZIO - MEZZAVILLA ANTONELLA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026220",
     "surname": "LEPARTANAPA",
@@ -3883,8 +4543,11 @@ const MASTER_DATA = [
     "newSchool": "NO SCHOOL",
     "newClass": "NO SCHOOL",
     "status": "INATTIVO",
-    "sponsor": "ERRANI PAOLA-GIOVANNA FUSCHINI"
-  },
+    "sponsor": "ERRANI PAOLA-GIOVANNA FUSCHINI",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026221",
     "surname": "LOKORO",
@@ -3895,8 +4558,11 @@ const MASTER_DATA = [
     "newSchool": "FINISH",
     "newClass": "FINISH",
     "status": "COMPLETATO",
-    "sponsor": "ASSOCIAZIONE AMICI DI NERESHEM"
-  },
+    "sponsor": "ASSOCIAZIONE AMICI DI NERESHEM",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026222",
     "surname": "LESORIMBA",
@@ -3907,8 +4573,11 @@ const MASTER_DATA = [
     "newSchool": "NKIRENY PRIMARY",
     "newClass": "GRADE 2",
     "status": "ADOTTATO",
-    "sponsor": "MARCHIORI DANIELA - GIURIATO VALTER"
-  },
+    "sponsor": "MARCHIORI DANIELA - GIURIATO VALTER",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026223",
     "surname": "LOMURAI",
@@ -3919,8 +4588,11 @@ const MASTER_DATA = [
     "newSchool": "FINISH",
     "newClass": "FINISH",
     "status": "COMPLETATO",
-    "sponsor": "PIOVESAN LADIMIRO E TOFFOLO ANNA"
-  },
+    "sponsor": "PIOVESAN LADIMIRO E TOFFOLO ANNA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026224",
     "surname": "LOSERIAN",
@@ -3931,8 +4603,11 @@ const MASTER_DATA = [
     "newSchool": "FINISH",
     "newClass": "FINISH",
     "status": "COMPLETATO",
-    "sponsor": "CECCONI TIZIANO"
-  },
+    "sponsor": "CECCONI TIZIANO",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026225",
     "surname": "NAPEEI",
@@ -3943,8 +4618,11 @@ const MASTER_DATA = [
     "newSchool": "NO SCHOOL",
     "newClass": "NO SCHOOL",
     "status": "INATTIVO",
-    "sponsor": "LIBRALESSO MARIA"
-  },
+    "sponsor": "LIBRALESSO MARIA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026226",
     "surname": "NKURCHANA",
@@ -3955,8 +4633,11 @@ const MASTER_DATA = [
     "newSchool": "FINISH",
     "newClass": "FINISH",
     "status": "COMPLETATO",
-    "sponsor": "POLO MARINO E RITA"
-  },
+    "sponsor": "POLO MARINO E RITA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026227",
     "surname": "LENASEYIAN",
@@ -3967,8 +4648,11 @@ const MASTER_DATA = [
     "newSchool": "NO SCHOOL",
     "newClass": "NO SCHOOL",
     "status": "INATTIVO",
-    "sponsor": "SUN 2 MOON DI VISCONTI ROBERTO"
-  },
+    "sponsor": "SUN 2 MOON DI VISCONTI ROBERTO",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026228",
     "surname": "LESHIMPIRO",
@@ -3979,8 +4663,11 @@ const MASTER_DATA = [
     "newSchool": "NO SCHOOL",
     "newClass": "NO SCHOOL",
     "status": "INATTIVO",
-    "sponsor": "POLO MARINO E RITA"
-  },
+    "sponsor": "POLO MARINO E RITA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026229",
     "surname": "LETOWON",
@@ -3991,8 +4678,11 @@ const MASTER_DATA = [
     "newSchool": "NO SCHOOL",
     "newClass": "NO SCHOOL",
     "status": "INATTIVO",
-    "sponsor": "BANDIERA MAURIZIO"
-  },
+    "sponsor": "BANDIERA MAURIZIO",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026230",
     "surname": "LEKATAP",
@@ -4003,8 +4693,11 @@ const MASTER_DATA = [
     "newSchool": "NKIRENY PRIMARY",
     "newClass": "GRADE 7",
     "status": "ADOTTABILE",
-    "sponsor": ""
-  },
+    "sponsor": "",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026231",
     "surname": "LEKERDE",
@@ -4015,8 +4708,11 @@ const MASTER_DATA = [
     "newSchool": "NKIRENY PRIMARY",
     "newClass": "GRADE 9",
     "status": "ADOTTABILE",
-    "sponsor": ""
-  },
+    "sponsor": "",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026232",
     "surname": "LEKUPE",
@@ -4027,8 +4723,11 @@ const MASTER_DATA = [
     "newSchool": "NKIRENY PRIMARY",
     "newClass": "GRADE 5",
     "status": "ADOTTABILE",
-    "sponsor": ""
-  },
+    "sponsor": "",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026233",
     "surname": "LEKUPE",
@@ -4039,8 +4738,11 @@ const MASTER_DATA = [
     "newSchool": "NKIRENY PRIMARY",
     "newClass": "GRADE 9",
     "status": "ADOTTABILE",
-    "sponsor": ""
-  },
+    "sponsor": "",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026234",
     "surname": "LENGURU",
@@ -4051,8 +4753,11 @@ const MASTER_DATA = [
     "newSchool": "NKIRENY PRIMARY",
     "newClass": "GRADE 5",
     "status": "ADOTTABILE",
-    "sponsor": ""
-  },
+    "sponsor": "",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026235",
     "surname": "LENKIRASI",
@@ -4063,8 +4768,11 @@ const MASTER_DATA = [
     "newSchool": "NKIRENY PRIMARY",
     "newClass": "GRADE 4",
     "status": "ADOTTABILE",
-    "sponsor": ""
-  },
+    "sponsor": "",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026236",
     "surname": "LEPARTANAPA",
@@ -4075,8 +4783,11 @@ const MASTER_DATA = [
     "newSchool": "NKIRENY PRIMARY",
     "newClass": "GRADE 2",
     "status": "ADOTTABILE",
-    "sponsor": ""
-  },
+    "sponsor": "",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026237",
     "surname": "LESEYIA",
@@ -4087,8 +4798,11 @@ const MASTER_DATA = [
     "newSchool": "NKIRENY PRIMARY",
     "newClass": "GRADE 3",
     "status": "ADOTTABILE",
-    "sponsor": ""
-  },
+    "sponsor": "",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026238",
     "surname": "LOLMARENY",
@@ -4099,8 +4813,11 @@ const MASTER_DATA = [
     "newSchool": "NKIRENY PRIMARY",
     "newClass": "GRADE 5",
     "status": "ADOTTABILE",
-    "sponsor": ""
-  },
+    "sponsor": "",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026239",
     "surname": "LORORUA",
@@ -4111,8 +4828,11 @@ const MASTER_DATA = [
     "newSchool": "NKIRENY PRIMARY",
     "newClass": "GRADE 5",
     "status": "ADOTTATO",
-    "sponsor": "ZORZI ADA"
-  },
+    "sponsor": "ZORZI ADA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026240",
     "surname": "LEMUNEN",
@@ -4123,8 +4843,11 @@ const MASTER_DATA = [
     "newSchool": "NKABAI PRIMARY SCHOOL",
     "newClass": "GRADE 2",
     "status": "ADOTTABILE",
-    "sponsor": ""
-  },
+    "sponsor": "",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026241",
     "surname": "LETOWON",
@@ -4135,8 +4858,11 @@ const MASTER_DATA = [
     "newSchool": "NKABAI PRIMARY SCHOOL",
     "newClass": "GRADE 2",
     "status": "ADOTTABILE",
-    "sponsor": ""
-  },
+    "sponsor": "",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026242",
     "surname": "LENGOIBONI",
@@ -4147,8 +4873,11 @@ const MASTER_DATA = [
     "newSchool": "NKABAI PRIMARY SCHOOL",
     "newClass": "GRADE 2",
     "status": "ADOTTABILE",
-    "sponsor": ""
-  },
+    "sponsor": "",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026243",
     "surname": "LEARAO",
@@ -4159,8 +4888,11 @@ const MASTER_DATA = [
     "newSchool": "NKABAI PRIMARY SCHOOL",
     "newClass": "GRADE 2",
     "status": "ADOTTABILE",
-    "sponsor": ""
-  },
+    "sponsor": "",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026244",
     "surname": "LEMUNEN",
@@ -4171,8 +4903,11 @@ const MASTER_DATA = [
     "newSchool": "NKABAI PRIMARY SCHOOL",
     "newClass": "GRADE 2",
     "status": "ADOTTABILE",
-    "sponsor": ""
-  },
+    "sponsor": "",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026245",
     "surname": "LEKATAP",
@@ -4183,8 +4918,11 @@ const MASTER_DATA = [
     "newSchool": "NKABAI COMPREHENSIVE SCHOOL",
     "newClass": "GRADE 2",
     "status": "ADOTTABILE",
-    "sponsor": ""
-  },
+    "sponsor": "",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026246",
     "surname": "LEARAO",
@@ -4195,8 +4933,11 @@ const MASTER_DATA = [
     "newSchool": "NKABAI PRIMARY SCHOOL",
     "newClass": "GRADE 2",
     "status": "ADOTTABILE",
-    "sponsor": ""
-  },
+    "sponsor": "",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026247",
     "surname": "LEWAO",
@@ -4207,8 +4948,11 @@ const MASTER_DATA = [
     "newSchool": "NKABAI PRIMARY SCHOOL",
     "newClass": "GRADE 2",
     "status": "ADOTTABILE",
-    "sponsor": ""
-  },
+    "sponsor": "",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026248",
     "surname": "LESUYAI",
@@ -4219,8 +4963,11 @@ const MASTER_DATA = [
     "newSchool": "NKABAI PRIMARY SCHOOL",
     "newClass": "GRADE 2",
     "status": "ADOTTABILE",
-    "sponsor": ""
-  },
+    "sponsor": "",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026249",
     "surname": "LEKUPE",
@@ -4231,8 +4978,11 @@ const MASTER_DATA = [
     "newSchool": "NKABAI PRIMARY SCHOOL",
     "newClass": "GRADE 2",
     "status": "ADOTTABILE",
-    "sponsor": ""
-  },
+    "sponsor": "",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026250",
     "surname": "LEWAO",
@@ -4243,8 +4993,11 @@ const MASTER_DATA = [
     "newSchool": "NKABAI PRIMARY SCHOOL",
     "newClass": "GRADE 1",
     "status": "ADOTTABILE",
-    "sponsor": ""
-  },
+    "sponsor": "",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026251",
     "surname": "LELESHEP",
@@ -4255,8 +5008,11 @@ const MASTER_DATA = [
     "newSchool": "NKABAI PRIMARY SCHOOL",
     "newClass": "GRADE 1",
     "status": "ADOTTATO",
-    "sponsor": "PERIN DE IACO ANGELO E MICHELA"
-  },
+    "sponsor": "PERIN DE IACO ANGELO E MICHELA",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026252",
     "surname": "LEMUNEN",
@@ -4267,8 +5023,11 @@ const MASTER_DATA = [
     "newSchool": "NKABAI PRIMARY SCHOOL",
     "newClass": "GRADE 1",
     "status": "ADOTTABILE",
-    "sponsor": ""
-  },
+    "sponsor": "",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026253",
     "surname": "LENTIIPO",
@@ -4279,8 +5038,11 @@ const MASTER_DATA = [
     "newSchool": "NKABAI PRIMARY SCHOOL",
     "newClass": "GRADE 1",
     "status": "ADOTTABILE",
-    "sponsor": ""
-  },
+    "sponsor": "",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026254",
     "surname": "LEKUPE",
@@ -4291,8 +5053,11 @@ const MASTER_DATA = [
     "newSchool": "NKABAI PRIMARY SCHOOL",
     "newClass": "GRADE 1",
     "status": "ADOTTABILE",
-    "sponsor": ""
-  },
+    "sponsor": "",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026255",
     "surname": "LEMUNEN",
@@ -4303,8 +5068,11 @@ const MASTER_DATA = [
     "newSchool": "NKABAI PRIMARY SCHOOL",
     "newClass": "GRADE 1",
     "status": "ADOTTABILE",
-    "sponsor": ""
-  },
+    "sponsor": "",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026256",
     "surname": "LOLWERIKOI",
@@ -4315,8 +5083,11 @@ const MASTER_DATA = [
     "newSchool": "NKABAI PRIMARY SCHOOL",
     "newClass": "GRADE 1",
     "status": "ADOTTABILE",
-    "sponsor": ""
-  },
+    "sponsor": "",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026257",
     "surname": "LOLMODOONI",
@@ -4327,8 +5098,11 @@ const MASTER_DATA = [
     "newSchool": "NKABAI PRIMARY SCHOOL",
     "newClass": "GRADE 1",
     "status": "ADOTTABILE",
-    "sponsor": ""
-  },
+    "sponsor": "",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026258",
     "surname": "LEMPEEI",
@@ -4339,8 +5113,11 @@ const MASTER_DATA = [
     "newSchool": "NKABAI PRIMARY SCHOOL",
     "newClass": "GRADE 1",
     "status": "ADOTTABILE",
-    "sponsor": ""
-  },
+    "sponsor": "",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026259",
     "surname": "LEKUPE",
@@ -4351,8 +5128,11 @@ const MASTER_DATA = [
     "newSchool": "NKABAI PRIMARY SCHOOL",
     "newClass": "GRADE 1",
     "status": "ADOTTABILE",
-    "sponsor": ""
-  },
+    "sponsor": "",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026260",
     "surname": "LOLKIRIK",
@@ -4363,8 +5143,11 @@ const MASTER_DATA = [
     "newSchool": "MORIJO JUNIOR SECONDARY SCHOOL",
     "newClass": "GRADE 9",
     "status": "ADOTTABILE",
-    "sponsor": ""
-  },
+    "sponsor": "",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026261",
     "surname": "LEWARANI",
@@ -4375,8 +5158,11 @@ const MASTER_DATA = [
     "newSchool": "MORIJO JUNIOR SECONDARY SCHOOL",
     "newClass": "GRADE 7",
     "status": "ADOTTABILE",
-    "sponsor": ""
-  },
+    "sponsor": "",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026262",
     "surname": "LETOLUAI",
@@ -4387,8 +5173,11 @@ const MASTER_DATA = [
     "newSchool": "MORIJO JUNIOR SECONDARY SCHOOL",
     "newClass": "GRADE 7",
     "status": "ADOTTABILE",
-    "sponsor": ""
-  },
+    "sponsor": "",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026263",
     "surname": "LESUYAI",
@@ -4399,8 +5188,11 @@ const MASTER_DATA = [
     "newSchool": "MORIJO JUNIOR SECONDARY SCHOOL",
     "newClass": "GRADE 8",
     "status": "ADOTTABILE",
-    "sponsor": ""
-  },
+    "sponsor": "",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026264",
     "surname": "LETOLUAI",
@@ -4411,8 +5203,11 @@ const MASTER_DATA = [
     "newSchool": "MORIJO PRIMARY SCHOOL",
     "newClass": "GRADE 4",
     "status": "ADOTTABILE",
-    "sponsor": ""
-  },
+    "sponsor": "",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026265",
     "surname": "LESOOKA",
@@ -4423,8 +5218,11 @@ const MASTER_DATA = [
     "newSchool": "MORIJO JUNIOR SECONDARY SCHOOL",
     "newClass": "GRADE 7",
     "status": "ADOTTABILE",
-    "sponsor": ""
-  },
+    "sponsor": "",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026266",
     "surname": "LESHUKUYIA",
@@ -4435,8 +5233,11 @@ const MASTER_DATA = [
     "newSchool": "MORIJO JUNIOR SECONDARY SCHOOL",
     "newClass": "GRADE 7",
     "status": "ADOTTABILE",
-    "sponsor": ""
-  },
+    "sponsor": "",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026267",
     "surname": "LESHUKUYIA",
@@ -4447,8 +5248,11 @@ const MASTER_DATA = [
     "newSchool": "MORIJO JUNIOR SECONDARY SCHOOL",
     "newClass": "GRADE 8",
     "status": "ADOTTABILE",
-    "sponsor": ""
-  },
+    "sponsor": "",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026268",
     "surname": "LESHIMPIRO",
@@ -4459,8 +5263,11 @@ const MASTER_DATA = [
     "newSchool": "MORIJO PRIMARY SCHOOL",
     "newClass": "GRADE 5",
     "status": "ADOTTABILE",
-    "sponsor": ""
-  },
+    "sponsor": "",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026269",
     "surname": "LEPARMORIJO",
@@ -4471,8 +5278,11 @@ const MASTER_DATA = [
     "newSchool": "MORIJO PRIMARY SCHOOL",
     "newClass": "GRADE 5",
     "status": "ADOTTABILE",
-    "sponsor": ""
-  },
+    "sponsor": "",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026270",
     "surname": "LENTOIMAGA",
@@ -4483,8 +5293,11 @@ const MASTER_DATA = [
     "newSchool": "MORIJO JUNIOR SECONDARY SCHOOL",
     "newClass": "GRADE 9",
     "status": "ADOTTABILE",
-    "sponsor": ""
-  },
+    "sponsor": "",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026271",
     "surname": "LEKOROLE",
@@ -4495,8 +5308,11 @@ const MASTER_DATA = [
     "newSchool": "NKABAI COMPREHENSIVE SCHOOL",
     "newClass": "GRADE 1",
     "status": "ADOTTABILE",
-    "sponsor": ""
-  },
+    "sponsor": "",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026272",
     "surname": "LEKOROLE",
@@ -4507,8 +5323,11 @@ const MASTER_DATA = [
     "newSchool": "NKABAI COMPREHENSIVE SCHOOL",
     "newClass": "GRADE 5",
     "status": "ADOTTABILE",
-    "sponsor": ""
-  },
+    "sponsor": "",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026273",
     "surname": "LEKIRENYEI",
@@ -4519,8 +5338,11 @@ const MASTER_DATA = [
     "newSchool": "MORIJO PRIMARY SCHOOL",
     "newClass": "GRADE 5",
     "status": "ADOTTABILE",
-    "sponsor": ""
-  },
+    "sponsor": "",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026274",
     "surname": "LEKESIKE",
@@ -4531,8 +5353,11 @@ const MASTER_DATA = [
     "newSchool": "NKABAI COMPREHENSIVE SCHOOL",
     "newClass": "GRADE 5",
     "status": "ADOTTABILE",
-    "sponsor": ""
-  },
+    "sponsor": "",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026275",
     "surname": "LEKATAP",
@@ -4543,8 +5368,11 @@ const MASTER_DATA = [
     "newSchool": "MORIJO COMPREHENSIVE SCHOOL",
     "newClass": "GRADE 2",
     "status": "ADOTTABILE",
-    "sponsor": ""
-  },
+    "sponsor": "",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026276",
     "surname": "LEIMAO",
@@ -4555,8 +5383,11 @@ const MASTER_DATA = [
     "newSchool": "MORIJO PRIMARY SCHOOL",
     "newClass": "GRADE 4",
     "status": "ADOTTABILE",
-    "sponsor": ""
-  },
+    "sponsor": "",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026277",
     "surname": "LEKESIKE",
@@ -4567,8 +5398,11 @@ const MASTER_DATA = [
     "newSchool": "NKORIKA  PRIMARY SCHOOL",
     "newClass": "GRADE 7",
     "status": "ADOTTABILE",
-    "sponsor": ""
-  },
+    "sponsor": "",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026278",
     "surname": "LEKIRIAO",
@@ -4579,8 +5413,11 @@ const MASTER_DATA = [
     "newSchool": "NKORIKA  PRIMARY SCHOOL",
     "newClass": "GRADE 3",
     "status": "ADOTTABILE",
-    "sponsor": ""
-  },
+    "sponsor": "",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026279",
     "surname": "LELESIIT",
@@ -4591,8 +5428,11 @@ const MASTER_DATA = [
     "newSchool": "NKORIKA  PRIMARY SCHOOL",
     "newClass": "GRADE 6",
     "status": "ADOTTABILE",
-    "sponsor": ""
-  },
+    "sponsor": "",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026280",
     "surname": "LENTIIPO",
@@ -4603,8 +5443,11 @@ const MASTER_DATA = [
     "newSchool": "NKORIKA  PRIMARY SCHOOL",
     "newClass": "GRADE 7",
     "status": "ADOTTABILE",
-    "sponsor": ""
-  },
+    "sponsor": "",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026281",
     "surname": "LENTIIPO",
@@ -4615,8 +5458,11 @@ const MASTER_DATA = [
     "newSchool": "NKORIKA  PRIMARY SCHOOL",
     "newClass": "GRADE 7",
     "status": "ADOTTABILE",
-    "sponsor": ""
-  },
+    "sponsor": "",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026282",
     "surname": "LENTIMALO",
@@ -4627,8 +5473,11 @@ const MASTER_DATA = [
     "newSchool": "NKORIKA  PRIMARY SCHOOL",
     "newClass": "GRADE 8",
     "status": "ADOTTABILE",
-    "sponsor": ""
-  },
+    "sponsor": "",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  },
   {
     "id": "MOR2026283",
     "surname": "LENTUMUNAI",
@@ -4639,8 +5488,11 @@ const MASTER_DATA = [
     "newSchool": "NKORIKA  PRIMARY SCHOOL",
     "newClass": "GRADE 7",
     "status": "ADOTTABILE",
-    "sponsor": ""
-  }
+    "sponsor": "",
+    "brothers": "",
+    "sisters": "",
+    "paid2025": "",
+    "paid2026": ""  }
 ];
 
 // ═══════════════════════════════════════════════════════════════════
@@ -4756,6 +5608,14 @@ async function cloudDelete(id) {
         setCloudStatus('🔴 Errore eliminazione cloud: ' + err.message, 'err');
         return false;
     }
+}
+
+function updatePaid(id, field, value) {
+    const s = students.find(x=>x.id===id);
+    if(!s) return;
+    s[field] = value;
+    saveToLocal();
+    cloudSave(s).catch(()=>{});
 }
 
 // ═══════════════════════════════════════════════════════════════════
@@ -4899,7 +5759,6 @@ function renderTable() {
     document.getElementById('filterCount').textContent = rows.length + ' studenti';
     tbody.innerHTML = rows.map(s => {
         const badgeClass = s.status==='ADOTTATO'?'badge-adottato':s.status==='COMPLETATO'?'badge-completato':s.status==='INATTIVO'?'badge-inattivo':'badge-adottabile';
-        const adoptedText = s.status==='ADOTTATO'?'Sì':'No';
         return '<tr>'+
             '<td class="td-id">'+esc(s.id)+'</td>'+
             '<td class="td-name td-surname">'+esc(s.surname)+'</td>'+
@@ -4910,7 +5769,8 @@ function renderTable() {
             '<td style="font-size:0.8rem;">'+esc(s.newSchool)+'</td>'+
             '<td style="font-size:0.8rem;">'+esc(s.newClass)+'</td>'+
             '<td><span class="badge '+badgeClass+'">'+cap(s.status)+'</span></td>'+
-            '<td>'+adoptedText+'</td>'+
+            '<td><select class="inline-adopt" onchange="updatePaid(\''+esc(s.id)+'\',\'paid2025\',this.value)"><option value=""'+(!s.paid2025?' selected':'')+'>—</option><option value="Sì"'+(s.paid2025==='Sì'?' selected':'')+'>Sì</option><option value="No"'+(s.paid2025==='No'?' selected':'')+'>No</option></select></td>'+
+            '<td><select class="inline-adopt" onchange="updatePaid(\''+esc(s.id)+'\',\'paid2026\',this.value)"><option value=""'+(!s.paid2026?' selected':'')+'>—</option><option value="Sì"'+(s.paid2026==='Sì'?' selected':'')+'>Sì</option><option value="No"'+(s.paid2026==='No'?' selected':'')+'>No</option></select></td>'+
             '<td class="td-sponsor">'+(s.sponsor?esc(s.sponsor):'<em style="color:#aaa">—</em>')+'</td>'+
             '<td><button class="btn-edit" onclick="editStudent(\''+s.id+'\')">Modifica</button></td>'+
         '</tr>';
@@ -4952,6 +5812,8 @@ function openNewStudent() {
     toggleAdoption();
     document.getElementById('photoPreview').style.display='none';
     document.getElementById('photoPh').style.display='block';
+    document.getElementById('fBrothers').value = '';
+    document.getElementById('fSisters').value = '';
     showSection('studentForm');
 }
 function editStudent(id) {
@@ -4977,6 +5839,8 @@ function editStudent(id) {
     document.getElementById('fNewClass').value = s.newClass||'';
     document.getElementById('fNotes').value = s.notes||'';
     document.getElementById('sponsorName').value = s.sponsor||'';
+    document.getElementById('fBrothers').value = s.brothers||'';
+    document.getElementById('fSisters').value = s.sisters||'';
     const isAdopted = s.status==='ADOTTATO';
     document.getElementById('adoptToggle').checked = isAdopted;
     toggleAdoption();
@@ -5019,6 +5883,8 @@ function saveStudent(e) {
         father: document.getElementById('fFather').value.trim(),
         mother: document.getElementById('fMother').value.trim(),
         famStatus: document.getElementById('fFamStatus').value,
+        brothers: document.getElementById('fBrothers').value,
+        sisters: document.getElementById('fSisters').value,
         prevSchool: document.getElementById('fPrevSchool').value.trim().toUpperCase(),
         prevClass: document.getElementById('fPrevClass').value.trim().toUpperCase(),
         newSchool: document.getElementById('fNewSchool').value.trim().toUpperCase(),
@@ -5085,8 +5951,8 @@ function removePhoto() {
 //  EXPORT / IMPORT
 // ═══════════════════════════════════════════════════════════════════
 function exportCSV() {
-    const headers = ['Codice','Cognome','Nome','Sesso','Scuola2025','Classe2025','Scuola2026','Classe2026','Stato','Adottante'];
-    const rows = students.map(s=>[s.id,s.surname,s.firstName,s.gender,s.prevSchool,s.prevClass,s.newSchool,s.newClass,s.status,s.sponsor]);
+    const headers = ['Codice','Cognome','Nome','Sesso','Fratelli','Sorelle','Scuola2025','Classe2025','Scuola2026','Classe2026','Stato','Anno2025','Anno2026','Adottante'];
+    const rows = students.map(s=>[s.id,s.surname,s.firstName,s.gender,s.brothers||'',s.sisters||'',s.prevSchool,s.prevClass,s.newSchool,s.newClass,s.status,s.paid2025||'',s.paid2026||'',s.sponsor]);
     const csv = [headers, ...rows].map(r=>r.map(c=>'"'+((c||'').replace(/"/g,'""'))+'"').join(';')).join('\n');
     downloadBlob(csv, 'morijo_registry.csv', 'text/csv');
 }

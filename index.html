@@ -718,12 +718,12 @@
             /* Layout a due colonne 2:3 per landscape A4 */
             .form-body {
                 display: grid;
-                grid-template-columns: 2fr 3fr;
-                gap: 6px;
+                grid-template-columns: 1fr 2fr;
+                gap: 8px;
                 page-break-inside: avoid;
                 border: 6px solid transparent;
                 border-image: linear-gradient(135deg, #d4af37, #b8962e, #d4af37, #c9a96e) 1;
-                padding: 5px;
+                padding: 4px 6px;
                 background: white;
                 align-items: start;
             }
@@ -735,6 +735,10 @@
                 border: 1px solid #ccc !important;
                 break-inside: avoid;
                 page-break-inside: avoid;
+                margin-top: 4px !important;
+            }
+            .form-card:first-child {
+                margin-top: 0 !important;
             }
             .form-card-head {
                 background: #f0ede6 !important;
@@ -751,12 +755,14 @@
 
             /* Photo box */
             .photo-box {
-                aspect-ratio: 3/4;
-                max-height: 200px !important;
-                min-height: 140px !important;
+                max-height: 260px !important;
+                min-height: 200px !important;
                 border: 1.5px solid #b8962e !important;
                 box-shadow: none !important;
             }
+        .photo-box img {
+            object-fit: contain !important;
+        }
             .photo-actions { display: none !important; }
 
             /* Adoption box compatto */
@@ -835,7 +841,7 @@
             .form-body > div:last-child {
                 display: flex;
                 flex-direction: column;
-                gap: 6px;
+                gap: 8px;
             }
             .form-body > div:last-child .form-card:last-child {
                 flex: 1;
@@ -854,7 +860,7 @@
             }
             #fNotes {
                 flex: 1;
-                min-height: 280px !important;
+                min-height: 380px !important;
                 font-size: 8.5pt !important;
                 line-height: 1.45 !important;
                 padding: 4px 6px !important;
